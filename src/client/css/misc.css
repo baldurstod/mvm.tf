@@ -1,0 +1,13 @@
+.entity-remove-button{
+	position: absolute;
+	height: 2rem;
+	width: 2rem;
+	top: 1rem;
+	right: 1rem;
+	cursor: pointer;
+}
+
+.entity-remove-button>svg{
+	width: 100%;
+	height: 100%;
+}

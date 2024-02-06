@@ -1,0 +1,32 @@
+html{
+	height:100%;
+	width:100%;
+	--font-size: 16px;
+	font-size: var(--font-size);
+}
+body{
+	accent-color: var(--accent-primary);
+	color: var(--text-primary);
+	scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg);
+	/*font-family: helvetica;*/
+	margin:0rem;
+	overflow: hidden;
+	background-color: #000000;
+	justify-content: center;
+	background-color: var(--background-primary);
+
+	height:100%;
+	width:100%;
+}
+.application{
+	display: flex;
+	flex-direction: column;
+	height:100%;
+	width:100%;
+}
+.maincontent{
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	overflow: hidden;
+}

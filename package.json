@@ -1,0 +1,16 @@
+{
+  "name": "mvm.tf",
+  "version": "0.0.1",
+  "description": "Client code for mvm.tf",
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-styles": "^4.0.0"
+  },
+  "dependencies": {
+    "harmony-svg": "github:baldurstod/harmony-svg",
+    "harmony-ui": "github:baldurstod/harmony-ui"
+  }
+}

@@ -1,0 +1,65 @@
+{
+	"name": "waveschedule",
+	"attributes" :[
+		{
+			"name": "StartingCurrency",
+			"i18n": "#starting_currency",
+			"type": "integer",
+			"min": "0",
+			"default": "0"
+		},
+		{
+			"name": "RespawnWaveTime",
+			"i18n": "#respawn_wave_time",
+			"type": "integer",
+			"min": "0",
+			"default": "10"
+		},
+		{
+			"name": "EventPopfile",
+			"i18n": "#event",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"Halloween"
+			]
+		},
+		{
+			"name": "FixedRespawnWaveTime",
+			"i18n": "#respawn_wave_time",
+			"type": "trueifpresent"
+		},
+		{
+			"name": "AddSentryBusterWhenDamageDealtExceeds",
+			"i18n": "#add_sentry_buster_when_damage_dealt_exceeds",
+			"type": "integer",
+			"min": "0",
+			"default": "3000"
+		},
+		{
+			"name": "AddSentryBusterWhenKillCountExceeds",
+			"i18n": "#add_sentry_buster_when_kill_count_exceeds",
+			"type": "integer",
+			"min": "0",
+			"default": "15"
+		},
+		{
+			"name": "CanBotsAttackWhileInSpawnRoom",
+			"i18n": "#can_bots_attack_while_in_spawn_room",
+			"type": "boolean",
+			"min": "0",
+			"default": "15"
+		},
+		{
+			"name": "Advanced",
+			"i18n": "#advanced",
+			"type": "trueifpresent"
+		},
+		{
+			"name": "IsEndless",
+			"i18n": "#endless",
+			"type": "trueifpresent"
+		}
+	]
+}

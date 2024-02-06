@@ -1,0 +1,26 @@
+{
+	"name": "wave",
+	"attributes" :[
+		{
+			"name": "Sound",
+			"i18n": "#sound",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"TODO"
+			]
+		},
+		{
+			"name": "Description",
+			"i18n": "#description",
+			"type": "string"
+		},
+		{
+			"name": "WaitWhenDone",
+			"i18n": "#wait_when_done",
+			"type": "integer",
+			"default": "0"
+		}
+	]
+}
