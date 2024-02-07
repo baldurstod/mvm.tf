@@ -10,6 +10,7 @@
     "rollup-plugin-styles": "^4.0.0"
   },
   "dependencies": {
+    "harmony-browser-utils": "github:baldurstod/harmony-browser-utils",
     "harmony-svg": "github:baldurstod/harmony-svg",
     "harmony-ui": "github:baldurstod/harmony-ui"
   }
