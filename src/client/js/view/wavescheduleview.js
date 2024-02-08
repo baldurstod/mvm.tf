@@ -138,7 +138,7 @@ export class WaveScheduleView extends EntityView {
 			const waveView = new WaveView(child);
 
 			createElement('harmony-tab', {
-				'data-i18n': ++wave,
+				'data-text': ++wave,
 				parent: this.#htmlWaves,
 				child: waveView.htmlElement,
 			});

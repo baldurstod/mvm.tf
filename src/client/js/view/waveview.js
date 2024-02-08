@@ -44,7 +44,7 @@ export class WaveView extends EntityView {
 			const waveView = new WaveSpawnView(child);
 
 			createElement('harmony-tab', {
-				'data-i18n': ++waveSpawn,
+				'data-text': ++waveSpawn,
 				parent: this.#htmlWaveSpawns,
 				child: waveView.htmlElement,
 			});
