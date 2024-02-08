@@ -27,7 +27,7 @@
 		},
 		{
 			"name": "FixedRespawnWaveTime",
-			"i18n": "#respawn_wave_time",
+			"i18n": "#fixed_respawn_wave_time",
 			"type": "trueifpresent"
 		},
 		{

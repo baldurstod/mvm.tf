@@ -54,7 +54,7 @@
 		},
 		{
 			"name": "MaxActive",
-			"i18n": "#wax_active",
+			"i18n": "#max_active",
 			"type": "integer",
 			"min": 1,
 			"default": 999
