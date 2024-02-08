@@ -49,6 +49,10 @@ export class Entity {
 		this.#childs.delete(child);
 	}
 
+	getChilds() {
+		return this.#childs;
+	}
+
 	setAttributes(json) {
 		//console.log(json);
 		for (const attributeJSON of json.attributes) {
@@ -104,6 +108,10 @@ export class Entity {
 
 	removeValues(name) {
 		this.#attributes.get(name)?.clear();
+	}
+
+	getAttributeValue(name) {
+		return this.#attributes.get(name)?.getValue();
 	}
 
 	validate() {

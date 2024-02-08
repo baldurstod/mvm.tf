@@ -1,10 +1,10 @@
-wave-schedule{
+mvm-wave-schedule{
 	display: flex;
 	height:100%;
 	width:100%;
-	background-color: red;
+	background-color: rgb(102, 146, 57);
 }
 
-wave-schedule .header{
+mvm-wave-schedule .header{
 	display: flex;
 }

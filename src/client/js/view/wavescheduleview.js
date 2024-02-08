@@ -13,6 +13,7 @@ import '../../css/misc.css';
 import waveschedule from '../../json/attributes/waveschedule.json';
 
 import { EntityView } from './EntityView';
+import { WaveView } from './waveview';
 
 
 //import {PopReader} from '../population/PopReader.js';
@@ -50,13 +51,14 @@ function processFileInput(event) {
 }
 
 export class WaveScheduleView extends EntityView {
-	#htmlElement;
+	//#htmlElement;
 	#htmlMapSelect;
 	#htmlStartingCurrency;
 	#htmlRespawnWaveTime;
+	#htmlWaves;
 	#entity;
-	constructor() {
-		super(waveschedule);
+	constructor(entity) {
+		super(waveschedule, entity);
 		//this.#entity = entity;
 		//this.create();
 	}
@@ -71,8 +73,11 @@ export class WaveScheduleView extends EntityView {
 
 	initHTML() {
 		const htmlElement = super.initHTML();
-		createElement('wave-schedule', {
+		createElement('mvm-wave-schedule', {
+			parent: this.htmlChilds,
 			childs: [
+				this.#htmlWaves = createElement('harmony-tab-group'),
+				/*
 				// Buttons
 				createElement('div', {
 					class: 'header',
@@ -93,6 +98,8 @@ export class WaveScheduleView extends EntityView {
 
 					],
 				}),
+*/
+/*
 				// Map
 				createElement('div', {
 					childs: [
@@ -108,38 +115,35 @@ export class WaveScheduleView extends EntityView {
 						}),
 					],
 				}),
-				// Starting currency
-				/*createElement('div', {
-					childs: [
-						createElement('label', { i18n: '#starting_currency' }),
-						this.#htmlStartingCurrency = createElement('input', {
-							events: {
-								input: event => this.#entity.setAttribute('StartingCurrency', event.target.value)
-							}
-						}),
-					],
-				}),
-				// Respawn Wave Time
-				createElement('div', {
-					childs: [
-						createElement('label', { i18n: '#respawn_wave_time' }),
-						this.#htmlRespawnWaveTime = createElement('input', {
-							type: 'checkbox',
-							events: {
-								input: event => this.#entity.setAttribute('RespawnWaveTime', event.target.value)
-							}
-						}),
-					],
-				}),*/
+*/
 			]
 		});
+
+		this.updateHTML();
 		return htmlElement;
-		//this.#htmlElement.append(this.htmlCanBotsAttackWhileInSpawnRoom, this.htmlAdvanced, this.htmlEventPopfile, this.htmlFixedRespawnWaveTime, this.htmlTabPanels);
 	}
 
-	/*get htmlElement() {
-		return this.#htmlElement ?? this.initHTML();
-	}*/
+	updateHTML() {
+		super.updateHTML();
+		const entity = this.getEntity();
+		if (!entity) {
+			return;
+		}
+		let wave = 0;
+		for(const child of entity.getChilds()) {
+			if (!child.isWave) {
+				break;
+			}
+			const waveView = new WaveView(child);
+
+			createElement('harmony-tab', {
+				'data-i18n': ++wave,
+				parent: this.#htmlWaves,
+				child: waveView.htmlElement,
+			});
+		}
+	}
+
 /*
 	create() {
 		super.create();

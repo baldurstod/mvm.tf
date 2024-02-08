@@ -6,7 +6,7 @@ export class EntityAttribute {
 	#max;
 	#list;
 	#multiple;
-	constructor({ name, type = 'string', value, min, max, list, multiple = false } = {}) {
+	constructor({ name, type = 'string', default: value, min, max, list, multiple = false } = {}) {
 		this.#name = name;
 		this.#type = type;
 		this.#min = min;
@@ -35,6 +35,10 @@ export class EntityAttribute {
 		} else {
 			this.#value = value;
 		}
+	}
+
+	getValue() {
+		return this.#value;
 	}
 
 	removeValue(value) {

@@ -1,0 +1,10 @@
+mvm-wave{
+	display: flex;
+	height:100%;
+	width:100%;
+	background-color: rgb(146, 125, 57);
+}
+
+mvm-wave .header{
+	display: flex;
+}
