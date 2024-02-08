@@ -35,6 +35,7 @@ export class WaveView extends EntityView {
 			return;
 		}
 
+		this.#htmlWaveSpawns.clear();
 		let waveSpawn = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWaveSpawn) {

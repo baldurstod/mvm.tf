@@ -129,6 +129,7 @@ export class WaveScheduleView extends EntityView {
 		if (!entity) {
 			return;
 		}
+		this.#htmlWaves.clear();
 		let wave = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWave) {

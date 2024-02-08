@@ -39,21 +39,29 @@ export class Entity {
 		return this.#parent;
 	}
 
-	setParent(parent) {
-		this.#parent = parent;
-	}
-
 	addChild(child) {
 		this.#childs.add(child);
+		child.#parent = this;
 		Controller.dispatchEvent(new CustomEvent(EVENT_ENTITY_UPDATED, { detail: this }));
 	}
 
 	removeChild(child) {
-		this.#childs.delete(child);
+		if (this.#childs.has(child)) {
+			this.#childs.delete(child);
+			child.#parent = null;
+			Controller.dispatchEvent(new CustomEvent(EVENT_ENTITY_UPDATED, { detail: this }));
+		}
 	}
 
 	getChilds() {
 		return this.#childs;
+	}
+
+	remove() {
+		const parent = this.#parent;
+		if (parent) {
+			parent.removeChild(this);
+		}
 	}
 
 	setAttributes(json) {
