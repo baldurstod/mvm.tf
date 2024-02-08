@@ -1,3 +1,8 @@
+const DEFAULT_VALUE_FOR_TYPE = {
+	integer: 0,
+	string: '',
+}
+
 export class EntityAttribute {
 	#name;
 	#type;
@@ -13,6 +18,10 @@ export class EntityAttribute {
 		this.#max = max;
 		this.#list = list;
 		this.#multiple = multiple;
+
+		if (value === undefined) {
+			value = DEFAULT_VALUE_FOR_TYPE[type];
+		}
 
 		if (multiple) {
 			this.#value = new Set();
