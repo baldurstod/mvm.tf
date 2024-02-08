@@ -12,7 +12,7 @@ import '../../css/misc.css';
 
 import waveschedule from '../../json/attributes/waveschedule.json';
 
-import { EntityView } from './EntityView';
+import { EntityView } from './entityview';
 import { WaveView } from './waveview';
 
 

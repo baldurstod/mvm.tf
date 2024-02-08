@@ -1,0 +1,131 @@
+{
+	"name": "wave",
+	"attributes" :[
+		{
+			"name": "Name",
+			"i18n": "#name",
+			"type": "string"
+		},
+		{
+			"name": "WaitForAllSpawned",
+			"i18n": "#wait_for_all_spawned",
+			"type": "string"
+		},
+		{
+			"name": "WaitForAllDead",
+			"i18n": "#wait_for_all_dead",
+			"type": "string"
+		},
+		{
+			"name": "Support",
+			"i18n": "#support",
+			"type": "string"
+		},
+		{
+			"name": "RandomSpawn",
+			"i18n": "#random_spawn",
+			"type": "boolean",
+			"default": false
+		},
+		{
+			"name": "Support",
+			"i18n": "#support",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"1",
+				"Limited"
+			]
+		},
+		{
+			"name": "TotalCurrency",
+			"i18n": "#total_currency",
+			"type": "integer",
+			"min": 0,
+			"default": 0
+		},
+		{
+			"name": "TotalCount",
+			"i18n": "#total_count",
+			"type": "integer",
+			"min": 0,
+			"default": 0
+		},
+		{
+			"name": "MaxActive",
+			"i18n": "#wax_active",
+			"type": "integer",
+			"min": 1,
+			"default": 999
+		},
+		{
+			"name": "SpawnCount",
+			"i18n": "#spawn_count",
+			"type": "integer",
+			"min": 1,
+			"default": 1
+		},
+		{
+			"name": "WaitBeforeStarting",
+			"i18n": "#wait_before_starting",
+			"type": "float",
+			"min": 0,
+			"default": 0
+		},
+		{
+			"name": "WaitBetweenSpawns",
+			"i18n": "#wait_between_spawns",
+			"type": "float",
+			"min": 0,
+			"default": 0
+		},
+		{
+			"name": "WaitBetweenSpawnsAfterDeath",
+			"i18n": "#wait_between_spawns_after_death",
+			"type": "float",
+			"min": 0,
+			"default": 0
+		},
+		{
+			"name": "StartWaveWarningSound",
+			"i18n": "#start_wave_warning_sound",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"TODO"
+			]
+		},
+		{
+			"name": "FirstSpawnWarningSound",
+			"i18n": "#first_spawn_warning_sound",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"TODO"
+			]
+		},
+		{
+			"name": "LastSpawnWarningSound",
+			"i18n": "#last_spawn_warning_sound",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"TODO"
+			]
+		},
+		{
+			"name": "DoneWarningSound",
+			"i18n": "#done_warning_sound",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"TODO"
+			]
+		}
+	]
+}

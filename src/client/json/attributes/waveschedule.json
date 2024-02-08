@@ -48,8 +48,7 @@
 			"name": "CanBotsAttackWhileInSpawnRoom",
 			"i18n": "#can_bots_attack_while_in_spawn_room",
 			"type": "boolean",
-			"min": 0,
-			"default": 15
+			"default": true
 		},
 		{
 			"name": "Advanced",
