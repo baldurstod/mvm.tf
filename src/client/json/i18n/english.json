@@ -1,5 +1,33 @@
 {
 	"lang": "english",
 	"strings": {
+		"#starting_currency": "Starting currency"
+		,"#respawn_wave_time": "Respawn wave time"
+		,"#event": "Event"
+		,"#fixed_respawn_wave_time": "Fixed respawn wave time"
+		,"#add_sentry_buster_when_damage_dealt_exceeds": "Add sentry buster when damage dealt exceeds"
+		,"#add_sentry_buster_when_kill_count_exceeds": "Add sentry buster when kill count exceeds"
+		,"#can_bots_attack_while_in_spawn_room": "Can bots attack while in spawn room"
+		,"#advanced": "Advanced"
+		,"#endless": "Endless"
+		,"#sound": "Sound"
+		,"#description": "Description"
+		,"#wait_when_done": "Wait when done"
+		,"#name": "name"
+		,"#wait_for_all_spawned": "Wait for all spawned"
+		,"#wait_for_all_dead": "wait for all dead"
+		,"#support": "Support"
+		,"#random_spawn": "Random spawn"
+		,"#total_currency": "Total currency"
+		,"#total_count": "Total count"
+		,"#max_active": "Max active"
+		,"#spawn_count": "Spawn count"
+		,"#wait_before_starting": "Wait before starting"
+		,"#wait_between_spawns": "Wait between spawns"
+		,"#wait_between_spawns_after_death": "Wait between spawns after death"
+		,"#start_wave_warning_sound": "Start wave warning sound"
+		,"#first_spawn_warning_sound": "First spawn warning sound"
+		,"#last_spawn_warning_sound": "Last spawn warning sound"
+		,"#done_warning_sound": "Done warning sound"
 	}
 }
