@@ -1,7 +1,7 @@
 import { closeSVG } from 'harmony-svg';
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
-import { EVENT_REMOVE_ENTITY } from '../controllerevents';
+import { EVENT_ENTITY_UPDATED, EVENT_REMOVE_ENTITY } from '../controllerevents';
 
 import '../../css/entity.css';
 
@@ -13,9 +13,11 @@ export class EntityView {
 	#entity;
 	#attributeTemplates;
 	static #dataListID = 0;
+
 	constructor(attributeTemplates, entity) {
 		this.#attributeTemplates = attributeTemplates;
 		this.#entity = entity;
+		Controller.addEventListener(EVENT_ENTITY_UPDATED, event => this.#entityUpdated(event.detail));
 	}
 
 	setEntity(entity) {
@@ -156,6 +158,12 @@ export class EntityView {
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
 				break;
+		}
+	}
+
+	#entityUpdated(entity) {
+		if (entity == this.#entity) {
+			this.updateHTML();
 		}
 	}
 }

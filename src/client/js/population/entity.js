@@ -1,3 +1,5 @@
+import { Controller } from '../controller.js';
+import { EVENT_ENTITY_UPDATED } from '../controllerevents.js';
 import { EntityAttribute } from './entityattribute.js';
 
 export class Entity {
@@ -43,6 +45,7 @@ export class Entity {
 
 	addChild(child) {
 		this.#childs.add(child);
+		Controller.dispatchEvent(new CustomEvent(EVENT_ENTITY_UPDATED, { detail: this }));
 	}
 
 	removeChild(child) {

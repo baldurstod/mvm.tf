@@ -24,6 +24,7 @@ export class WaveView extends EntityView {
 				this.#htmlWaveSpawns = createElement('harmony-tab-group'),
 			]
 		});
+		this.updateHTML();
 		return htmlElement;
 	}
 
@@ -36,7 +37,7 @@ export class WaveView extends EntityView {
 
 		let waveSpawn = 0;
 		for(const child of entity.getChilds()) {
-			if (!child.isWave) {
+			if (!child.isWaveSpawn) {
 				break;
 			}
 			const waveView = new WaveSpawnView(child);

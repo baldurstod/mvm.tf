@@ -69,21 +69,21 @@
 		{
 			"name": "WaitBeforeStarting",
 			"i18n": "#wait_before_starting",
-			"type": "float",
+			"type": "integer",
 			"min": 0,
 			"default": 0
 		},
 		{
 			"name": "WaitBetweenSpawns",
 			"i18n": "#wait_between_spawns",
-			"type": "float",
+			"type": "integer",
 			"min": 0,
 			"default": 0
 		},
 		{
 			"name": "WaitBetweenSpawnsAfterDeath",
 			"i18n": "#wait_between_spawns_after_death",
-			"type": "float",
+			"type": "integer",
 			"min": 0,
 			"default": 0
 		},

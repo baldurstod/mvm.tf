@@ -20,6 +20,7 @@ export class WaveSpawnView extends EntityView {
 			parent: this.htmlChilds,
 			innerHTML: 'wavespawn',
 		});
+		this.updateHTML();
 		return htmlElement;
 	}
 
