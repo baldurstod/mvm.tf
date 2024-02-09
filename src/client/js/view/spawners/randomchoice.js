@@ -9,7 +9,7 @@ export class RandomChoiceView extends SpawnerView {
 		const htmlElement = super.initHTML();
 
 		createElement('mvm-spawner-random-choice', {
-			parent: htmlElement,
+			parent: this.htmlSpawner,
 			innerHTML: 'RandomChoiceView',
 		});
 

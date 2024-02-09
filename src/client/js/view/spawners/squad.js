@@ -9,7 +9,7 @@ export class SquadView extends SpawnerView {
 		const htmlElement = super.initHTML();
 
 		createElement('mvm-spawner-bot', {
-			parent: htmlElement,
+			parent: this.htmlSpawner,
 			innerHTML: 'SquadView',
 		});
 

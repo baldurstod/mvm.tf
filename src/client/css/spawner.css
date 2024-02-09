@@ -1,0 +1,16 @@
+mvm-spawner{
+	display: flex;
+	height:100%;
+	width:100%;
+	background-color: rgb(132, 33, 159);
+}
+
+mvm-spawner .title{
+	font-size: 2rem;
+}
+
+mvm-spawner-bot{
+	flex: 1;
+	display: flex;
+
+}

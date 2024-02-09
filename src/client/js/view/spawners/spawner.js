@@ -5,31 +5,30 @@ import 'harmony-ui/dist/define/harmony-select.js';
 import 'harmony-ui/dist/define/harmony-tab.js';
 import 'harmony-ui/dist/define/harmony-tab-group.js';
 
-//import '../../css/wavespawn.css';
+import '../../../css/spawner.css';
 
 //import wavespawn from '../../json/attributes/wavespawn.json';
 
 export class SpawnerView extends EntityView {
 	static #spawners = new Map();
+	#htmlSpawner;
 	constructor(entity) {
 		super(null, entity);
 	}
 
 	initHTML() {
 		const htmlElement = super.initHTML();
-/*
-		createElement('mvm-wave-spawn', {
-			parent: this.htmlElement,
-			childs: [
-				createElement('div', {
-					class: 'mvm-wave-spawn-buttons',
-				}),
-				this.#htmlSpawner = createElement('div', {
-					class: 'mvm-wave-spawn-spawners',
-				}),
-			]
+
+		createElement('div', {
+			parent: this.htmlChilds,
+			class: 'title',
+			innerHTML: this.getSpawnerName(),
+		}),
+
+		this.#htmlSpawner = createElement('mvm-spawner', {
+			parent: this.htmlChilds,
 		});
-*/
+
 		this.updateHTML();
 		return htmlElement;
 	}
@@ -47,6 +46,10 @@ export class SpawnerView extends EntityView {
 
 	}
 
+	get htmlSpawner() {
+		return this.#htmlSpawner;
+	}
+
 	static registerSpawner(spawnerClass) {
 		this.#spawners.set(spawnerClass.getSpawnerName(), spawnerClass);
 	}
@@ -56,5 +59,9 @@ export class SpawnerView extends EntityView {
 		if (spawnerViewClass) {
 			return new spawnerViewClass();
 		}
+	}
+
+	getSpawnerName() {
+		return this.constructor.getSpawnerName();
 	}
 }

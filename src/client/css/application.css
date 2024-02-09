@@ -9,6 +9,7 @@ body{
 	color: var(--text-primary);
 	scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg);
 	/*font-family: helvetica;*/
+	font-family: Helvetica, Verdana,sans-serif;
 	margin:0rem;
 	overflow: hidden;
 	background-color: #000000;

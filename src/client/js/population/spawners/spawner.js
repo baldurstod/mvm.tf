@@ -10,6 +10,13 @@ export class Spawner {
 	}
 
 	static getSpawner(name) {
-		return this.#spawners.get(name);
+		const spawnerClass = this.#spawners.get(name);
+		if (spawnerClass) {
+			return new spawnerClass();
+		}
+	}
+
+	getSpawnerName() {
+		return this.constructor.getSpawnerName();
 	}
 }

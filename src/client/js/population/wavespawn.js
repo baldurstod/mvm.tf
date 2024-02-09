@@ -12,9 +12,10 @@ export class WaveSpawn extends Entity {
 
 	setSpawner(spawner) {
 		this.#spawner = spawner;
+		this.dispatchUpdate();
 	}
 
-	getSpawner(spawner) {
+	getSpawner() {
 		return this.#spawner;
 	}
 }

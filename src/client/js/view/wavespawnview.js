@@ -9,6 +9,7 @@ import '../../css/wavespawn.css';
 
 import wavespawn from '../../json/attributes/wavespawn.json';
 import { SpawnerView } from './spawners/spawner';
+import { Spawner } from '../population/spawners/spawner';
 
 export class WaveSpawnView extends EntityView {
 	#htmlSpawner;
@@ -23,7 +24,36 @@ export class WaveSpawnView extends EntityView {
 			parent: htmlElement,
 			childs: [
 				createElement('div', {
-					class: 'mvm-wave-spawn-buttons',
+					class: 'mvm-wave-spawn-controls',
+					childs: [
+						createElement('select', {
+							childs: [
+								createElement('option', {
+									value: 'Bot',
+									innerText: 'Bot'
+								}),
+								createElement('option', {
+									value: 'RandomChoice',
+									innerText: 'RandomChoice'
+								}),
+								createElement('option', {
+									value: 'SentryGun',
+									innerText: 'SentryGun'
+								}),
+								createElement('option', {
+									value: 'Squad',
+									innerText: 'Squad'
+								}),
+								createElement('option', {
+									value: 'Tank',
+									innerText: 'Tank'
+								}),
+							],
+							events: {
+								change: event => this.#changeSpawner(event),
+							},
+						}),
+					],
 				}),
 				this.#htmlSpawner = createElement('div', {
 					class: 'mvm-wave-spawn-spawner',
@@ -43,11 +73,15 @@ export class WaveSpawnView extends EntityView {
 			return;
 		}
 
-
-		const spawnerView = SpawnerView.getSpawner(spawner.constructor.getSpawnerName());
+		const spawnerView = SpawnerView.getSpawner(spawner.getSpawnerName());
 		console.info(spawnerView)
-		this.#htmlSpawner.append(spawnerView?.htmlElement);
+		this.#htmlSpawner.replaceChildren(spawnerView?.htmlElement);
+	}
 
-
+	#changeSpawner(event) {
+		const spawner = Spawner.getSpawner(event.target.value);
+		if (spawner) {
+			this.getEntity()?.setSpawner(spawner);
+		}
 	}
 }

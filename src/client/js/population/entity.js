@@ -42,6 +42,10 @@ export class Entity {
 	addChild(child) {
 		this.#childs.add(child);
 		child.#parent = this;
+		this.dispatchUpdate();
+	}
+
+	dispatchUpdate() {
 		Controller.dispatchEvent(new CustomEvent(EVENT_ENTITY_UPDATED, { detail: this }));
 	}
 

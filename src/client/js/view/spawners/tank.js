@@ -9,7 +9,7 @@ export class TankView extends SpawnerView {
 		const htmlElement = super.initHTML();
 
 		createElement('mvm-spawner-bot', {
-			parent: htmlElement,
+			parent: this.htmlSpawner,
 			innerHTML: 'TankView',
 		});
 

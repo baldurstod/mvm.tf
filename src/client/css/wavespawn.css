@@ -1,5 +1,6 @@
 mvm-wave-spawn{
 	display: flex;
+	flex-direction: column;
 	height:100%;
 	width:100%;
 	background-color: rgb(146, 125, 57);
@@ -7,4 +8,8 @@ mvm-wave-spawn{
 
 mvm-wave-spawn .header{
 	display: flex;
+}
+
+.mvm-wave-spawn-spawner{
+	flex: 1;
 }
