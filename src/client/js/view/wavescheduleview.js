@@ -14,6 +14,7 @@ import waveschedule from '../../json/attributes/waveschedule.json';
 
 import { EntityView } from './entityview';
 import { WaveView } from './waveview';
+export * from './spawners/spawners.js';
 
 
 //import {PopReader} from '../population/PopReader.js';

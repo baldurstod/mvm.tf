@@ -68,8 +68,11 @@ export class EntityView {
 
 	#initAttributes() {
 		const attributeTemplates = this.#attributeTemplates;
+		if (!attributeTemplates) {
+			return;
+		}
 		for (const attributeTemplate of attributeTemplates.attributes) {
-			console.info(attributeTemplate);
+			//console.info(attributeTemplate);
 			this.#initAttribute(attributeTemplate);
 		}
 	}
