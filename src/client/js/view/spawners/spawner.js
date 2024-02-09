@@ -7,13 +7,11 @@ import 'harmony-ui/dist/define/harmony-tab-group.js';
 
 import '../../../css/spawner.css';
 
-//import wavespawn from '../../json/attributes/wavespawn.json';
-
 export class SpawnerView extends EntityView {
 	static #spawners = new Map();
 	#htmlSpawner;
-	constructor(entity) {
-		super(null, entity);
+	constructor(attributeTemplates, entity) {
+		super(attributeTemplates, entity);
 	}
 
 	initHTML() {

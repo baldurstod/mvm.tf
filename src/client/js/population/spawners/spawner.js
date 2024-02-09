@@ -1,7 +1,9 @@
+import { Entity } from '../entity.js';
 
-export class Spawner {
+export class Spawner extends Entity {
 	static #spawners = new Map();
 	constructor() {
+		super();
 		this.isSpawner = true;
 	}
 

@@ -1,0 +1,30 @@
+{
+	"name": "tank",
+	"attributes" :[
+		{
+			"name": "Health",
+			"i18n": "#health",
+			"type": "integer",
+			"default": 50000,
+			"min": 1
+		},
+		{
+			"name": "Speed",
+			"i18n": "#speed",
+			"type": "integer",
+			"default": 75,
+			"min": 1
+		},
+		{
+			"name": "Name",
+			"i18n": "#name",
+			"type": "string",
+			"default": "Tank"
+		},
+		{
+			"name": "StartingPathTrackNode",
+			"i18n": "#starting_path_track_node",
+			"type": "string"
+		}
+	]
+}

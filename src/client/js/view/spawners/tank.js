@@ -1,9 +1,11 @@
 import { createElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
+import tank from '../../../json/attributes/tank.json';
+
 export class TankView extends SpawnerView {
 	constructor() {
-		super()
+		super(tank);
 	}
 	initHTML() {
 		const htmlElement = super.initHTML();
