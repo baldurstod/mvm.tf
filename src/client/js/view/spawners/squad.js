@@ -16,7 +16,6 @@ export class SquadView extends SpawnerView {
 
 		createElement('mvm-spawner-squad', {
 			parent: this.htmlSpawner,
-			//innerHTML: 'SquadView',
 			childs: [
 				createElement('div', {
 					innerText: 'create bot',
