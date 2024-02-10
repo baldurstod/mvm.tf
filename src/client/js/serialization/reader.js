@@ -105,16 +105,16 @@ function createWaveSpawn(waveSpawnKV) {
 		} else {
 			switch (kv.key) {
 				case 'TFBot':
-					waveSpawn.addChild(createBot(kv));
+					waveSpawn.setSpawner(createBot(kv));
 					break;
 				case 'Squad':
-					waveSpawn.addChild(createSquad(kv));
+					waveSpawn.setSpawner(createSquad(kv));
 					break;
 				case 'RandomChoice':
-					waveSpawn.addChild(createRandomChoice(kv));
+					waveSpawn.setSpawner(createRandomChoice(kv));
 					break;
 				case 'Tank':
-					waveSpawn.addChild(createTank(kv));
+					waveSpawn.setSpawner(createTank(kv));
 					break;
 				case 'FirstSpawnOutput':
 					console.error('TODO');
