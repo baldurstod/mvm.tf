@@ -1,9 +1,11 @@
 import { createElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
+import sentrygun from '../../../json/attributes/sentrygun.json';
+
 export class SentryGunView extends SpawnerView {
 	constructor() {
-		super()
+		super(sentrygun);
 	}
 	initHTML() {
 		const htmlElement = super.initHTML();

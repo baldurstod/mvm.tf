@@ -1,0 +1,15 @@
+{
+	"name": "sentrygun",
+	"attributes" :[
+		{
+			"name": "Level",
+			"i18n": "#level",
+			"type": "list",
+			"datalist": [
+				"1",
+				"2",
+				"3"
+			]
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"name": "squad",
+	"attributes" :[
+		{
+			"name": "FormationSize",
+			"i18n": "#formation_size",
+			"type": "float"
+		},
+		{
+			"name": "ShouldPreserveSquad",
+			"i18n": "#should_preserve_squad",
+			"type": "boolean",
+			"default": false
+		}
+	]
+}

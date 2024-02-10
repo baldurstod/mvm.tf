@@ -5,7 +5,7 @@ import bot from '../../../json/attributes/bot.json';
 
 export class BotSpawnerView extends SpawnerView {
 	constructor() {
-		super(bot)
+		super(bot);
 	}
 	initHTML() {
 		const htmlElement = super.initHTML();
