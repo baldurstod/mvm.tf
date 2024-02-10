@@ -1,9 +1,11 @@
 import { createElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
+import bot from '../../../json/attributes/bot.json';
+
 export class BotSpawnerView extends SpawnerView {
 	constructor() {
-		super()
+		super(bot)
 	}
 	initHTML() {
 		const htmlElement = super.initHTML();

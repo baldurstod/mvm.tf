@@ -1,0 +1,128 @@
+{
+	"name": "bot",
+	"attributes" :[
+		{
+			"name": "Name",
+			"i18n": "#name",
+			"type": "string"
+		},
+		{
+			"name": "Class",
+			"i18n": "#class",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"Scout",
+				"Sniper",
+				"Soldier",
+				"Demoman",
+				"Medic",
+				"Heavy",
+				"Pyro",
+				"Spy",
+				"Engineer"
+			]
+		},
+		{
+			"name": "Health",
+			"i18n": "#health",
+			"type": "integer"
+		},
+		{
+			"name": "Scale",
+			"i18n": "#scale",
+			"type": "float"
+		},
+		{
+			"name": "TeleportWhere",
+			"i18n": "#teleport_where",
+			"type": "string"
+		},
+		{
+			"name": "AutoJumpMin",
+			"i18n": "#auto_jump_min",
+			"type": "float",
+			"default": null
+		},
+		{
+			"name": "AutoJumpMax",
+			"i18n": "#auto_jump_max",
+			"type": "float",
+			"default": null
+		},
+		{
+			"name": "Skill",
+			"i18n": "#skill",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"Easy",
+				"Normal",
+				"Hard",
+				"Expert"
+			]
+		},
+		{
+			"name": "WeaponRestrictions",
+			"i18n": "#weapon_restrictions",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"MeleeOnly",
+				"PrimaryOnly",
+				"SecondaryOnly"
+			]
+		},
+		{
+			"name": "BehaviorModifiers",
+			"i18n": "#behavior_modifiers",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"Mobber",
+				"Push"
+			]
+		},
+		{
+			"name": "Attributes",
+			"i18n": "#attributes",
+			"type": "list",
+			"multiple": true,
+			"datalist": [
+				"RemoveOnDeath",
+				"Aggressive",
+				"SuppressFire",
+				"DisableDodge",
+				"BecomeSpectatorOnDeath",
+				"RetainBuildings",
+				"SpawnWithFullCharge",
+				"AlwaysCrit",
+				"IgnoreEnemies",
+				"HoldFireUntilFullReload",
+				"AlwaysFireWeapon",
+				"TeleportToHint",
+				"MiniBoss",
+				"UseBossHealthBar",
+				"IgnoreFlag",
+				"AutoJump",
+				"AirChargeOnly",
+				"VaccinatorBullets",
+				"VaccinatorBlast",
+				"VaccinatorFire",
+				"BulletImmune",
+				"BlastImmune",
+				"FireImmune",
+				"Parachute",
+				"ProjectileShield"
+			]
+		},
+		{
+			"name": "MaxVisionRange",
+			"i18n": "#max_vision_range",
+			"type": "float"
+		}
+	]
+}

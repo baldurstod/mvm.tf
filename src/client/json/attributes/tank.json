@@ -25,6 +25,15 @@
 			"name": "StartingPathTrackNode",
 			"i18n": "#starting_path_track_node",
 			"type": "string"
+		},
+		{
+			"name": "Skin",
+			"i18n": "#skin",
+			"type": "list",
+			"datalist": [
+				"",
+				"1"
+			]
 		}
 	]
 }

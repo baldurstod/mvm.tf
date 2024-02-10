@@ -7,6 +7,7 @@ import '../../css/entity.css';
 
 export class EntityView {
 	#htmlElement;
+	#htmlTitle;
 	#htmlAttributes;
 	#htmlAttributesInputs = new Map();
 	#htmlChilds;
@@ -45,6 +46,7 @@ export class EntityView {
 						}
 					},
 				}),
+				this.#htmlTitle = createElement('div', { class: 'mvm-entity-title' }),
 				this.#htmlAttributes = createElement('div', { class: 'mvm-entity-attributes' }),
 				this.#htmlChilds = createElement('div', { class: 'mvm-entity-childs' }),
 			]
@@ -60,6 +62,10 @@ export class EntityView {
 
 	get htmlElement() {
 		return this.initHTML();
+	}
+
+	get htmlTitle() {
+		return this.#htmlTitle;
 	}
 
 	get htmlChilds() {
@@ -83,6 +89,7 @@ export class EntityView {
 			case 'string':
 				htmlAttributeInput = createElement('input');
 				break;
+			case 'float':
 			case 'integer':
 				htmlAttributeInput = createElement('input');
 				break;
@@ -148,6 +155,7 @@ export class EntityView {
 			case 'string':
 				htmlAttributeInput.value = attributeValue;
 				break;
+			case 'float':
 			case 'integer':
 				htmlAttributeInput.value = attributeValue;
 				break;

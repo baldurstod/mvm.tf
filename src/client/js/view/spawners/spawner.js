@@ -17,12 +17,6 @@ export class SpawnerView extends EntityView {
 	initHTML() {
 		const htmlElement = super.initHTML();
 
-		createElement('div', {
-			parent: this.htmlChilds,
-			class: 'title',
-			innerHTML: this.getSpawnerName(),
-		}),
-
 		this.#htmlSpawner = createElement('mvm-spawner', {
 			parent: this.htmlChilds,
 		});
@@ -33,6 +27,8 @@ export class SpawnerView extends EntityView {
 
 	updateHTML() {
 		super.updateHTML();
+		this.htmlTitle.innerText = this.getSpawnerName();
+
 		const entity = this.getEntity();
 		if (!entity) {
 			return;
