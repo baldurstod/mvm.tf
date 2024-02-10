@@ -120,9 +120,12 @@ export class Entity {
 		}
 	}
 
-	getAttribute(attribute) {
-		throw 'Error';
-		this._attributes.get(attribute);
+	getAttribute(name) {
+		const attribute = this.#attributes.get(name);
+		if (!attribute) {
+			console.error(`attribute ${name} not found in Entity.getAttribute()`, this);
+		}
+		return attribute;
 	}
 
 	removeAttribute(attribute) {

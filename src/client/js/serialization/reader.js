@@ -4,6 +4,8 @@ import { WaveSchedule } from '../population/waveschedule.js';
 import { WaveSpawn } from '../population/wavespawn';
 import { SquadSpawner } from '../population/spawners/squad';
 import { BotSpawner } from '../population/spawners/bot';
+import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
+import { TankSpawner } from '../population/spawners/tank.js';
 
 import botAttributes from '../../json/attributes/bot.json';
 import squadAttributes from '../../json/attributes/squad.json';
@@ -11,8 +13,6 @@ import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
-import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
-import { TankSpawner } from '../population/spawners/tank.js';
 
 export function readPopFile(content) {
 	const population = parse(content);

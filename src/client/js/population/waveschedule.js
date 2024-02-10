@@ -6,6 +6,7 @@ export class WaveSchedule extends Entity {
 	constructor() {
 		super();
 		this.setAttributes(waveschedule);
+		this.isWaveSchedule = true;
 	}
 
 	reset() {

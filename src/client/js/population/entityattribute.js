@@ -11,6 +11,7 @@ export class EntityAttribute {
 	#max;
 	#list;
 	#multiple;
+	#default;
 	constructor({ name, type = 'string', default: value, min, max, list, multiple = false } = {}) {
 		this.#name = name;
 		this.#type = type;
@@ -18,6 +19,7 @@ export class EntityAttribute {
 		this.#max = max;
 		this.#list = list;
 		this.#multiple = multiple;
+		this.#default = value;
 
 		if (value === undefined) {
 			value = DEFAULT_VALUE_FOR_TYPE[type];
@@ -46,8 +48,20 @@ export class EntityAttribute {
 		}
 	}
 
+	getName() {
+		return this.#name;
+	}
+
 	getValue() {
 		return this.#value;
+	}
+
+	getDefault() {
+		return this.#default;
+	}
+
+	isMultiple() {
+		return this.#multiple;
 	}
 
 	removeValue(value) {

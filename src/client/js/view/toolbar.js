@@ -1,6 +1,6 @@
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
-import { EVENT_FILE_LOADED } from '../controllerevents';
+import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED } from '../controllerevents';
 
 export class Toolbar {
 	#htmlElement;
@@ -12,7 +12,6 @@ export class Toolbar {
 				createElement('div', {
 					class: 'toolbar-items',
 					childs: [
-
 						createElement('input', {
 							type: 'file',
 							events: {
@@ -33,6 +32,12 @@ export class Toolbar {
 										reader.readAsText(f);
 									}
 								},
+							},
+						}),
+						createElement('button', {
+							i18n: "#export",
+							events: {
+								click: () => Controller.dispatchEvent(new CustomEvent(EVENT_EXPORT_POPULATION)),
 							},
 						}),
 					],
