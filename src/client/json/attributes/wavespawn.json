@@ -1,10 +1,16 @@
 {
-	"name": "wave",
+	"name": "wavespawn",
 	"attributes" :[
 		{
 			"name": "Name",
 			"i18n": "#name",
 			"type": "string"
+		},
+		{
+			"name": "Where",
+			"i18n": "#where",
+			"type": "string",
+			"multiple": true
 		},
 		{
 			"name": "WaitForAllSpawned",

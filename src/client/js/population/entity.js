@@ -87,6 +87,15 @@ export class Entity {
 	}
 
 	setAttribute(name, value) {
+		const attribute = this.#attributes.get(name);
+		if (!attribute) {
+			console.error(`attribute ${name} not found in Entity.setAttribute()`, this);
+			return;
+		}
+
+		attribute.setValue(value);
+		return;
+
 		throw 'TODO';
 		if (this._attributes.has(attribute)) {
 			this._attributes.get(attribute).setValue(value);
