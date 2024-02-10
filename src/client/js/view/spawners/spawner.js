@@ -21,11 +21,13 @@ export class SpawnerView extends EntityView {
 			parent: this.htmlChilds,
 		});
 
-		this.updateHTML();
 		return htmlElement;
 	}
 
 	updateHTML() {
+		if (!this.htmlInitialized) {
+			return;
+		}
 		super.updateHTML();
 		this.htmlTitle.innerText = this.getSpawnerName();
 

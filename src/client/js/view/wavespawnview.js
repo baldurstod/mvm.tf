@@ -66,6 +66,9 @@ export class WaveSpawnView extends EntityView {
 	}
 
 	updateHTML() {
+		if (!this.htmlInitialized) {
+			return;
+		}
 		super.updateHTML();
 		const entity = this.getEntity();
 		const spawner = entity?.getSpawner();
@@ -74,6 +77,7 @@ export class WaveSpawnView extends EntityView {
 		}
 
 		const spawnerView = SpawnerView.getSpawner(spawner.getSpawnerName());
+		spawnerView?.setEntity(spawner);
 		console.info(spawnerView)
 		this.#htmlSpawner.replaceChildren(spawnerView?.htmlElement);
 	}

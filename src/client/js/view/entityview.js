@@ -6,6 +6,7 @@ import { EVENT_ENTITY_UPDATED, EVENT_REMOVE_ENTITY } from '../controllerevents';
 import '../../css/entity.css';
 
 export class EntityView {
+	#htmlInitialized = false;
 	#htmlElement;
 	#htmlTitle;
 	#htmlAttributes;
@@ -53,10 +54,14 @@ export class EntityView {
 		});
 
 		this.#initAttributes();
+		this.#htmlInitialized = true;
 		return this.#htmlElement;
 	}
 
 	updateHTML() {
+		if (!this.#htmlInitialized) {
+			return;
+		}
 		this.#updateAttributes();
 	}
 
@@ -70,6 +75,10 @@ export class EntityView {
 
 	get htmlChilds() {
 		return this.#htmlChilds;
+	}
+
+	get htmlInitialized() {
+		return this.#htmlInitialized;
 	}
 
 	#initAttributes() {
@@ -142,6 +151,10 @@ export class EntityView {
 			return;
 		}
 		const attributeTemplates = this.#attributeTemplates;
+		if (!attributeTemplates) {
+			return;
+		}
+
 		for (const attributeTemplate of attributeTemplates.attributes) {
 			this.#updateAttribute(attributeTemplate);
 		}

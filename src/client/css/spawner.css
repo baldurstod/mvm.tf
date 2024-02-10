@@ -9,8 +9,15 @@ mvm-spawner .title{
 	font-size: 2rem;
 }
 
-mvm-spawner-bot{
+mvm-spawner-bot, mvm-spawner-squad{
 	flex: 1;
 	display: flex;
-
+}
+mvm-spawner-squad{
+	flex-direction: column;
+}
+mvm-spawners{
+	display: flex;
+	flex: 1;
+	background-color: crimson;
 }
