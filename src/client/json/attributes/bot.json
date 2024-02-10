@@ -23,6 +23,12 @@
 			"multiple": true
 		},
 		{
+			"name": "Item",
+			"i18n": "#item",
+			"type": "string",
+			"multiple": true
+		},
+		{
 			"name": "Class",
 			"i18n": "#class",
 			"type": "list",

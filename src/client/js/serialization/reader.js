@@ -7,9 +7,12 @@ import { BotSpawner } from '../population/spawners/bot';
 
 import botAttributes from '../../json/attributes/bot.json';
 import squadAttributes from '../../json/attributes/squad.json';
+import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
+import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
+import { TankSpawner } from '../population/spawners/tank.js';
 
 export function readPopFile(content) {
 	const population = parse(content);
@@ -107,6 +110,12 @@ function createWaveSpawn(waveSpawnKV) {
 				case 'Squad':
 					waveSpawn.addChild(createSquad(kv));
 					break;
+				case 'RandomChoice':
+					waveSpawn.addChild(createRandomChoice(kv));
+					break;
+				case 'Tank':
+					waveSpawn.addChild(createTank(kv));
+					break;
 				case 'FirstSpawnOutput':
 					console.error('TODO');
 					break;
@@ -151,6 +160,7 @@ function createBot(botKV) {
 		} else {
 			switch (kv.key) {
 				case 'ItemAttributes':
+				case 'CharacterAttributes':
 					console.error('TODO');
 					break;
 				default:
@@ -162,9 +172,46 @@ function createBot(botKV) {
 	return bot;
 }
 
+function createTank(tankKV) {
+	const tank = new TankSpawner();
+
+	for (const kv of tankKV.getKeys()) {
+		if (isAttribute(kv.key, tankAttributes)) {
+			tank.setAttribute(kv.key, kv.value);
+		} else {
+			switch (kv.key) {
+				case 'OnKilledOutput':
+				case 'OnBombDroppedOutput':
+					console.error('TODO');
+					break;
+				default:
+					console.error(`Unknown key ${kv.key} in createTank()`);
+			}
+		}
+	}
+
+	return tank;
+}
+
+function createRandomChoice(randomChoiceKV) {
+	const randomChoice = new RandomChoiceSpawner();
+
+	for (const kv of randomChoiceKV.getKeys()) {
+		switch (kv.key) {
+			case 'TFBot':
+				randomChoice.addChild(createBot(kv));
+				break;
+			default:
+				console.error(`Unknown key ${kv.key} in RandomChoice()`);
+		}
+	}
+
+	return randomChoice;
+}
+
 function isAttribute(attributeName, template) {
 	for (const attribute of template.attributes) {
-		if (attribute.name == attributeName) {
+		if (attribute.name.toLowerCase() == attributeName.toLowerCase()) {
 			return true;
 		}
 	}
