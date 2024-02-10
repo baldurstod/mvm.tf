@@ -67,7 +67,7 @@ export class SquadView extends SpawnerView {
 		}
 
 		const childs = [];
-		for (const spawner of entity.getSpawners()) {
+		for (const spawner of entity.getChilds()) {
 			console.info(spawner);
 			const spawnerView = SpawnerView.getSpawner(spawner.getSpawnerName());
 			spawnerView?.setEntity(spawner);
@@ -80,7 +80,7 @@ export class SquadView extends SpawnerView {
 	#createSpawner(name) {
 		const spawner = Spawner.getSpawner(name);
 		if (spawner) {
-			this.getEntity()?.addSpawner(spawner);
+			this.getEntity()?.addChild(spawner);
 		}
 	}
 
