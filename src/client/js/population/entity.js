@@ -16,7 +16,7 @@ export class Entity {
 		this.declareAttribute('TeleportWhere', true);
 		*/
 
-		this.#attributes[Symbol.iterator] = function* () {
+		/*this.#attributes[Symbol.iterator] = function* () {
 			for (let [name, set] of this.entries()) {
 				if (set._multiple) {
 					for (let [value] of set._value.entries()) {
@@ -26,7 +26,7 @@ export class Entity {
 					yield [name, set._value];
 				}
 			}
-		}
+		}*/
 	}
 
 	clear() {
@@ -76,7 +76,14 @@ export class Entity {
 			this.#attributes.set(attributeJSON.name, attribute);
 			//console.info(attribute);
 		}
+	}
 
+	addAttribute(attribute) {
+		this.#attributes.set(attribute.getName(), attribute);
+	}
+
+	getAttributes() {
+		return this.#attributes;
 	}
 
 	#declareAttribute(attribute, multiple) {
@@ -111,11 +118,7 @@ export class Entity {
 	}
 
 	getAttribute(name) {
-		const attribute = this.#attributes.get(name);
-		if (!attribute) {
-			console.error(`attribute ${name} not found in Entity.getAttribute()`, this);
-		}
-		return attribute;
+		return this.#attributes.get(name);
 	}
 
 	removeAttribute(attribute) {

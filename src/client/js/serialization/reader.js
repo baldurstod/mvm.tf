@@ -9,6 +9,7 @@ import { WaveSchedule } from '../population/waveschedule.js';
 import { WaveSpawn } from '../population/wavespawn';
 
 import botAttributes from '../../json/attributes/bot.json';
+import itemAttributesAttributes from '../../json/attributes/itemattributes.json';
 import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
@@ -17,6 +18,7 @@ import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
 import { Mission } from '../population/mission.js';
+import { ItemAttributes } from '../population/itemattributes.js';
 
 export function readPopFile(content) {
 	const population = parse(content);
@@ -189,6 +191,7 @@ function createBot(botKV) {
 		} else {
 			switch (kv.key) {
 				case 'ItemAttributes':
+					bot.addChild(createItemAttributes(kv));
 				case 'CharacterAttributes':
 					console.error('TODO');
 					break;
@@ -250,6 +253,20 @@ function createOutput(name, outputKV) {
 	}
 
 	return output;
+}
+
+function createItemAttributes(itemAttributesKV) {
+	const itemAttributes = new ItemAttributes();
+
+	for (const kv of itemAttributesKV.getKeys()) {
+		itemAttributes.setAttribute(kv.key, kv.value);
+		/*if (isAttribute(kv.key, itemAttributesAttributes)) {
+		} else {
+			console.error(`Unknown key ${kv.key} in createItemAttributes()`);
+		}*/
+	}
+
+	return itemAttributes;
 }
 
 function isAttribute(attributeName, template) {

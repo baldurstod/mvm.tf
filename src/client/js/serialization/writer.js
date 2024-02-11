@@ -60,6 +60,8 @@ function exportEntity(entity) {
 			return exportOutput(entity);
 		case entity.isMission:
 			return exportMission(entity);
+		case entity.isItemAttributes:
+			return exportItemAttributes(entity);
 		default:
 			console.error('Can\'t export entity', entity);
 			break;
@@ -151,35 +153,55 @@ function exportOutput(output) {
 	return outputKV;
 }
 
+function exportItemAttributes(itemAttributes) {
+	const itemAttributesKV = new KeyValue('ItemAttributes', []);
+	itemAttributesKV.value.push(...exportAttributes(undefined, itemAttributes));
+	return itemAttributesKV;
+}
+
 function exportAttributes(template, entity) {
 	const attributes = [];
-	for (const attributeTemplate of template.attributes) {
-		const attribute = entity.getAttribute(attributeTemplate.name);
-		if (!attribute) {
-			continue;
+	if (template) {
+		for (const attributeTemplate of template.attributes) {
+			attributes.push(...exportAttribute(entity, attributeTemplate.name));
 		}
-
-		const attributeValue = attribute.getValue();
-		let attributeDefault = attribute.getDefault();
-
-		if (attributeDefault === undefined) {
-			attributeDefault = DEFAULT_VALUE_FOR_TYPE[attribute.getType()];
-		}
-
-		if (attribute.isMultiple()) {
-			//console.error('TODO');
-			for (const value of attributeValue) {
-				if (value !== attributeDefault) {
-					attributes.push(new KeyValue(attribute.getName(), value));
-				}
-			}
-		} else {
-			if (attributeValue !== attributeDefault) {
-				attributes.push(new KeyValue(attribute.getName(), attributeValue));
-			}
+	} else {
+		for (const [name, _] of entity.getAttributes()) {
+			attributes.push(...exportAttribute(entity, name));
 		}
 	}
 
 	console.info(attributes);
+	return attributes;
+}
+
+
+function exportAttribute(entity, name) {
+	const attributes = [];
+	const attribute = entity.getAttribute(name);
+	if (!attribute) {
+		console.error(`attribute ${name} not found in exportAttributes()`, entity);
+		return attributes;
+	}
+
+	const attributeValue = attribute.getValue();
+	let attributeDefault = attribute.getDefault();
+
+	if (attributeDefault === undefined) {
+		attributeDefault = DEFAULT_VALUE_FOR_TYPE[attribute.getType()];
+	}
+
+	if (attribute.isMultiple()) {
+		//console.error('TODO');
+		for (const value of attributeValue) {
+			if (value !== attributeDefault) {
+				attributes.push(new KeyValue(attribute.getName(), value));
+			}
+		}
+	} else {
+		if (attributeValue !== attributeDefault) {
+			attributes.push(new KeyValue(attribute.getName(), attributeValue));
+		}
+	}
 	return attributes;
 }

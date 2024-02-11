@@ -1,0 +1,10 @@
+{
+	"name": "itemattributes",
+	"attributes" :[
+		{
+			"name": "ItemName",
+			"i18n": "#itemname",
+			"type": "string"
+		}
+	]
+}
