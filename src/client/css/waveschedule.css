@@ -8,3 +8,7 @@ mvm-wave-schedule{
 mvm-wave-schedule .header{
 	display: flex;
 }
+
+.mvm-wave-schedule>.entity-remove-button{
+	display: none;
+}

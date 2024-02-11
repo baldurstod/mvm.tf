@@ -64,6 +64,10 @@ function exportEntity(entity) {
 			return exportItemAttributes(entity);
 		case entity.isCharacterAttributes:
 			return exportCharacterAttributes(entity);
+		case entity.isTemplates:
+			return exportTemplates(entity);
+		case entity.isTemplate:
+			return exportTemplate(entity);
 		default:
 			console.error('Can\'t export entity', entity);
 			break;
@@ -146,6 +150,20 @@ function exportTank(tank) {
 	tankKV.value.push(...exportAttributes(tankAttributes, tank));
 	exportChilds(tankKV, tank.getChilds());
 	return tankKV;
+}
+
+function exportTemplates(templates) {
+	const templatesKV = new KeyValue('Templates', []);
+	//templatesKV.value.push(...exportAttributes(tankAttributes, tank));
+	exportChilds(templatesKV, templates.getChilds());
+	return templatesKV;
+}
+
+function exportTemplate(template) {
+	const templateKV = new KeyValue(template.getName(), []);
+	templateKV.value.push(...exportAttributes(undefined, template));
+	exportChilds(templateKV, template.getChilds());
+	return templateKV;
 }
 
 function exportOutput(output) {

@@ -3,10 +3,12 @@ import { EVENT_ENTITY_UPDATED } from '../controllerevents.js';
 import { EntityAttribute } from './entityattribute.js';
 
 export class Entity {
+	#name;
 	#parent;
 	#childs = new Set();
 	#attributes = new Map();
-	constructor() {
+	constructor(name) {
+		this.#name = name;
 		this.isEntity = true;
 /*
 		this.declareAttribute('Where', true);
@@ -27,6 +29,10 @@ export class Entity {
 				}
 			}
 		}*/
+	}
+
+	getName() {
+		return this.#name;
 	}
 
 	clear() {

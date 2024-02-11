@@ -1,17 +1,19 @@
 import { parse } from 'vdf';
 import { BotSpawner } from '../population/spawners/bot';
+import { CharacterAttributes } from '../population/characterattributes.js';
 import { ItemAttributes } from '../population/itemattributes.js';
 import { Mission } from '../population/mission.js';
 import { Output } from '../population/output.js';
 import { SquadSpawner } from '../population/spawners/squad';
 import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
 import { TankSpawner } from '../population/spawners/tank.js';
+import { Template } from '../population/template.js';
+import { Templates } from '../population/templates.js';
 import { Wave } from '../population/wave.js';
 import { WaveSchedule } from '../population/waveschedule.js';
 import { WaveSpawn } from '../population/wavespawn';
 
 import botAttributes from '../../json/attributes/bot.json';
-import itemAttributesAttributes from '../../json/attributes/itemattributes.json';
 import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
@@ -19,7 +21,6 @@ import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
-import { CharacterAttributes } from '../population/characterattributes.js';
 
 export function readPopFile(content) {
 	const population = parse(content);
@@ -27,7 +28,6 @@ export function readPopFile(content) {
 		throw new Error('Unable to parse pop file');
 	}
 
-	console.log(createPopulation(population));
 	return createPopulation(population);
 }
 
@@ -59,7 +59,7 @@ function createWaveSchedule(waveScheduleKV) {
 		} else {
 			switch (kv.key) {
 				case 'Templates':
-					console.error('TODO');
+					waveSchedule.addChild(createTemplates(kv));
 					break;
 				case 'Mission':
 					waveSchedule.addChild(createMission(kv));
@@ -162,6 +162,25 @@ function createMission(missionKV) {
 		}
 	}
 	return mission;
+}
+
+function createTemplates(templatesKV) {
+	const templates = new Templates();
+
+	for (const kv of templatesKV.getKeys()) {
+		templates.addChild(createTemplate(kv));
+	}
+	return templates;
+}
+
+function createTemplate(templateKV) {
+	const template = new Template(templateKV.key);
+
+	for (const kv of templateKV.getKeys()) {
+		template.setAttribute(kv.key, kv.value);
+	}
+
+	return template;
 }
 
 function createSquad(squadKV) {

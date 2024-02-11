@@ -74,6 +74,7 @@ export class WaveScheduleView extends EntityView {
 
 	initHTML() {
 		const htmlElement = super.initHTML();
+		htmlElement.classList.add('mvm-wave-schedule');
 		createElement('mvm-wave-schedule', {
 			parent: this.htmlChilds,
 			childs: [
