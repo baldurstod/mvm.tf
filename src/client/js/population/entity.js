@@ -94,16 +94,6 @@ export class Entity {
 		}
 
 		attribute.setValue(value);
-		return;
-
-		throw 'TODO';
-		if (this._attributes.has(attribute)) {
-			this._attributes.get(attribute).setValue(value);
-		} else {
-			let att = new EntityAttribute();
-			att.setValue(value);
-			this._attributes.set(attribute, att);
-		}
 	}
 
 	hasAttribute(attribute) {
