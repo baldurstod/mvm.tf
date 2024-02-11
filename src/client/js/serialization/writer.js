@@ -20,7 +20,7 @@ export function writePopFile(waveSchedule) {
 
 	const result = stringify(population);
 	if (result) {
-		SaveFile(new File([result], 'mvm.pop'));
+		SaveFile(new File([result], 'mvm_popfile.pop'));
 	}
 
 
@@ -139,17 +139,21 @@ function exportAttributes(template, entity) {
 			continue;
 		}
 
+		const attributeValue = attribute.getValue();
+		let attributeDefault = attribute.getDefault();
+
+		if (attributeDefault === undefined) {
+			attributeDefault = DEFAULT_VALUE_FOR_TYPE[attribute.getType()];
+		}
+
 		if (attribute.isMultiple()) {
-			console.error('TODO');
-
-		} else {
-			const attributeValue = attribute.getValue();
-			let attributeDefault = attribute.getDefault();
-
-			if (attributeDefault === undefined) {
-				attributeDefault = DEFAULT_VALUE_FOR_TYPE[attribute.getType()];
+			//console.error('TODO');
+			for (const value of attributeValue) {
+				if (value !== attributeDefault) {
+					attributes.push(new KeyValue(attribute.getName(), value));
+				}
 			}
-
+		} else {
 			if (attributeValue !== attributeDefault) {
 				attributes.push(new KeyValue(attribute.getName(), attributeValue));
 			}
