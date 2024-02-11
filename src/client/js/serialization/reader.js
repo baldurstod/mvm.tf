@@ -1,13 +1,15 @@
 import { parse } from 'vdf';
+import { BotSpawner } from '../population/spawners/bot';
+import { Output } from '../population/output.js';
+import { SquadSpawner } from '../population/spawners/squad';
+import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
+import { TankSpawner } from '../population/spawners/tank.js';
 import { Wave } from '../population/wave.js';
 import { WaveSchedule } from '../population/waveschedule.js';
 import { WaveSpawn } from '../population/wavespawn';
-import { SquadSpawner } from '../population/spawners/squad';
-import { BotSpawner } from '../population/spawners/bot';
-import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
-import { TankSpawner } from '../population/spawners/tank.js';
 
 import botAttributes from '../../json/attributes/bot.json';
+import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
@@ -79,7 +81,7 @@ function createWave(waveKV) {
 				case 'StartWaveOutput':
 				case 'DoneOutput':
 				case 'InitWaveOutput':
-					console.error('TODO');
+					wave.addChild(createOutput(kv.key, kv));
 					break;
 				case 'WaveSpawn':
 					wave.addChild(createWaveSpawn(kv));
@@ -182,7 +184,7 @@ function createTank(tankKV) {
 			switch (kv.key) {
 				case 'OnKilledOutput':
 				case 'OnBombDroppedOutput':
-					console.error('TODO');
+					tank.addChild(createOutput(kv.key, kv));
 					break;
 				default:
 					console.error(`Unknown key ${kv.key} in createTank()`);
@@ -207,6 +209,20 @@ function createRandomChoice(randomChoiceKV) {
 	}
 
 	return randomChoice;
+}
+
+function createOutput(name, outputKV) {
+	const output = new Output(name);
+
+	for (const kv of outputKV.getKeys()) {
+		if (isAttribute(kv.key, outputAttributes)) {
+			output.setAttribute(kv.key, kv.value);
+		} else {
+			console.error(`Unknown key ${kv.key} in createOutput()`);
+		}
+	}
+
+	return output;
 }
 
 function isAttribute(attributeName, template) {

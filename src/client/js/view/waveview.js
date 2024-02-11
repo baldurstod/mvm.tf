@@ -39,7 +39,7 @@ export class WaveView extends EntityView {
 		let waveSpawn = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWaveSpawn) {
-				break;
+				continue;
 			}
 			const waveView = new WaveSpawnView(child);
 

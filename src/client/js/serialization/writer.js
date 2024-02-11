@@ -4,6 +4,7 @@ import { DEFAULT_VALUE_FOR_TYPE } from '../population/constants.js';
 
 
 import botAttributes from '../../json/attributes/bot.json';
+import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
@@ -54,6 +55,8 @@ function exportEntity(entity) {
 			return exportSquad(entity);
 		case entity.isTankSpawner:
 			return exportTank(entity);
+		case entity.isOutput:
+			return exportOutput(entity);
 		default:
 			console.error('Can\'t export entity', entity);
 			break;
@@ -129,6 +132,13 @@ function exportTank(tank) {
 	tankKV.value.push(...exportAttributes(tankAttributes, tank));
 	exportChilds(tankKV, tank.getChilds());
 	return tankKV;
+}
+
+function exportOutput(output) {
+	const outputKV = new KeyValue(output.getName(), []);
+	outputKV.value.push(...exportAttributes(outputAttributes, output));
+	//exportChilds(tankKV, tank.getChilds());
+	return outputKV;
 }
 
 function exportAttributes(template, entity) {

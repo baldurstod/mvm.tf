@@ -1,0 +1,15 @@
+{
+	"name": "output",
+	"attributes" :[
+		{
+			"name": "Target",
+			"i18n": "#target",
+			"type": "string"
+		},
+		{
+			"name": "Action",
+			"i18n": "#action",
+			"type": "string"
+		}
+	]
+}
