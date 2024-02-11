@@ -1,7 +1,7 @@
 import { SaveFile } from 'harmony-browser-utils';
 import { KeyValue, stringify } from 'vdf';
+import { INSERT_AFTER, INSERT_BEFORE } from './constants.js';
 import { DEFAULT_VALUE_FOR_TYPE } from '../population/constants.js';
-
 
 import botAttributes from '../../json/attributes/bot.json';
 import missionAttributes from '../../json/attributes/mission.json';
@@ -20,7 +20,8 @@ export function writePopFile(waveSchedule) {
 
 	const population = exportPopulation(waveSchedule);
 
-	const result = stringify(population);
+	const result = INSERT_BEFORE + stringify(population) + INSERT_AFTER;
+
 	if (result) {
 		SaveFile(new File([result], 'mvm_popfile.pop'));
 	}
