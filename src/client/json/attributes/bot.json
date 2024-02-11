@@ -63,14 +63,12 @@
 		{
 			"name": "AutoJumpMin",
 			"i18n": "#auto_jump_min",
-			"type": "float",
-			"default": null
+			"type": "float"
 		},
 		{
 			"name": "AutoJumpMax",
 			"i18n": "#auto_jump_max",
-			"type": "float",
-			"default": null
+			"type": "float"
 		},
 		{
 			"name": "Skill",
