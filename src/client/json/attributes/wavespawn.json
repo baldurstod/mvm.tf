@@ -7,6 +7,11 @@
 			"type": "string"
 		},
 		{
+			"name": "Template",
+			"i18n": "#template",
+			"type": "string"
+		},
+		{
 			"name": "Where",
 			"i18n": "#where",
 			"type": "string",
