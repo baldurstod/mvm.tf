@@ -1,7 +1,4 @@
-const DEFAULT_VALUE_FOR_TYPE = {
-	integer: 0,
-	string: '',
-}
+import { DEFAULT_VALUE_FOR_TYPE } from './constants.js';
 
 export class EntityAttribute {
 	#name;
@@ -54,6 +51,10 @@ export class EntityAttribute {
 
 	getValue() {
 		return this.#value;
+	}
+
+	getType() {
+		return this.#type;
 	}
 
 	getDefault() {

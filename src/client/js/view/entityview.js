@@ -100,7 +100,14 @@ export class EntityView {
 				break;
 			case 'float':
 			case 'integer':
-				htmlAttributeInput = createElement('input');
+				htmlAttributeInput = createElement('input', {
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+						}
+					}
+				});
 				break;
 			case 'list':
 				const listID = `entity-attribute-list-${++EntityView.#dataListID}`

@@ -2,7 +2,7 @@ import { Spawner } from './spawner.js';
 
 export class RandomChoiceSpawner extends Spawner {
 	constructor() {
-		super()
+		super();
 		this.isRandomChoiceSpawner = true;
 	}
 
