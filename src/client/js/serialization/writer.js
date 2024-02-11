@@ -4,6 +4,7 @@ import { DEFAULT_VALUE_FOR_TYPE } from '../population/constants.js';
 
 
 import botAttributes from '../../json/attributes/bot.json';
+import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
@@ -57,6 +58,8 @@ function exportEntity(entity) {
 			return exportTank(entity);
 		case entity.isOutput:
 			return exportOutput(entity);
+		case entity.isMission:
+			return exportMission(entity);
 		default:
 			console.error('Can\'t export entity', entity);
 			break;
@@ -90,6 +93,13 @@ function exportWave(wave) {
 	waveKV.value.push(...exportAttributes(waveAttributes, wave));
 	exportChilds(waveKV, wave.getChilds());
 	return waveKV;
+}
+
+function exportMission(mission) {
+	const missionKV = new KeyValue('Mission', []);
+	missionKV.value.push(...exportAttributes(missionAttributes, mission));
+	exportChilds(missionKV, [mission.getSpawner()]);
+	return missionKV;
 }
 
 function exportWaveSpawn(waveSpawn) {

@@ -134,7 +134,7 @@ export class WaveScheduleView extends EntityView {
 		let wave = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWave) {
-				break;
+				continue;
 			}
 			const waveView = new WaveView(child);
 

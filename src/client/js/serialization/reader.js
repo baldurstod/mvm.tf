@@ -9,12 +9,14 @@ import { WaveSchedule } from '../population/waveschedule.js';
 import { WaveSpawn } from '../population/wavespawn';
 
 import botAttributes from '../../json/attributes/bot.json';
+import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
+import { Mission } from '../population/mission.js';
 
 export function readPopFile(content) {
 	const population = parse(content);
@@ -54,8 +56,9 @@ function createWaveSchedule(waveScheduleKV) {
 		} else {
 			switch (kv.key) {
 				case 'Templates':
-				case 'Mission':
 					console.error('TODO');
+				case 'Mission':
+					waveSchedule.addChild(createMission(kv));
 					break;
 				case 'Wave':
 					waveSchedule.addChild(createWave(kv));
@@ -121,16 +124,40 @@ function createWaveSpawn(waveSpawnKV) {
 				case 'FirstSpawnOutput':
 					console.error('TODO');
 					break;
-				/*case 'WaveSpawn':
-					waveSpawn.addChild(createWaveSpawn(kv));
-					break;*/
 				default:
 					console.error(`Unknown key ${kv.key} in createWaveSpawn()`);
 			}
 		}
 	}
-
 	return waveSpawn;
+}
+
+function createMission(missionKV) {
+	const mission = new Mission();
+
+	for (const kv of missionKV.getKeys()) {
+		if (isAttribute(kv.key, missionAttributes)) {
+			mission.setAttribute(kv.key, kv.value);
+		} else {
+			switch (kv.key) {
+				case 'TFBot':
+					mission.setSpawner(createBot(kv));
+					break;
+				case 'Squad':
+					mission.setSpawner(createSquad(kv));
+					break;
+				case 'RandomChoice':
+					mission.setSpawner(createRandomChoice(kv));
+					break;
+				case 'Tank':
+					mission.setSpawner(createTank(kv));
+					break;
+				default:
+					console.error(`Unknown key ${kv.key} in createMission()`);
+			}
+		}
+	}
+	return mission;
 }
 
 function createSquad(squadKV) {

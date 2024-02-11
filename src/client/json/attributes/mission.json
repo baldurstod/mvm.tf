@@ -1,0 +1,54 @@
+{
+	"name": "mission",
+	"attributes" :[
+		{
+			"name": "Objective",
+			"i18n": "#objective",
+			"type": "list",
+			"default": "",
+			"datalist": [
+				"",
+				"DestroySentries",
+				"Sniper",
+				"Spy",
+				"Engineer"
+			]
+		},
+		{
+			"name": "Where",
+			"i18n": "#where",
+			"type": "string",
+			"multiple": true
+		},
+		{
+			"name": "InitialCooldown",
+			"i18n": "#initial_cooldown",
+			"type": "float",
+			"default": 0
+		},
+		{
+			"name": "CooldownTime",
+			"i18n": "#cooldown_time",
+			"type": "float",
+			"default": 0
+		},
+		{
+			"name": "BeginAtWave",
+			"i18n": "#begin_at_wave",
+			"type": "integer",
+			"default": 1
+		},
+		{
+			"name": "RunForThisManyWaves",
+			"i18n": "#run_for_this_many_waves",
+			"type": "integer",
+			"default": 99999
+		},
+		{
+			"name": "DesiredCount",
+			"i18n": "#desired_count",
+			"type": "integer",
+			"default": 1
+		}
+	]
+}
