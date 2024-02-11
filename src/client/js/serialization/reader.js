@@ -1,5 +1,7 @@
 import { parse } from 'vdf';
 import { BotSpawner } from '../population/spawners/bot';
+import { ItemAttributes } from '../population/itemattributes.js';
+import { Mission } from '../population/mission.js';
 import { Output } from '../population/output.js';
 import { SquadSpawner } from '../population/spawners/squad';
 import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
@@ -17,8 +19,7 @@ import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
 import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
-import { Mission } from '../population/mission.js';
-import { ItemAttributes } from '../population/itemattributes.js';
+import { CharacterAttributes } from '../population/characterattributes.js';
 
 export function readPopFile(content) {
 	const population = parse(content);
@@ -59,6 +60,7 @@ function createWaveSchedule(waveScheduleKV) {
 			switch (kv.key) {
 				case 'Templates':
 					console.error('TODO');
+					break;
 				case 'Mission':
 					waveSchedule.addChild(createMission(kv));
 					break;
@@ -192,8 +194,9 @@ function createBot(botKV) {
 			switch (kv.key) {
 				case 'ItemAttributes':
 					bot.addChild(createItemAttributes(kv));
+					break;
 				case 'CharacterAttributes':
-					console.error('TODO');
+					bot.addChild(createCharacterAttributes(kv));
 					break;
 				default:
 					console.error(`Unknown key ${kv.key} in createBot()`);
@@ -260,13 +263,19 @@ function createItemAttributes(itemAttributesKV) {
 
 	for (const kv of itemAttributesKV.getKeys()) {
 		itemAttributes.setAttribute(kv.key, kv.value);
-		/*if (isAttribute(kv.key, itemAttributesAttributes)) {
-		} else {
-			console.error(`Unknown key ${kv.key} in createItemAttributes()`);
-		}*/
 	}
 
 	return itemAttributes;
+}
+
+function createCharacterAttributes(characterAttributesKV) {
+	const characterAttributes = new CharacterAttributes();
+
+	for (const kv of characterAttributesKV.getKeys()) {
+		characterAttributes.setAttribute(kv.key, kv.value);
+	}
+
+	return characterAttributes;
 }
 
 function isAttribute(attributeName, template) {

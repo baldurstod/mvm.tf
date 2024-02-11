@@ -62,6 +62,8 @@ function exportEntity(entity) {
 			return exportMission(entity);
 		case entity.isItemAttributes:
 			return exportItemAttributes(entity);
+		case entity.isCharacterAttributes:
+			return exportCharacterAttributes(entity);
 		default:
 			console.error('Can\'t export entity', entity);
 			break;
@@ -157,6 +159,12 @@ function exportItemAttributes(itemAttributes) {
 	const itemAttributesKV = new KeyValue('ItemAttributes', []);
 	itemAttributesKV.value.push(...exportAttributes(undefined, itemAttributes));
 	return itemAttributesKV;
+}
+
+function exportCharacterAttributes(characterAttributes) {
+	const characterAttributesKV = new KeyValue('CharacterAttributes', []);
+	characterAttributesKV.value.push(...exportAttributes(undefined, characterAttributes));
+	return characterAttributesKV;
 }
 
 function exportAttributes(template, entity) {
