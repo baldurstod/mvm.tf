@@ -40,6 +40,9 @@ function exportPopulation(waveSchedule) {
 }
 
 function exportEntity(entity) {
+	if (!entity) {
+		return;
+	}
 	switch (true) {
 		case entity.isWaveSchedule:
 			return exportWaveSchedule(entity);
