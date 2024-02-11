@@ -38,6 +38,15 @@ export class EntityAttribute {
 	}
 
 	setValue(value) {
+		switch (this.#type) {
+			case 'integer':
+				value = Number.parseInt(value);
+				break;
+			case 'float':
+				value = Number.parseFloat(value);
+				break;
+		}
+
 		if (this.#multiple) {
 			this.#value.add(value);
 		} else {
