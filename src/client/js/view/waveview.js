@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { EntityView } from './entityview';
 import { WaveSpawnView } from './wavespawnview';
 
@@ -24,6 +24,9 @@ export class WaveView extends EntityView {
 				this.#htmlWaveSpawns = createElement('harmony-tab-group'),
 			]
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#wave' });
+
 		this.updateHTML();
 		return htmlElement;
 	}

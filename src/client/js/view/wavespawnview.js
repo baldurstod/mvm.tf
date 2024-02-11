@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { EntityView } from './entityview';
 
 import 'harmony-ui/dist/define/harmony-select.js';
@@ -60,6 +60,8 @@ export class WaveSpawnView extends EntityView {
 				}),
 			]
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#wave_spawn' });
 
 		this.updateHTML();
 		return htmlElement;

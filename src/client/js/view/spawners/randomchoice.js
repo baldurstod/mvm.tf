@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
 import { Spawner } from '../../population/spawners/spawner.js';
@@ -49,6 +49,8 @@ export class RandomChoiceView extends SpawnerView {
 				this.#htmlSubSpawners = createElement('mvm-spawners', ),
 			]
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#random_choice' });
 
 		this.updateHTML();
 		return htmlElement;

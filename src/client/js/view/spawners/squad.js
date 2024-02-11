@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
 import squad from '../../../json/attributes/squad.json';
@@ -50,6 +50,8 @@ export class SquadView extends SpawnerView {
 				this.#htmlSubSpawners = createElement('mvm-spawners', ),
 			]
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#squad' });
 
 		this.updateHTML();
 		return htmlElement;

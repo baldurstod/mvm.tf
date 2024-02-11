@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
 import sentrygun from '../../../json/attributes/sentrygun.json';
@@ -14,6 +14,8 @@ export class SentryGunView extends SpawnerView {
 			parent: this.htmlSpawner,
 			innerHTML: 'SentryGunView',
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#sentry_gun' });
 
 		this.updateHTML();
 		return htmlElement;

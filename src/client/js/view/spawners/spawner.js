@@ -29,7 +29,6 @@ export class SpawnerView extends EntityView {
 			return;
 		}
 		super.updateHTML();
-		this.htmlTitle.innerText = this.getSpawnerName();
 
 		const entity = this.getEntity();
 		if (!entity) {

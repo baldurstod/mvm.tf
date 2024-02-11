@@ -52,5 +52,12 @@
 		,"#starting_path_track_node": "Starting path track node"
 		,"#level": "Level"
 		,"#export": "Export"
+		,"#wave": "Wave"
+		,"#wave_spawn": "Wave spawn"
+		,"#bot": "Bot"
+		,"#random_choice": "Random choice"
+		,"#tank": "Tank"
+		,"#squad": "Squad"
+		,"#sentry_gun": "Sentry gun"
 	}
 }

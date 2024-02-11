@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, updateElement } from 'harmony-ui';
 import { SpawnerView } from './spawner.js';
 
 import bot from '../../../json/attributes/bot.json';
@@ -14,6 +14,8 @@ export class BotSpawnerView extends SpawnerView {
 			parent: this.htmlSpawner,
 			innerHTML: 'BotSpawnerView',
 		});
+
+		updateElement(this.htmlTitle, { i18n: '#bot' });
 
 		this.updateHTML();
 		return htmlElement;
