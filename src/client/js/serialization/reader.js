@@ -122,7 +122,7 @@ function createWaveSpawn(waveSpawnKV) {
 					waveSpawn.setSpawner(createTank(kv));
 					break;
 				case 'FirstSpawnOutput':
-					console.error('TODO');
+					waveSpawn.addChild(createOutput(kv.key, kv));
 					break;
 				default:
 					console.error(`Unknown key ${kv.key} in createWaveSpawn()`);

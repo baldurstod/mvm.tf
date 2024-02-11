@@ -98,14 +98,14 @@ function exportWave(wave) {
 function exportMission(mission) {
 	const missionKV = new KeyValue('Mission', []);
 	missionKV.value.push(...exportAttributes(missionAttributes, mission));
-	exportChilds(missionKV, [mission.getSpawner()]);
+	exportChilds(missionKV, [...mission.getChilds(), mission.getSpawner()]);
 	return missionKV;
 }
 
 function exportWaveSpawn(waveSpawn) {
 	const waveSpawnKV = new KeyValue('WaveSpawn', []);
 	waveSpawnKV.value.push(...exportAttributes(waveSpawnAttributes, waveSpawn));
-	exportChilds(waveSpawnKV, [waveSpawn.getSpawner()]);
+	exportChilds(waveSpawnKV, [...waveSpawn.getChilds(), waveSpawn.getSpawner()]);
 	return waveSpawnKV;
 }
 
