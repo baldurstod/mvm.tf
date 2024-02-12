@@ -75,50 +75,9 @@ export class WaveScheduleView extends EntityView {
 	initHTML() {
 		const htmlElement = super.initHTML();
 		htmlElement.classList.add('mvm-wave-schedule');
-		createElement('mvm-wave-schedule', {
+		this.#htmlWaves = createElement('harmony-tab-group', {
+			class: 'mvm-waves',
 			parent: this.htmlChilds,
-			childs: [
-				this.#htmlWaves = createElement('harmony-tab-group'),
-				/*
-				// Buttons
-				createElement('div', {
-					class: 'header',
-					childs: [
-						createElement('input', {
-							type: 'file',
-							events: {
-								change: event => processFileInput(event),
-							},
-						}),
-						createElement('div', {
-							class: 'button',
-							i18n: '#generate_pop_file',
-							events: {
-								click: () => Controller.dispatchEvent(new CustomEvent(EVENT_GENERATE_POPULATION)),
-							},
-						}),
-
-					],
-				}),
-*/
-/*
-				// Map
-				createElement('div', {
-					childs: [
-						createElement('label', { i18n: '#map' }),
-						this.#htmlMapSelect = createElement('select', {
-							events: {
-								input: event => {
-									this.#entity.map = event.target.value.toLowerCase();
-									//Application.updateAll();
-									Controller.dispatchEvent(new CustomEvent(EVENT_MAP_CHANGED));
-								}
-							}
-						}),
-					],
-				}),
-*/
-			]
 		});
 
 		this.updateHTML();

@@ -1,10 +1,13 @@
-mvm-wave{
-	display: flex;
-	height:100%;
-	width:100%;
+.mvm-wave{
 	background-color: rgb(146, 125, 57);
+	overflow: hidden;
+	width: 100%;
 }
 
-mvm-wave .header{
+.mvm-waves > .harmony-tab-group-content{
+	overflow: hidden;
+}
+.mvm-waves > .harmony-tab-group-content > harmony-tab{
+	overflow: hidden;
 	display: flex;
 }

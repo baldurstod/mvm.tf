@@ -1,14 +1,13 @@
-mvm-wave-schedule{
+.mvm-wave-schedule{
 	display: flex;
-	height:100%;
-	width:100%;
 	background-color: rgb(102, 146, 57);
-}
-
-mvm-wave-schedule .header{
-	display: flex;
+	overflow: hidden;
 }
 
 .mvm-wave-schedule>.entity-remove-button{
 	display: none;
+}
+
+.mvm-waves{
+	width: 100%;
 }

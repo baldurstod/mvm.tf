@@ -2,6 +2,8 @@ import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
 import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED } from '../controllerevents';
 
+import '../../css/toolbar.css';
+
 export class Toolbar {
 	#htmlElement;
 

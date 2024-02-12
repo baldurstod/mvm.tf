@@ -1,8 +1,6 @@
 .mvm-entity{
 	display: flex;
 	position: relative;
-	height:100%;
-	width:100%;
 	background-color: red;
 	flex-direction: column;
 }
@@ -13,5 +11,6 @@
 
 .mvm-entity-childs{
 	background-color: orange;
-	flex: 1;
+	display: flex;
+	overflow: hidden;
 }

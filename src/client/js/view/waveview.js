@@ -18,11 +18,10 @@ export class WaveView extends EntityView {
 
 	initHTML() {
 		const htmlElement = super.initHTML();
-		createElement('mvm-wave', {
+		htmlElement.classList.add('mvm-wave');
+		this.#htmlWaveSpawns = createElement('harmony-tab-group', {
 			parent: this.htmlChilds,
-			childs: [
-				this.#htmlWaveSpawns = createElement('harmony-tab-group'),
-			]
+			class: 'mvm-waves-spawns',
 		});
 
 		updateElement(this.htmlTitle, { i18n: '#wave' });
