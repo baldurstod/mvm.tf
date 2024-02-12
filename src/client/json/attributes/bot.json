@@ -9,7 +9,7 @@
 		{
 			"name": "ClassIcon",
 			"i18n": "#class_icon",
-			"type": "string"
+			"type": "classicon"
 		},
 		{
 			"name": "Template",

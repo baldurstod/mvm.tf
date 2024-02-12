@@ -1,0 +1,32 @@
+mvm-class-icon{
+	display: inline-block;
+}
+
+mvm-class-icon img{
+	width: 2rem;
+	height: 2rem;
+}
+
+.mvm-class-icon-selected{
+	cursor: pointer;
+}
+
+.mvm-class-icon-selector{
+	position: fixed;
+    display: flex;
+    max-width: 20rem;
+    flex-wrap: wrap;
+	background-color: burlywood;
+	z-index: 1000;
+	inset: unset;
+	border: 0rem solid;
+	top: 0;
+	left: 0;
+	padding: 0.5rem;
+}
+
+.mvm-class-icon-selector > img{
+	width: 2rem;
+	height: 2rem;
+	cursor: pointer;
+}

@@ -2,6 +2,7 @@ import { closeSVG } from 'harmony-svg';
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
 import { EVENT_ENTITY_UPDATED, EVENT_REMOVE_ENTITY } from '../controllerevents';
+export { HTMLClassIcon } from './elements/classiconselector';
 
 import '../../css/entity.css';
 
@@ -131,6 +132,9 @@ export class EntityView {
 			case 'boolean':
 				htmlAttributeInput = createElement('input', { type: 'checkbox' });
 				break;
+			case 'classicon':
+				htmlAttributeInput = createElement('mvm-class-icon');
+				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
 				break;
@@ -185,6 +189,9 @@ export class EntityView {
 			case 'trueifpresent':
 			case 'boolean':
 				htmlAttributeInput.checked = attributeValue;
+				break;
+			case 'classicon':
+				htmlAttributeInput.value = attributeValue;
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;

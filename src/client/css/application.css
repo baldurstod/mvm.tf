@@ -31,3 +31,6 @@ body{
 	flex: 1;
 	overflow: hidden;
 }
+::backdrop {
+	backdrop-filter: blur(0.3rem);
+}
