@@ -112,7 +112,15 @@ export class EntityView {
 				break;
 			case 'list':
 				const listID = `entity-attribute-list-${++EntityView.#dataListID}`
-				htmlAttributeInput = createElement('select', { list: listID });
+				htmlAttributeInput = createElement('select', {
+					list: listID,
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+						}
+					},
+				});
 				if (attributeTemplate.datalist) {
 					const htmlDataList = createElement('datalist', {
 						parent: this.#htmlAttributes,

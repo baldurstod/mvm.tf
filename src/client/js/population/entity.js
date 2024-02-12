@@ -107,6 +107,7 @@ export class Entity {
 		}
 
 		attribute.setValue(value);
+		this.dispatchUpdate();
 	}
 
 	hasAttribute(attribute) {

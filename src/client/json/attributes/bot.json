@@ -32,7 +32,6 @@
 			"name": "Class",
 			"i18n": "#class",
 			"type": "list",
-			"default": "Scout",
 			"datalist": [
 				"Scout",
 				"Sniper",
