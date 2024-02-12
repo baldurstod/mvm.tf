@@ -70,7 +70,6 @@ export class HTMLClassIcon extends HTMLElement {
 	}
 
 	set value(value) {
-		console.info(value);
 		this.#htmlSelected.src = CLASS_ICONS[value];
 	}
 

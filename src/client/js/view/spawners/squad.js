@@ -69,7 +69,6 @@ export class SquadView extends SpawnerView {
 
 		const childs = [];
 		for (const spawner of entity.getChilds()) {
-			console.info(spawner);
 			const spawnerView = SpawnerView.getSpawner(spawner.getSpawnerName());
 			spawnerView?.setEntity(spawner);
 			childs.push(spawnerView?.htmlElement);
