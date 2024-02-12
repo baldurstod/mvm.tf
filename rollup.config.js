@@ -5,6 +5,7 @@ import terser from '@rollup/plugin-terser';
 import styles from 'rollup-plugin-styles';
 import json from '@rollup/plugin-json';
 import image from '@rollup/plugin-image';
+import replace from '@rollup/plugin-replace';
 
 const isProduction = process.env.BUILD === 'production';
 
@@ -17,6 +18,10 @@ export default (async () => ({
 		format: 'esm'
 	},
 	plugins: [
+		replace({
+			preventAssignment: true,
+			__isProduction__: isProduction,
+		}),
 		styles({
 			url: false,
 			mode: [
