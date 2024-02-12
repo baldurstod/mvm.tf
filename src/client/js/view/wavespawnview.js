@@ -30,7 +30,8 @@ export class WaveSpawnView extends EntityView {
 							childs: [
 								createElement('option', {
 									value: 'Bot',
-									innerText: 'Bot'
+									innerText: 'Bot',
+									selected: 1
 								}),
 								createElement('option', {
 									value: 'RandomChoice',

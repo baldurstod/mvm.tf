@@ -1,9 +1,10 @@
 import { Entity } from './entity.js';
+import { BotSpawner } from './spawners/bot.js';
 
 import wavespawn from '../../json/attributes/wavespawn.json';
 
 export class WaveSpawn extends Entity {
-	#spawner;
+	#spawner = new BotSpawner();
 	constructor() {
 		super();
 		this.setAttributes(wavespawn);
