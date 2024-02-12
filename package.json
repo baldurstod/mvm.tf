@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Client code for mvm.tf",
   "devDependencies": {
+    "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",

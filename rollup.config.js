@@ -3,6 +3,7 @@ import copy from 'rollup-plugin-copy';
 import terser from '@rollup/plugin-terser';
 import styles from 'rollup-plugin-styles';
 import json from '@rollup/plugin-json';
+import image from '@rollup/plugin-image';
 
 const isProduction = process.env.BUILD === 'production';
 
@@ -23,7 +24,7 @@ export default (async () => ({
 		json({
 			compact: true,
 		}),
-		//image(),
+		image(),
 		nodeResolve({
 		}),
 		isProduction ? terser() : null,
