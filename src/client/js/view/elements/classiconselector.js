@@ -3,7 +3,7 @@ import { CLASS_ICONS } from './classicons';
 
 import '../../../css/classiconselector.css';
 
-import classIcons from '../../../json/lists/classicons.json';
+import classIcons from '../../../json/datas/classicons.json';
 
 
 export class HTMLClassIcon extends HTMLElement {
@@ -52,10 +52,6 @@ export class HTMLClassIcon extends HTMLElement {
 		this.#htmlSelected.src = CLASS_ICONS[classIcon];
 		this.dispatchEvent(new CustomEvent('change', { detail: classIcon }));
 		hide(HTMLClassIcon.#htmlSelector);
-	}
-
-	#dispatchSelect(selected, header, content) {
-		this.dispatchEvent(new CustomEvent(selected ? 'select' : 'unselect', {detail:{header:header.children[0], content:content.children[0]}}));
 	}
 
 	#toggleSelector(event) {

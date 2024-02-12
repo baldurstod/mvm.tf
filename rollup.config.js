@@ -45,7 +45,7 @@ export default (async () => ({
 }))();
 
 function writeIcons() {
-	let iconsPath = './src/client/json/lists/classicons.json';
+	let iconsPath = './src/client/json/datas/classicons.json';
 	let input = fs.readFileSync(iconsPath);
 	const classIcons = JSON.parse(input);
 
