@@ -14,7 +14,7 @@
 		{
 			"name": "Template",
 			"i18n": "#template",
-			"type": "string"
+			"type": "template"
 		},
 		{
 			"name": "Tag",

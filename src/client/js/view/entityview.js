@@ -6,6 +6,8 @@ export { HTMLClassIcon } from './elements/classiconselector';
 
 import '../../css/entity.css';
 
+const TEMPLATE_LIST_ID = `entity-attribute-template-list`;
+
 export class EntityView {
 	#htmlInitialized = false;
 	#htmlElement;
@@ -16,6 +18,21 @@ export class EntityView {
 	#entity;
 	#attributeTemplates;
 	static #dataListID = 0;
+	static htmlTemplatesDataList;
+
+	static {
+		this.htmlTemplatesDataList = createElement('datalist', {
+			parent: document.body,
+			id: TEMPLATE_LIST_ID,
+		});
+		/*for (const value of attributeTemplate.datalist) {
+			createElement('option', {
+				parent: htmlAttributeInput,
+				value: value,
+				innerHTML: value,
+			});
+		}*/
+	}
 
 	constructor(attributeTemplates, entity) {
 		this.#attributeTemplates = attributeTemplates;
@@ -111,7 +128,7 @@ export class EntityView {
 				});
 				break;
 			case 'list':
-				const listID = `entity-attribute-list-${++EntityView.#dataListID}`
+				const listID = `entity-attribute-list-${++EntityView.#dataListID}`;
 				htmlAttributeInput = createElement('select', {
 					list: listID,
 					events: {
@@ -124,7 +141,7 @@ export class EntityView {
 				if (attributeTemplate.datalist) {
 					const htmlDataList = createElement('datalist', {
 						parent: this.#htmlAttributes,
-						 id: listID,
+						id: listID,
 					});
 					for (const value of attributeTemplate.datalist) {
 						createElement('option', {
@@ -148,6 +165,17 @@ export class EntityView {
 							this.#entity.setAttribute(attributeTemplate.name, event.detail);
 						}
 					}
+				});
+				break;
+			case 'template':
+				htmlAttributeInput = createElement('select', {
+					list: TEMPLATE_LIST_ID,
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+						}
+					},
 				});
 				break;
 			default:
@@ -207,6 +235,9 @@ export class EntityView {
 				break;
 			case 'classicon':
 				htmlAttributeInput.value = attributeValue;
+				break;
+			case 'template':
+				// TODO
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
