@@ -114,7 +114,14 @@ export class EntityView {
 		let htmlAttributeInput;
 		switch (attributeTemplate.type) {
 			case 'string':
-				htmlAttributeInput = createElement('input');
+				htmlAttributeInput = createElement('input', {
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+						},
+					},
+				});
 				break;
 			case 'float':
 			case 'integer':
