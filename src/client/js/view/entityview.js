@@ -1,8 +1,9 @@
 import { closeSVG } from 'harmony-svg';
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
-import { EVENT_ENTITY_UPDATED, EVENT_REMOVE_ENTITY } from '../controllerevents';
+import { EVENT_ENTITY_UPDATED, EVENT_MAP_CHANGED, EVENT_REMOVE_ENTITY } from '../controllerevents';
 export { HTMLClassIcon } from './elements/classiconselector';
+import { getMap } from '../population/maps';
 
 import '../../css/entity.css';
 
@@ -21,6 +22,7 @@ export class EntityView {
 	static #htmlTemplatesDataList;
 
 	static {
+		Controller.addEventListener(EVENT_MAP_CHANGED, event => this.setMap(event.detail));
 		this.#htmlTemplatesDataList = createElement('datalist', {
 			parent: document.body,
 			id: TEMPLATE_LIST_ID,
@@ -192,7 +194,15 @@ export class EntityView {
 					events: {
 						change: event => {
 							//TODO: check validity
-							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+							if (attributeTemplate.multiple) {
+								const values = [];
+								for (const option of event.target.selectedOptions) {
+									values.push(option.value);
+								}
+								this.#entity.setAttribute(attributeTemplate.name, values);
+							} else {
+								this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+							}
 						}
 					},
 				});
@@ -257,7 +267,9 @@ export class EntityView {
 				break;
 			case 'template':
 				// TODO
+				break;
 			case 'dynamiclist':
+				console.info(htmlAttributeInput, attributeValue);
 				// TODO
 				break;
 			default:
@@ -269,6 +281,35 @@ export class EntityView {
 	#entityUpdated(entity) {
 		if (entity == this.#entity) {
 			this.updateHTML();
+		}
+	}
+
+	static setMap(mapName) {
+		const map = getMap(mapName);
+		if (!map) {
+			return;
+		}
+
+		this.#populateWhere(map);
+	}
+
+	static #populateWhere(map) {
+		//this.#populateWhere();
+		console.info('populateWhere', map);
+
+		const spawns = map.spawns;
+		const whereLists = document.getElementsByClassName('entity-dynamic-list-where');
+		console.info('populateWhere', whereLists);
+
+		for (const whereList of whereLists) {
+			whereList.innerHTML = '';
+			for (const spawn of spawns) {
+				createElement('option', {
+					innerText: spawn,
+					value: spawn,
+					parent: whereList,
+				});
+			}
 		}
 	}
 }

@@ -48,7 +48,14 @@ export class EntityAttribute {
 		}
 
 		if (this.#multiple) {
-			this.#value.add(value);
+			if (Array.isArray(value)) {
+				this.#value.clear();
+				for (const v of value) {
+					this.#value.add(v);
+				}
+			} else {
+				this.#value.add(value);
+			}
 		} else {
 			this.#value = value;
 		}

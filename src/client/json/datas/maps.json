@@ -1,0 +1,21 @@
+[
+	{
+		"name": "mvm_decoy",
+		"spawns": [
+			"spawnbot",
+			"spawnbot_mission_sniper",
+			"spawnbot_mission_spy",
+			"spawnbot_invasion",
+			"spawnbot_right",
+			"spawnbot_left",
+			"spawnbot_single_flag"
+		],
+		"tags": [
+			"nav_prefer_flank_right",
+			"nav_prefer_flank_left"
+		],
+		"tank_paths": [
+			"boss_path_1"
+		]
+	}
+]

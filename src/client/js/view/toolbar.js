@@ -1,6 +1,6 @@
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
-import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED } from '../controllerevents';
+import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_MAP_CHANGED } from '../controllerevents';
 
 import '../../css/toolbar.css';
 
@@ -40,6 +40,11 @@ export class Toolbar {
 							i18n: "#export",
 							events: {
 								click: () => Controller.dispatchEvent(new CustomEvent(EVENT_EXPORT_POPULATION)),
+							},
+						}),
+						createElement('input', {
+							events: {
+								keyup: event => Controller.dispatchEvent(new CustomEvent(EVENT_MAP_CHANGED, { detail: event.target.value })),
 							},
 						}),
 					],
