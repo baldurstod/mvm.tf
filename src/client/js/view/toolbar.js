@@ -43,6 +43,7 @@ export class Toolbar {
 							},
 						}),
 						createElement('input', {
+							list: 'mvm-map-datalist',
 							events: {
 								keyup: event => Controller.dispatchEvent(new CustomEvent(EVENT_MAP_CHANGED, { detail: event.target.value })),
 							},
