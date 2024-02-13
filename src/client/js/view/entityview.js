@@ -20,6 +20,7 @@ export class EntityView {
 	#attributeTemplates;
 	static #dataListID = 0;
 	static #htmlTemplatesDataList;
+	static #currentMap;
 
 	static {
 		Controller.addEventListener(EVENT_MAP_CHANGED, event => this.setMap(event.detail));
@@ -188,8 +189,9 @@ export class EntityView {
 				});
 				break;
 			case 'dynamiclist':
+				const listName = attributeTemplate['list_name'];
 				htmlAttributeInput = createElement('select', {
-					class: `entity-dynamic-list-${attributeTemplate['list_name']}`,
+					class: `entity-dynamic-list-${listName}`,
 					...(attributeTemplate.multiple) && { multiple: 1 },
 					events: {
 						change: event => {
@@ -206,6 +208,11 @@ export class EntityView {
 						}
 					},
 				});
+				switch (listName) {
+					case 'where':
+						EntityView.#populateWhere(htmlAttributeInput, EntityView.#currentMap);
+						break;
+				}
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
@@ -269,8 +276,18 @@ export class EntityView {
 				// TODO
 				break;
 			case 'dynamiclist':
-				console.info(htmlAttributeInput, attributeValue);
-				// TODO
+				//console.info(htmlAttributeInput, attributeValue);
+				//htmlAttributeInput.value = attributeValue;
+
+				if (attributeTemplate.multiple) {
+					for (const value of attributeValue) {
+						for (const option of htmlAttributeInput.options) {
+							if (option.value == value) {
+								option.selected = true;
+							}
+						}
+					}
+				}
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
@@ -290,26 +307,43 @@ export class EntityView {
 			return;
 		}
 
-		this.#populateWhere(map);
+		this.#currentMap = map;
+
+		this.#populateWheres(map);
 	}
 
-	static #populateWhere(map) {
+	static #populateWheres(map) {
 		//this.#populateWhere();
 		console.info('populateWhere', map);
 
-		const spawns = map.spawns;
 		const whereLists = document.getElementsByClassName('entity-dynamic-list-where');
 		console.info('populateWhere', whereLists);
 
 		for (const whereList of whereLists) {
-			whereList.innerHTML = '';
+			this.#populateWhere(whereList, map);
+			/*whereList.innerHTML = '';
 			for (const spawn of spawns) {
 				createElement('option', {
 					innerText: spawn,
 					value: spawn,
 					parent: whereList,
 				});
-			}
+			}*/
+		}
+	}
+
+	static #populateWhere(html, map) {
+		if (!map) {
+			return;
+		}
+		const spawns = map.spawns;
+		html.innerHTML = '';
+		for (const spawn of spawns) {
+			createElement('option', {
+				innerText: spawn,
+				value: spawn,
+				parent: html,
+			});
 		}
 	}
 }
