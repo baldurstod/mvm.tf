@@ -14,7 +14,8 @@
 		{
 			"name": "Where",
 			"i18n": "#where",
-			"type": "string",
+			"type": "dynamiclist",
+			"list_name": "where",
 			"multiple": true
 		},
 		{

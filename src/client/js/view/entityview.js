@@ -18,10 +18,10 @@ export class EntityView {
 	#entity;
 	#attributeTemplates;
 	static #dataListID = 0;
-	static htmlTemplatesDataList;
+	static #htmlTemplatesDataList;
 
 	static {
-		this.htmlTemplatesDataList = createElement('datalist', {
+		this.#htmlTemplatesDataList = createElement('datalist', {
 			parent: document.body,
 			id: TEMPLATE_LIST_ID,
 		});
@@ -185,6 +185,18 @@ export class EntityView {
 					},
 				});
 				break;
+			case 'dynamiclist':
+				htmlAttributeInput = createElement('select', {
+					class: `entity-dynamic-list-${attributeTemplate['list_name']}`,
+					...(attributeTemplate.multiple) && { multiple: 1 },
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+						}
+					},
+				});
+				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
 				break;
@@ -244,6 +256,8 @@ export class EntityView {
 				htmlAttributeInput.value = attributeValue;
 				break;
 			case 'template':
+				// TODO
+			case 'dynamiclist':
 				// TODO
 				break;
 			default:
