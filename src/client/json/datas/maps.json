@@ -18,4 +18,96 @@
 			"boss_path_1"
 		]
 	}
+	,{
+		"name": "mvm_coaltown",
+		"spawns": [
+			"spawnbot",
+			"spawnbot_mission_sniper",
+			"spawnbot_mission_spy",
+			"spawnbot_giant"
+		],
+		"tags": [
+			"nav_prefer_flank_right",
+			"nav_prefer_flank_left",
+			"special_main_right",
+			"special_main_left"
+		],
+		"tank_paths": [
+			"boss_path_1"
+		]
+	}
+	,{
+		"name": "mvm_mannworks",
+		"spawns": [
+			"spawnbot",
+			"spawnbot_mission_sniper",
+			"spawnbot_mission_spy",
+			"spawnbot_lower",
+			"spawnbot_right",
+			"spawnbot_left"
+		],
+		"tags": [
+		],
+		"tank_paths": [
+			"boss_path_1",
+			"boss_path2_1"
+		]
+	}
+	,{
+		"name": "mvm_bigrock",
+		"spawns": [
+			"spawnbot",
+			"spawnbot_mission_sniper",
+			"spawnbot_mission_spy"
+		],
+		"tags": [
+			"nav_prefer_flank_right",
+			"nav_prefer_flank_left",
+			"special_main_right",
+			"special_main_left"
+
+		],
+		"tank_paths": [
+			"boss_path_1",
+			"boss_path_a1"
+		]
+	}
+	,{
+		"name": "mvm_mannhattan",
+		"spawns": [
+			"spawnbot_main0",
+			"spawnbot_main0_squad",
+			"spawnbot_main1",
+			"spawnbot_main1_slow",
+			"spawnbot_main2",
+			"spawnbot_mission_sniper0",
+			"spawnbot_mission_sniper1",
+			"spawnbot_upper0",
+			"spawnbot_upper1",
+			"spawnbot_upper2"
+		],
+		"tags": [
+			"nav_prefer_gate1_flank"
+		],
+		"tank_paths": [
+		]
+	}
+	,{
+		"name": "mvm_rottenburg",
+		"spawns": [
+			"spawnbot",
+			"flankers",
+			"spawnbot_chief",
+			"spawnbot_mission_sentry_buster",
+			"spawnbot_mission_sniper",
+			"spawnbot_mission_spy"
+		],
+		"tags": [
+			"Flankers"
+		],
+		"tank_paths": [
+			"tank_path_a_10",
+			"tank_path_b_10"
+		]
+	}
 ]
