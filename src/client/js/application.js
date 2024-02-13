@@ -13,6 +13,12 @@ import { WaveSchedule } from './population/waveschedule.js';
 import { Toolbar } from './view/toolbar.js';
 import { WaveScheduleView } from './view/wavescheduleview.js';
 
+export { BotSpawner } from './population/spawners/bot.js';
+export { RandomChoiceSpawner } from './population/spawners/randomchoice.js';
+export { SentryGunSpawner } from './population/spawners/sentrygun.js';
+export { SquadSpawner } from './population/spawners/squad.js';
+export { TankSpawner } from './population/spawners/tank.js';
+
 import '../css/application.css';
 import '../css/vars.css';
 
