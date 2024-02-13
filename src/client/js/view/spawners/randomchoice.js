@@ -40,12 +40,12 @@ export class RandomChoiceView extends SpawnerView {
 						click: () => this.#createSpawner('RandomChoice'),
 					}
 				}),
-				createElement('div', {
+				/*createElement('div', {
 					innerText: 'create sentry gun',
 					events: {
 						click: () => this.#createSpawner('SentryGun'),
 					}
-				}),
+				}),*/
 				this.#htmlSubSpawners = createElement('mvm-spawners', ),
 			]
 		});
