@@ -25,9 +25,6 @@ export function writePopFile(waveSchedule) {
 	if (result) {
 		SaveFile(new File([result], 'mvm_popfile.pop'));
 	}
-
-
-	console.info(stringify(population));
 }
 
 

@@ -141,7 +141,14 @@ export class EntityView {
 				htmlAttributeInput = createElement('input', { type: 'checkbox' });
 				break;
 			case 'classicon':
-				htmlAttributeInput = createElement('mvm-class-icon');
+				htmlAttributeInput = createElement('mvm-class-icon', {
+					events: {
+						change: event => {
+							//TODO: check validity
+							this.#entity.setAttribute(attributeTemplate.name, event.detail);
+						}
+					}
+				});
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
