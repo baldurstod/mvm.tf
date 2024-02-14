@@ -48,7 +48,7 @@ export class EntityAttribute {
 		}
 
 		if (this.#multiple) {
-			if (Array.isArray(value)) {
+			if (Array.isArray(value) || value instanceof Set) {
 				this.#value.clear();
 				for (const v of value) {
 					this.#value.add(v);
