@@ -79,13 +79,13 @@ export class Entity {
 		for (const attributeJSON of json.attributes) {
 			//console.info(attributeJSON);
 			const attribute = new EntityAttribute(attributeJSON);
-			this.#attributes.set(attributeJSON.name, attribute);
+			this.#attributes.set(attributeJSON.name.toLowerCase(), attribute);
 			//console.info(attribute);
 		}
 	}
 
 	addAttribute(attribute) {
-		this.#attributes.set(attribute.getName(), attribute);
+		this.#attributes.set(attribute.getName().toLowerCase(), attribute);
 	}
 
 	getAttributes() {
@@ -100,7 +100,7 @@ export class Entity {
 	}
 
 	setAttribute(name, value) {
-		const attribute = this.#attributes.get(name);
+		const attribute = this.#attributes.get(name.toLowerCase());
 		if (!attribute) {
 			console.error(`attribute ${name} not found in Entity.setAttribute()`, this);
 			return;
@@ -125,7 +125,7 @@ export class Entity {
 	}
 
 	getAttribute(name) {
-		return this.#attributes.get(name);
+		return this.#attributes.get(name.toLowerCase());
 	}
 
 	removeAttribute(attribute) {
@@ -134,11 +134,11 @@ export class Entity {
 	}
 
 	removeValues(name) {
-		this.#attributes.get(name)?.clear();
+		this.#attributes.get(name.toLowerCase())?.clear();
 	}
 
 	getAttributeValue(name) {
-		return this.#attributes.get(name)?.getValue();
+		return this.#attributes.get(name.toLowerCase())?.getValue();
 	}
 
 	validate() {
