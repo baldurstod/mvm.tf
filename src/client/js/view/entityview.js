@@ -23,6 +23,7 @@ export class EntityView {
 	static #dataListID = 0;
 	static #htmlTemplatesDataList;
 	static #htmlWhereDataList;
+	static #htmlTagDataList;
 	static #currentMap;
 
 	static {
@@ -34,6 +35,10 @@ export class EntityView {
 		this.#htmlWhereDataList = createElement('datalist', {
 			parent: document.head,
 			id: 'entity-attribute-template-list-where',
+		});
+		this.#htmlTagDataList = createElement('datalist', {
+			parent: document.head,
+			id: 'entity-attribute-template-list-tag',
 		});
 		/*for (const value of attributeTemplate.datalist) {
 			createElement('option', {
@@ -317,18 +322,31 @@ export class EntityView {
 		this.#currentMap = map;
 
 		this.#populateWhere(map);
+		this.#populateTag(map);
 	}
 
 	static #populateWhere(map) {
 		console.info('populateWhere', map);
 
 		this.#htmlWhereDataList.innerHTML = '';
-		const spawns = map.spawns;
-		for (const spawn of spawns) {
+		for (const spawn of map.spawns) {
 			createElement('option', {
 				innerText: spawn,
 				value: spawn,
 				parent: this.#htmlWhereDataList,
+			});
+		}
+	}
+
+	static #populateTag(map) {
+		console.info('populateTag', map);
+
+		this.#htmlTagDataList.innerHTML = '';
+		for (const spawn of map.tags) {
+			createElement('option', {
+				innerText: spawn,
+				value: spawn,
+				parent: this.#htmlTagDataList,
 			});
 		}
 	}

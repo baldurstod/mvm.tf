@@ -19,7 +19,8 @@
 		{
 			"name": "Tag",
 			"i18n": "#tag",
-			"type": "string",
+			"type": "dynamiclist",
+			"list_name": "tag",
 			"multiple": true
 		},
 		{
