@@ -1,0 +1,14 @@
+mvm-tag-selector{
+	display: inline-block;
+}
+
+mvm-tag-selector .tags{
+	display: flex;
+	gap: 0.3rem;
+}
+
+mvm-tag-selector .tag{
+	background-color: red;
+	padding: 0.3rem;
+	border-radius: 0.3rem;
+}

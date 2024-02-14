@@ -1,9 +1,11 @@
 import { closeSVG } from 'harmony-svg';
 import { createElement } from 'harmony-ui';
-import { Controller } from '../controller';
-import { EVENT_ENTITY_UPDATED, EVENT_MAP_CHANGED, EVENT_REMOVE_ENTITY } from '../controllerevents';
-export { HTMLClassIcon } from './elements/classiconselector';
-import { getMap } from '../population/maps';
+import { Controller } from '../controller.js';
+import { EVENT_ENTITY_UPDATED, EVENT_MAP_CHANGED, EVENT_REMOVE_ENTITY } from '../controllerevents.js';
+import { getMap } from '../population/maps.js';
+
+export { HTMLClassIcon } from './elements/classiconselector.js';
+export { HTMLTagSelector } from './elements/tagselector.js';
 
 import '../../css/entity.css';
 
@@ -20,13 +22,18 @@ export class EntityView {
 	#attributeTemplates;
 	static #dataListID = 0;
 	static #htmlTemplatesDataList;
+	static #htmlWhereDataList;
 	static #currentMap;
 
 	static {
-		Controller.addEventListener(EVENT_MAP_CHANGED, event => this.setMap(event.detail));
+		Controller.addEventListener(EVENT_MAP_CHANGED, event => this.#setMap(event.detail));
 		this.#htmlTemplatesDataList = createElement('datalist', {
-			parent: document.body,
+			parent: document.head,
 			id: TEMPLATE_LIST_ID,
+		});
+		this.#htmlWhereDataList = createElement('datalist', {
+			parent: document.head,
+			id: 'entity-attribute-template-list-where',
 		});
 		/*for (const value of attributeTemplate.datalist) {
 			createElement('option', {
@@ -190,20 +197,17 @@ export class EntityView {
 				break;
 			case 'dynamiclist':
 				const listName = attributeTemplate['list_name'];
-				htmlAttributeInput = createElement('select', {
+				htmlAttributeInput = createElement('mvm-tag-selector', {
+					list: 'entity-attribute-template-list-where',
 					class: `entity-dynamic-list-${listName}`,
 					...(attributeTemplate.multiple) && { multiple: 1 },
 					events: {
 						change: event => {
 							//TODO: check validity
 							if (attributeTemplate.multiple) {
-								const values = [];
-								for (const option of event.target.selectedOptions) {
-									values.push(option.value);
-								}
-								this.#entity.setAttribute(attributeTemplate.name, values);
+								this.#entity.setAttribute(attributeTemplate.name, event.detail);
 							} else {
-								this.#entity.setAttribute(attributeTemplate.name, event.target.value);
+								this.#entity.setAttribute(attributeTemplate.name, event.detail[0]);
 							}
 						}
 					},
@@ -279,6 +283,8 @@ export class EntityView {
 				//console.info(htmlAttributeInput, attributeValue);
 				//htmlAttributeInput.value = attributeValue;
 
+				htmlAttributeInput.value = attributeValue;
+/*
 				if (attributeTemplate.multiple) {
 					for (const value of attributeValue) {
 						for (const option of htmlAttributeInput.options) {
@@ -288,6 +294,7 @@ export class EntityView {
 						}
 					}
 				}
+				*/
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
@@ -301,7 +308,7 @@ export class EntityView {
 		}
 	}
 
-	static setMap(mapName) {
+	static #setMap(mapName) {
 		const map = getMap(mapName);
 		if (!map) {
 			return;
@@ -313,8 +320,21 @@ export class EntityView {
 	}
 
 	static #populateWheres(map) {
-		//this.#populateWhere();
 		console.info('populateWhere', map);
+
+		this.#htmlWhereDataList.innerHTML = '';
+		const spawns = map.spawns;
+		for (const spawn of spawns) {
+			createElement('option', {
+				innerText: spawn,
+				value: spawn,
+				parent: this.#htmlWhereDataList,
+			});
+		}
+
+
+		return;
+		//this.#populateWhere();
 
 		const whereLists = document.getElementsByClassName('entity-dynamic-list-where');
 		console.info('populateWhere', whereLists);
