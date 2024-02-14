@@ -59,7 +59,6 @@ export class HTMLTagSelector extends HTMLElement {
 
 	#addTag(tag) {
 		this.#tags.add(tag);
-		console.log(tag);
 		if (this.#htmlTags.has(tag)) {
 			return;
 		}
@@ -100,7 +99,6 @@ export class HTMLTagSelector extends HTMLElement {
 	}
 
 	set value(value) {
-		console.log(value);
 		this.#clearTags();
 
 		if (value instanceof Set) {
