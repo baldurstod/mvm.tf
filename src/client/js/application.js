@@ -75,7 +75,12 @@ class Application {
 			parent: document.body,
 			childs: [
 				this.#appToolbar.htmlElement,
-				this.#waveScheduleView.htmlElement,
+				createElement('div', {
+					class: 'main-content',
+					childs: [
+						this.#waveScheduleView.htmlElement,
+					],
+				}),
 			],
 		});
 	}

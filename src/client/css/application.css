@@ -26,7 +26,7 @@ body{
 	width:100%;
 	overflow: hidden;
 }
-.maincontent{
+.main-content{
 	display: flex;
 	flex-direction: row;
 	flex: 1;

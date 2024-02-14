@@ -2,6 +2,7 @@
 	display: flex;
 	background-color: rgb(102, 146, 57);
 	overflow: hidden;
+	flex: 1;
 }
 
 .mvm-wave-schedule>.entity-remove-button{
