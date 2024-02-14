@@ -198,7 +198,7 @@ export class EntityView {
 			case 'dynamiclist':
 				const listName = attributeTemplate['list_name'];
 				htmlAttributeInput = createElement('mvm-tag-selector', {
-					list: 'entity-attribute-template-list-where',
+					list: `entity-attribute-template-list-${listName}`,
 					class: `entity-dynamic-list-${listName}`,
 					...(attributeTemplate.multiple) && { multiple: 1 },
 					events: {
@@ -212,11 +212,11 @@ export class EntityView {
 						}
 					},
 				});
-				switch (listName) {
+				/*switch (listName) {
 					case 'where':
 						EntityView.#populateWhere(htmlAttributeInput, EntityView.#currentMap);
 						break;
-				}
+				}*/
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
@@ -316,10 +316,10 @@ export class EntityView {
 
 		this.#currentMap = map;
 
-		this.#populateWheres(map);
+		this.#populateWhere(map);
 	}
 
-	static #populateWheres(map) {
+	static #populateWhere(map) {
 		console.info('populateWhere', map);
 
 		this.#htmlWhereDataList.innerHTML = '';
@@ -329,40 +329,6 @@ export class EntityView {
 				innerText: spawn,
 				value: spawn,
 				parent: this.#htmlWhereDataList,
-			});
-		}
-
-
-		return;
-		//this.#populateWhere();
-
-		const whereLists = document.getElementsByClassName('entity-dynamic-list-where');
-		console.info('populateWhere', whereLists);
-
-		for (const whereList of whereLists) {
-			this.#populateWhere(whereList, map);
-			/*whereList.innerHTML = '';
-			for (const spawn of spawns) {
-				createElement('option', {
-					innerText: spawn,
-					value: spawn,
-					parent: whereList,
-				});
-			}*/
-		}
-	}
-
-	static #populateWhere(html, map) {
-		if (!map) {
-			return;
-		}
-		const spawns = map.spawns;
-		html.innerHTML = '';
-		for (const spawn of spawns) {
-			createElement('option', {
-				innerText: spawn,
-				value: spawn,
-				parent: html,
 			});
 		}
 	}

@@ -12,6 +12,7 @@ mvm-tag-selector .tag{
 	background-color: red;
 	padding: 0.3rem;
 	border-radius: 0.3rem;
+	text-wrap: nowrap;
 }
 
 mvm-tag-selector span{
