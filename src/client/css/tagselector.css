@@ -1,5 +1,6 @@
 mvm-tag-selector{
 	display: inline-block;
+	padding: 0.2rem;
 }
 
 mvm-tag-selector .tags{
@@ -11,4 +12,18 @@ mvm-tag-selector .tag{
 	background-color: red;
 	padding: 0.3rem;
 	border-radius: 0.3rem;
+}
+
+mvm-tag-selector span{
+	height: 100%;
+	vertical-align: top;
+	display: inline-block;
+}
+
+mvm-tag-selector .tag .close > svg{
+	cursor: pointer;
+}
+mvm-tag-selector .tag .close > svg{
+	height: 0.75rem;
+	width: 0.75rem;
 }

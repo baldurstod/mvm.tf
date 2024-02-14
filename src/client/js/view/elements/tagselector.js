@@ -1,6 +1,7 @@
 import { createElement, hide, toggle } from 'harmony-ui';
 
 import '../../../css/tagselector.css';
+import { closeSVG } from 'harmony-svg';
 
 export class HTMLTagSelector extends HTMLElement {
 	#doOnce = true;
@@ -8,7 +9,7 @@ export class HTMLTagSelector extends HTMLElement {
 	#htmlTagContainer;
 	#htmlSelector;
 	#htmlTags = new Map();
-	#tags = [];
+	#tags = new Set();
 /*
 	static {
 		HTMLTagSelector.#htmlSelector = createElement('div', {
@@ -57,7 +58,7 @@ export class HTMLTagSelector extends HTMLElement {
 	}
 
 	#addTag(tag) {
-		this.#tags.push(tag);
+		this.#tags.add(tag);
 		console.log(tag);
 		if (this.#htmlTags.has(tag)) {
 			return;
@@ -65,15 +66,33 @@ export class HTMLTagSelector extends HTMLElement {
 
 		const htmlTag = createElement('span', {
 			class: 'tag',
-			innerText: tag,
 			parent: this.#htmlTagContainer,
+			childs: [
+				createElement('span', {
+					innerText: tag,
+				}),
+				createElement('span', {
+					class: 'close',
+					innerHTML: closeSVG,
+					events: {
+						click: () => this.#removeTag(tag),
+					}
+				}),
+			],
 		});
 
 		this.#htmlTags.set(tag, htmlTag);
 	}
 
+	#removeTag(tag) {
+		this.#htmlTags.get(tag)?.remove();
+		this.#tags.delete(tag);
+		this.#htmlTags.delete(tag);
+		this.dispatchEvent(new CustomEvent('change', { detail: this.#tags }));
+	}
+
 	#clearTags() {
-		this.#tags = [];
+		this.#tags.clear();
 		for (const [_, htmlTag] of this.#htmlTags) {
 			htmlTag.remove();
 		}
