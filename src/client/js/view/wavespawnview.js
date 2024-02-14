@@ -13,6 +13,7 @@ import { Spawner } from '../population/spawners/spawner';
 
 export class WaveSpawnView extends EntityView {
 	#htmlSpawner;
+	#htmlSpawnerSelector;
 	constructor(entity) {
 		super(wavespawn, entity);
 	}
@@ -26,7 +27,8 @@ export class WaveSpawnView extends EntityView {
 				createElement('div', {
 					class: 'mvm-wave-spawn-controls',
 					childs: [
-						createElement('select', {
+						this.#htmlSpawnerSelector = createElement('select', {
+							class: 'mvm-wave-spawn-controls-select',
 							childs: [
 								createElement('option', {
 									value: 'Bot',
@@ -79,7 +81,9 @@ export class WaveSpawnView extends EntityView {
 			return;
 		}
 
-		const spawnerView = SpawnerView.getSpawner(spawner.getSpawnerName());
+		const spawnerName = spawner.getSpawnerName();
+		this.#htmlSpawnerSelector.value = spawnerName;
+		const spawnerView = SpawnerView.getSpawner(spawnerName);
 		spawnerView?.setEntity(spawner);
 		this.#htmlSpawner.replaceChildren(spawnerView?.htmlElement);
 	}
