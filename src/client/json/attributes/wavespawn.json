@@ -29,11 +29,6 @@
 			"type": "string"
 		},
 		{
-			"name": "Support",
-			"i18n": "#support",
-			"type": "string"
-		},
-		{
 			"name": "RandomSpawn",
 			"i18n": "#random_spawn",
 			"type": "boolean",
