@@ -1,4 +1,6 @@
 import {Entity} from './entity.js';
+import { Wave } from './wave.js';
+import { WaveSpawn } from './wavespawn.js';
 
 import waveschedule from '../../json/attributes/waveschedule.json';
 
@@ -18,6 +20,13 @@ export class WaveSchedule extends Entity {
 		this._navigationTags.clear();
 		this._where.clear();
 		this._startingPathTrackNode.clear();
+	}
+
+	addNewWave() {
+		const wave = new Wave();
+		const waveSpawn = new WaveSpawn();
+		wave.addChild(waveSpawn);
+		this.addChild(wave);
 	}
 
 	addBase(base) {

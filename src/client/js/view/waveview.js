@@ -51,5 +51,16 @@ export class WaveView extends EntityView {
 				child: waveView.htmlElement,
 			});
 		}
+
+		createElement('harmony-tab', {
+			'data-text': '+',
+			parent: this.#htmlWaveSpawns,
+			events: {
+				click: event => {
+					event.preventDefault();
+					entity.addNewWaveSpawn();
+				},
+			}
+		});
 	}
 }
