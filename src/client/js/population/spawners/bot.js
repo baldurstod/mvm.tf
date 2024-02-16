@@ -27,6 +27,11 @@ export class BotSpawner extends Spawner {
 
 	setAttribute(name, value) {
 		if (name.toLowerCase() == 'class') {
+			let valueLower = value.toLowerCase();
+			if (valueLower == 'heavy') {
+				value = 'Heavyweapons';
+			}
+
 			super.setAttribute('ClassIcon', CLASS_TO_ICON[value.toLowerCase()]);
 		}
 
