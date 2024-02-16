@@ -26,8 +26,6 @@ export class WaveSpawn extends Entity {
 		const totalCount = Number(this.getAttributeValue('TotalCount'));
 		const spawnCount = Number(this.getAttributeValue('SpawnCount'));
 
-		console.log(totalCount, spawnCount);
-
 		return createElement('span', {
 			childs: [
 				createElement('span', {

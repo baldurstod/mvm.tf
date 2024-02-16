@@ -1,6 +1,6 @@
 import { createElement } from 'harmony-ui';
 import { Controller } from '../controller';
-import { EVENT_GENERATE_POPULATION, EVENT_MAP_CHANGED } from '../controllerevents';
+import { EVENT_WAVE_ACTIVATED } from '../controllerevents';
 
 
 import 'harmony-ui/dist/define/harmony-select.js';
@@ -17,7 +17,9 @@ import { WaveView } from './waveview';
 export * from './spawners/spawners.js';
 
 export class WaveScheduleView extends EntityView {
+	#htmlTabs = new Map();
 	#htmlWaves;
+	#selectedWave;
 	constructor(entity) {
 		super(waveschedule, entity);
 	}
@@ -41,18 +43,40 @@ export class WaveScheduleView extends EntityView {
 			return;
 		}
 		this.#htmlWaves.clear();
+		this.#htmlTabs.clear();
 		let wave = 0;
+		let firstTab;
 		for(const child of entity.getChilds()) {
 			if (!child.isWave) {
 				continue;
 			}
 			const waveView = new WaveView(child);
 
-			createElement('harmony-tab', {
+			const htmlTab = createElement('harmony-tab', {
 				'data-text': ++wave,
-				parent: this.#htmlWaves,
 				child: waveView.htmlElement,
+				events: {
+					activated: () => {
+						console.info('activated', child);
+						Controller.dispatchEvent(new CustomEvent(EVENT_WAVE_ACTIVATED, { detail: child }));
+						this.#selectedWave = child;
+					},
+				},
+				parent: this.#htmlWaves,
 			});
+
+			if (!firstTab) {
+				firstTab = htmlTab;
+			}
+
+			this.#htmlTabs.set(child, htmlTab);
+		}
+
+		const activeTab = this.#htmlTabs.get(this.#selectedWave);
+		if (activeTab) {
+			this.#htmlWaves.active = activeTab;
+		} else {
+			this.#htmlWaves.active = firstTab;
 		}
 
 		createElement('harmony-tab', {

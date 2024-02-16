@@ -57,7 +57,6 @@ class Application {
 	#setWaveSchedule(waveSchedule) {
 		this.#waveSchedule = waveSchedule;
 		this.#waveScheduleView.setEntity(waveSchedule);
-		this.#timelineView.setEntity(waveSchedule);
 	}
 
 	#initOptions() {

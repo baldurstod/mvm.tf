@@ -2,7 +2,7 @@ import { createElement } from 'harmony-ui';
 import 'harmony-ui/dist/define/harmony-accordion.js';
 
 import { Controller } from '../controller.js';
-import { EVENT_ENTITY_UPDATED } from '../controllerevents.js';
+import { EVENT_ENTITY_UPDATED, EVENT_WAVE_ACTIVATED } from '../controllerevents.js';
 
 import '../../css/timeline.css';
 
@@ -10,8 +10,9 @@ export class TimelineView {
 	#htmlElement;
 	#htmlWaves;
 	#entity;
-	constructor(entity) {
+	constructor() {
 		Controller.addEventListener(EVENT_ENTITY_UPDATED, event => this.#entityUpdated(event.detail));
+		Controller.addEventListener(EVENT_WAVE_ACTIVATED, event => this.setEntity(event.detail));
 	}
 
 	setEntity(entity) {
@@ -31,18 +32,6 @@ export class TimelineView {
 			class: 'mvm-timeline',
 			childs: [
 				this.#htmlWaves = createElement('harmony-accordion'),
-				/*createElement('button', {
-					class: 'entity-remove-button',
-					innerHTML: closeSVG,
-					events: {
-						click: () => {
-							Controller.dispatchEvent(new CustomEvent(EVENT_REMOVE_ENTITY, { detail: this.getEntity() }));
-						}
-					},
-				}),
-				this.#htmlTitle = createElement('div', { class: 'mvm-entity-title' }),
-				this.#htmlAttributes = createElement('div', { class: 'mvm-entity-attributes' }),
-				this.#htmlChilds = createElement('div', { class: 'mvm-entity-childs' }),*/
 			]
 		});
 
@@ -56,28 +45,14 @@ export class TimelineView {
 			return;
 		}
 
+		this.#htmlElement.innerHTML = '';
 		this.#htmlWaves.clear();
 		let wave = 0;
 		for(const child of entity.getChilds()) {
-			if (!child.isWave) {
+			if (!child.isWaveSpawn) {
 				continue;
 			}
-			this.#htmlWaves.addItem(
-				createElement('item', {
-					childs: [
-						createElement('header', {
-							'i18n-json': {
-								innerHTML: '#wave_number',
-							},
-							'i18n-values': {
-								id: ++wave,
-							},
-
-						}),
-						createElement('content', { child: this.#createWaveContent(child) }),
-					],
-				})
-			);
+			this.#createWaveSpawnContent(child);
 		}
 	}
 
@@ -97,6 +72,7 @@ export class TimelineView {
 		const htmlContent = createElement('div', {
 			class: 'wavespawn',
 			child: waveSpawn.getIcons(),
+			parent: this.#htmlElement,
 		});
 
 		/*for (const waveSpawn of wave.getWaveSpawns()) {

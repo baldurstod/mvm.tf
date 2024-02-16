@@ -36,8 +36,6 @@ export class BotSpawner extends Spawner {
 	getIcons() {
 		const classIcon = this.getAttributeValue('ClassIcon');
 
-		console.log(classIcon);
-
 		return createElement('img', {
 			src: CLASS_ICONS[classIcon],
 		});
