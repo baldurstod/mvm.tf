@@ -1,4 +1,6 @@
+import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
+import { CLASS_ICONS } from '../../view/elements/classicons.js';
 
 import botAttributes from '../../../json/attributes/bot.json';
 
@@ -29,6 +31,16 @@ export class BotSpawner extends Spawner {
 		}
 
 		super.setAttribute(name, value);
+	}
+
+	getIcons() {
+		const classIcon = this.getAttributeValue('ClassIcon');
+
+		console.log(classIcon);
+
+		return createElement('img', {
+			src: CLASS_ICONS[classIcon],
+		});
 	}
 
 	static getSpawnerName() {

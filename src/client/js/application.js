@@ -11,6 +11,7 @@ import { Wave } from './population/wave.js';
 import { WaveSpawn } from './population/wavespawn.js';
 import { WaveSchedule } from './population/waveschedule.js';
 import { Toolbar } from './view/toolbar.js';
+import { TimelineView } from './view/timeline.js';
 import { WaveScheduleView } from './view/wavescheduleview.js';
 
 export { BotSpawner } from './population/spawners/bot.js';
@@ -28,6 +29,7 @@ import optionsmanager from '../json/optionsmanager.json';
 
 class Application {
 	#waveScheduleView = new WaveScheduleView();
+	#timelineView = new TimelineView();
 	#htmlElement;
 	#appToolbar = new Toolbar();
 
@@ -55,6 +57,7 @@ class Application {
 	#setWaveSchedule(waveSchedule) {
 		this.#waveSchedule = waveSchedule;
 		this.#waveScheduleView.setEntity(waveSchedule);
+		this.#timelineView.setEntity(waveSchedule);
 	}
 
 	#initOptions() {
@@ -79,6 +82,7 @@ class Application {
 					class: 'main-content',
 					childs: [
 						this.#waveScheduleView.htmlElement,
+						this.#timelineView.htmlElement,
 					],
 				}),
 			],

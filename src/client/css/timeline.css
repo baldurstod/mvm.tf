@@ -1,0 +1,9 @@
+.mvm-timeline{
+	background-color: rgb(102, 146, 57);
+	overflow: hidden;
+	width: 10rem;
+}
+
+.mvm-wave-schedule>.entity-remove-button{
+	display: none;
+}

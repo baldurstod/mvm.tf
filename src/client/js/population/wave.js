@@ -13,4 +13,16 @@ export class Wave extends Entity {
 	addNewWaveSpawn() {
 		this.addChild(new WaveSpawn());
 	}
+
+	getWaveSpawns() {
+		const result = new Set();
+
+		for (const child of this.getChilds()) {
+			if (child.isWaveSpawn) {
+				result.add(child);
+			}
+		}
+
+		return result;
+	}
 }
