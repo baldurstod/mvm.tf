@@ -14,8 +14,10 @@ export class RandomChoiceSpawner extends Spawner {
 			childs.push(createElement('span', { i18n: '#or' }));
 		}
 		childs.pop();
+		childs.unshift(createElement('span', { innerText: '(' }));
+		childs.push(createElement('span', { innerText: ')' }));
 
-		return createElement('span', {
+		return createElement('div', {
 			childs: childs,
 		});
 	}

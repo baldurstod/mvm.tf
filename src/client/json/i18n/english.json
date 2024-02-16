@@ -60,5 +60,6 @@
 		,"#squad": "Squad"
 		,"#sentry_gun": "Sentry gun"
 		,"#wave_number": "Wave ${id}"
+		,"#or": "or"
 	}
 }

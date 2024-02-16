@@ -20,7 +20,7 @@ export class Spawner extends Entity {
 	}
 
 	getIcons() {
-		return createElement('span');
+		return createElement('div');
 	}
 
 	getSpawnerName() {

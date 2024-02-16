@@ -12,14 +12,15 @@ export class SquadSpawner extends Spawner {
 
 	getIcons() {
 		const childs = [];
+
+		childs.push(createElement('span', { innerText: '(' }));
 		for (const child of this.getChilds()) {
 			childs.push(child.getIcons());
-			childs.push(createElement('span', { innerText: '+' }));
 		}
-		childs.pop();
+		childs.push(createElement('span', { innerText: ')' }));
 
 
-		return createElement('span', {
+		return createElement('div', {
 			childs: childs,
 		});
 	}
