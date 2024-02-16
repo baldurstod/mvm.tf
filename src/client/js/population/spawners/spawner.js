@@ -1,3 +1,4 @@
+import { createElement } from 'harmony-ui';
 import { Entity } from '../entity.js';
 
 export class Spawner extends Entity {
@@ -16,6 +17,10 @@ export class Spawner extends Entity {
 		if (spawnerClass) {
 			return new spawnerClass();
 		}
+	}
+
+	getIcons() {
+		return createElement('span');
 	}
 
 	getSpawnerName() {
