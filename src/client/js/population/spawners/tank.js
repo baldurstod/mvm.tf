@@ -1,6 +1,6 @@
 import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
-import { CLASS_ICONS } from '../../view/elements/classicons.js';
+import { getClassIcon } from '../../view/elements/classicon.js';
 
 import tank from '../../../json/attributes/tank.json';
 
@@ -13,7 +13,7 @@ export class TankSpawner extends Spawner {
 
 	getIcons() {
 		return createElement('img', {
-			src: CLASS_ICONS['tank'],
+			src: getClassIcon('tank'),
 		});
 	}
 

@@ -1,10 +1,9 @@
 import { createElement, hide, toggle } from 'harmony-ui';
-import { CLASS_ICONS } from './classicons';
+import { getClassIcon } from './classicon';
 
 import '../../../css/classiconselector.css';
 
 import classIcons from '../../../json/datas/classicons.json';
-
 
 export class HTMLClassIcon extends HTMLElement {
 	#doOnce = true;
@@ -23,7 +22,7 @@ export class HTMLClassIcon extends HTMLElement {
 		for (const classIcon of classIcons) {
 			createElement('img', {
 				parent: HTMLClassIcon.#htmlSelector,
-				src: CLASS_ICONS[classIcon],
+				src: getClassIcon(classIcon),
 				events: {
 					click: () => HTMLClassIcon.#current.#selectIcon(classIcon),
 				},
@@ -49,7 +48,7 @@ export class HTMLClassIcon extends HTMLElement {
 	}
 
 	#selectIcon(classIcon) {
-		this.#htmlSelected.src = CLASS_ICONS[classIcon];
+		this.#htmlSelected.src = getClassIcon(classIcon);
 		this.dispatchEvent(new CustomEvent('change', { detail: classIcon }));
 		hide(HTMLClassIcon.#htmlSelector);
 	}
@@ -66,7 +65,7 @@ export class HTMLClassIcon extends HTMLElement {
 	}
 
 	set value(value) {
-		this.#htmlSelected.src = CLASS_ICONS[value];
+		this.#htmlSelected.src = getClassIcon(value);
 	}
 
 	attributeChangedCallback(name, oldValue, newValue) {

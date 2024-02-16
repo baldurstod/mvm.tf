@@ -1,6 +1,6 @@
 import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
-import { CLASS_ICONS } from '../../view/elements/classicons.js';
+import { getClassIcon } from '../../view/elements/classicon.js';
 
 import botAttributes from '../../../json/attributes/bot.json';
 
@@ -10,7 +10,7 @@ const CLASS_TO_ICON = {
 	'soldier': 'soldier',
 	'demoman': 'demo',
 	'medic': 'medic',
-	'heavy': 'heavy',
+	'heavyweapons': 'heavy',
 	'pyro': 'pyro',
 	'spy': 'spy',
 	'engineer': 'engineer',
@@ -37,7 +37,7 @@ export class BotSpawner extends Spawner {
 		const classIcon = this.getAttributeValue('ClassIcon');
 
 		return createElement('img', {
-			src: CLASS_ICONS[classIcon],
+			src: getClassIcon(classIcon),
 		});
 	}
 
