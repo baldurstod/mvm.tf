@@ -10,6 +10,7 @@ export class WaveSpawn extends Entity {
 		super();
 		this.setAttributes(wavespawn);
 		this.isWaveSpawn = true;
+		this.setAttribute('TotalCount', 1);
 	}
 
 	setSpawner(spawner) {
