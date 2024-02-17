@@ -5,4 +5,12 @@ export class Templates extends Entity {
 		super();
 		this.isTemplates = true;
 	}
+
+	getTemplate(name) {
+		for (const child of this.getChilds()) {
+			if (child.getName().toLowerCase() == name) {
+				return child;
+			}
+		}
+	}
 }

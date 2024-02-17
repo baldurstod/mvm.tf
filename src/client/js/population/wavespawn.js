@@ -14,6 +14,7 @@ export class WaveSpawn extends Entity {
 	}
 
 	setSpawner(spawner) {
+		this.addChild(spawner);
 		this.#spawner = spawner;
 		this.dispatchUpdate();
 	}

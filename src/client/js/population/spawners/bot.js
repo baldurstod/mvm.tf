@@ -17,6 +17,8 @@ const CLASS_TO_ICON = {
 }
 
 export class BotSpawner extends Spawner {
+	#templateName;
+	#template;
 	constructor() {
 		super();
 		this.setAttributes(botAttributes);
@@ -26,13 +28,20 @@ export class BotSpawner extends Spawner {
 	}
 
 	setAttribute(name, value) {
-		if (name.toLowerCase() == 'class') {
-			let valueLower = value.toLowerCase();
-			if (valueLower == 'heavy') {
-				value = 'Heavyweapons';
-			}
+		switch (name.toLowerCase()) {
+			case 'class':
+				let valueLower = value.toLowerCase();
+				if (valueLower == 'heavy') {
+					value = 'Heavyweapons';
+				}
 
-			super.setAttribute('ClassIcon', CLASS_TO_ICON[value.toLowerCase()]);
+				super.setAttribute('ClassIcon', CLASS_TO_ICON[value.toLowerCase()]);
+				break;
+			case 'template':
+				this.#templateName = value.toLowerCase();
+				this.#template = null;
+				//console.info(value, this.getRoot());
+				break;
 		}
 
 		super.setAttribute(name, value);
@@ -40,10 +49,42 @@ export class BotSpawner extends Spawner {
 
 	getIcons() {
 		const classIcon = this.getAttributeValue('ClassIcon');
-
+		//console.info(template);
 		return createElement('img', {
 			src: getClassIcon(classIcon),
 		});
+	}
+
+	getAttributeValue(name) {
+		// First look at the defined value
+		const attribute = this.getAttribute(name);
+		if (attribute && !attribute.isDefault()) {
+			return attribute.getValue();
+		}
+
+		//
+		if (this.#templateName) {
+			//#template
+			const root = this.getRoot();
+			if (root.isPopulation) {
+				const template = root.getTemplate(this.#templateName);
+				console.info(template);
+				if (template) {
+					// Template value are always sets
+					let value = template.getAttributeValue(name);
+					if (value) {
+						if (attribute?.isMultiple()) {
+							return value;
+						} else {
+							return value.values().next().value;
+						}
+					}
+				}
+			}
+		}
+
+		// Fallback to default attribute value
+		return attribute?.getValue();
 	}
 
 	static getSpawnerName() {

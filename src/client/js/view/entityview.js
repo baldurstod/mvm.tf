@@ -308,7 +308,7 @@ export class EntityView {
 	}
 
 	#entityUpdated(entity) {
-		if (entity == this.#entity) {
+		if (!entity || entity == this.#entity) {
 			this.updateHTML();
 		}
 	}

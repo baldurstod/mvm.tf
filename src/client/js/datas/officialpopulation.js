@@ -1,19 +1,26 @@
-import { COMPRESSED_OFFICIAL_POPULATION } from "./compressedofficialpopulation";
+import { COMPRESSED_OFFICIAL_POPULATION } from './compressedofficialpopulation.js';
+import { readPopFile } from '../serialization/reader.js';
 
 const OFFICIAL_POPULATION = {};
 
-export async function getPopulation(name) {
+export async function initPopulation(name) {
 	try {
 		name = name.replace(/\.pop$/, '');
 		let population = OFFICIAL_POPULATION[name];
 
 		if (!population) {
-			population = await decompress(COMPRESSED_OFFICIAL_POPULATION[name]);
+			const populationTxt = await decompress(COMPRESSED_OFFICIAL_POPULATION[name]);
+			population = readPopFile(populationTxt);
 			OFFICIAL_POPULATION[name] = population;
 		}
 
 		return population;
 	} catch(e) {}
+}
+
+export function getPopulation(name) {
+	name = name.replace(/\.pop$/, '');
+	return OFFICIAL_POPULATION[name];
 }
 
 async function decompress(url) {

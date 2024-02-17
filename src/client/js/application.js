@@ -4,7 +4,8 @@ import { I18n } from 'harmony-browser-utils/src/i18n.js';
 
 import { PRODUCTION } from './bundleoptions.js';
 import { Controller } from './controller.js';
-import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_REMOVE_ENTITY } from './controllerevents.js';
+import { EVENT_ENTITY_UPDATED, EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_REMOVE_ENTITY } from './controllerevents.js';
+import { initPopulation } from './datas/officialpopulation.js';
 import { writePopFile } from './serialization/writer.js';
 import { readPopFile } from './serialization/reader.js';
 import { Population } from './population/population.js';
@@ -60,6 +61,16 @@ class Application {
 	#setPopulation(population) {
 		this.#population = population;
 		this.#waveScheduleView.setEntity(population.getWaveSchedule());
+
+		this.#initTemplates(population);
+	}
+
+	async #initTemplates(population) {
+		for (const base of population.getBases()) {
+			console.log(await initPopulation(base));
+		}
+
+		Controller.dispatchEvent(new CustomEvent(EVENT_ENTITY_UPDATED));
 	}
 
 	#initOptions() {

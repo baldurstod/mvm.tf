@@ -88,4 +88,12 @@ export class EntityAttribute {
 			this.#value = undefined;
 		}
 	}
+
+	isDefault() {
+		if (this.#multiple) {
+			return this.#value.size == 0;
+		} else {
+			return this.#value != this.#default;
+		}
+	}
 }

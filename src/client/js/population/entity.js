@@ -45,6 +45,14 @@ export class Entity {
 		return this.#parent;
 	}
 
+	getRoot() {
+		if (this.#parent) {
+			return this.#parent.getRoot();
+		} else {
+			return this;
+		}
+	}
+
 	addChild(child) {
 		this.#childs.add(child);
 		child.#parent = this;
@@ -153,5 +161,14 @@ export class Entity {
 
 	write() {
 		return true;
+	}
+
+	getTemplate(name) {
+		for (const child of this.#childs) {
+			const template = child.getTemplate(name);
+			if (template) {
+				return template;
+			}
+		}
 	}
 }
