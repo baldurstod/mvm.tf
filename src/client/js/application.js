@@ -12,6 +12,7 @@ import { Population } from './population/population.js';
 import { Wave } from './population/wave.js';
 import { WaveSpawn } from './population/wavespawn.js';
 import { WaveSchedule } from './population/waveschedule.js';
+import { BotSpawner } from './population/spawners/bot.js';
 import { Toolbar } from './view/toolbar.js';
 import { TimelineView } from './view/timeline.js';
 import { WaveScheduleView } from './view/wavescheduleview.js';
@@ -49,11 +50,15 @@ class Application {
 	#createNewPopulation() {
 		const population = new Population();
 		const waveSchedule = new WaveSchedule();
-		const wave1 = new Wave();
-		const waveSpawn1 = new WaveSpawn();
-		wave1.addChild(waveSpawn1);
-		waveSchedule.addChild(wave1);
+		const wave = new Wave();
+		const waveSpawn = new WaveSpawn();
+		wave.addChild(waveSpawn);
+		waveSchedule.addChild(wave);
 		population.addChild(waveSchedule);
+
+		const bot = new BotSpawner();
+		bot.setAttribute('class', 'scout');
+		waveSpawn.setSpawner(bot);
 
 		this.#setPopulation(population);
 	}

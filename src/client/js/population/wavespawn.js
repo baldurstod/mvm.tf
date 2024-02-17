@@ -5,7 +5,7 @@ import wavespawn from '../../json/attributes/wavespawn.json';
 import { createElement } from 'harmony-ui';
 
 export class WaveSpawn extends Entity {
-	#spawner = new BotSpawner();
+	#spawner;
 	constructor() {
 		super();
 		this.setAttributes(wavespawn);
@@ -33,7 +33,7 @@ export class WaveSpawn extends Entity {
 				createElement('div', {
 					innerText: `${totalCount} * ${spawnCount} * `,
 				}),
-				this.#spawner.getIcons(),
+				this.#spawner?.getIcons(),
 			],
 		});
 	}
