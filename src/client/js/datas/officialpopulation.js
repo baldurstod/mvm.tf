@@ -4,6 +4,7 @@ const OFFICIAL_POPULATION = {};
 
 export async function getPopulation(name) {
 	try {
+		name = name.replace(/\.pop$/, '');
 		let population = OFFICIAL_POPULATION[name];
 
 		if (!population) {
