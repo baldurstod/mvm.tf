@@ -35,7 +35,7 @@ export class BotSpawner extends Spawner {
 					value = 'Heavyweapons';
 				}
 
-				super.setAttribute('ClassIcon', CLASS_TO_ICON[value.toLowerCase()]);
+				//super.setAttribute('ClassIcon', CLASS_TO_ICON[value.toLowerCase()]);
 				break;
 			case 'template':
 				this.#templateName = value.toLowerCase();
@@ -47,11 +47,15 @@ export class BotSpawner extends Spawner {
 		super.setAttribute(name, value);
 	}
 
+	getIcon() {
+		const classIcon = this.getAttributeValue('ClassIcon')?.toLowerCase();
+		const className = this.getAttributeValue('Class')?.toLowerCase();
+		return classIcon ?? CLASS_TO_ICON[className] ?? '';
+	}
+
 	getIcons() {
-		const classIcon = this.getAttributeValue('ClassIcon');
-		//console.info(template);
 		return createElement('img', {
-			src: getClassIcon(classIcon),
+			src: getClassIcon(this.getIcon()),
 		});
 	}
 

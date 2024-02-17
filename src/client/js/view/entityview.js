@@ -279,7 +279,7 @@ export class EntityView {
 				htmlAttributeInput.checked = attributeValue;
 				break;
 			case 'classicon':
-				htmlAttributeInput.value = attributeValue;
+				htmlAttributeInput.value = this.getEntity()?.getIcon();
 				break;
 			case 'template':
 				// TODO
