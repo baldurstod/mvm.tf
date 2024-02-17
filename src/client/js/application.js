@@ -7,6 +7,7 @@ import { Controller } from './controller.js';
 import { EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_REMOVE_ENTITY } from './controllerevents.js';
 import { writePopFile } from './serialization/writer.js';
 import { readPopFile } from './serialization/reader.js';
+import { Population } from './population/population.js';
 import { Wave } from './population/wave.js';
 import { WaveSpawn } from './population/wavespawn.js';
 import { WaveSchedule } from './population/waveschedule.js';
@@ -32,8 +33,8 @@ class Application {
 	#timelineView = new TimelineView();
 	#htmlElement;
 	#appToolbar = new Toolbar();
+	#population;
 
-	#waveSchedule;
 	constructor() {
 		I18n.setOptions({ translations:[english] });
 		I18n.start();
@@ -41,22 +42,24 @@ class Application {
 		this.#initHTML();
 		this.#initOptions();
 		//this.#setupAnalytics();
-		this.#createNewWaveSchedule();
+		this.#createNewPopulation();
 	}
 
-	#createNewWaveSchedule() {
+	#createNewPopulation() {
+		const population = new Population();
 		const waveSchedule = new WaveSchedule();
 		const wave1 = new Wave();
 		const waveSpawn1 = new WaveSpawn();
 		wave1.addChild(waveSpawn1);
 		waveSchedule.addChild(wave1);
+		population.addChild(waveSchedule);
 
-		this.#setWaveSchedule(waveSchedule);
+		this.#setPopulation(population);
 	}
 
-	#setWaveSchedule(waveSchedule) {
-		this.#waveSchedule = waveSchedule;
-		this.#waveScheduleView.setEntity(waveSchedule);
+	#setPopulation(population) {
+		this.#population = population;
+		this.#waveScheduleView.setEntity(population.getWaveSchedule());
 	}
 
 	#initOptions() {
@@ -67,8 +70,8 @@ class Application {
 		window.addEventListener('beforeunload', event => this.#beforeUnload(event));
 		Controller.addEventListener(EVENT_REMOVE_ENTITY, event => this.#removeEntity(event.detail));
 
-		Controller.addEventListener(EVENT_FILE_LOADED, event => this.#setWaveSchedule(readPopFile(event.detail)));
-		Controller.addEventListener(EVENT_EXPORT_POPULATION, event => writePopFile(this.#waveSchedule));
+		Controller.addEventListener(EVENT_FILE_LOADED, event => this.#setPopulation(readPopFile(event.detail)));
+		Controller.addEventListener(EVENT_EXPORT_POPULATION, event => writePopFile(this.#population));
 	}
 
 	#initHTML() {

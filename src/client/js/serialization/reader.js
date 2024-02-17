@@ -4,6 +4,7 @@ import { CharacterAttributes } from '../population/characterattributes.js';
 import { ItemAttributes } from '../population/itemattributes.js';
 import { Mission } from '../population/mission.js';
 import { Output } from '../population/output.js';
+import { Population } from '../population/population.js';
 import { SquadSpawner } from '../population/spawners/squad';
 import { RandomChoiceSpawner } from '../population/spawners/randomchoice.js';
 import { TankSpawner } from '../population/spawners/tank.js';
@@ -16,6 +17,7 @@ import { WaveSpawn } from '../population/wavespawn';
 import botAttributes from '../../json/attributes/bot.json';
 import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
+import populationAttributes from '../../json/attributes/population.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
@@ -31,23 +33,19 @@ export function readPopFile(content) {
 	return createPopulation(population);
 }
 
-function createPopulation(population) {
-	const base = [];
-	let waveScheduleKV;
+function createPopulation(populationKV) {
 
-	for (const kv of population.getKeys()) {
-		if (kv.key.startsWith('#base')) {
-			base.push(kv.value);
+	const population = new Population();
+
+	for (const kv of populationKV.getKeys()) {
+		if (isAttribute(kv.key, populationAttributes)) {
+			population.setAttribute(kv.key, kv.value);
 		} else {
-			waveScheduleKV = kv;
+			population.addChild(createWaveSchedule(kv));
 		}
 	}
 
-	console.info(base, waveScheduleKV);
-	if (!waveScheduleKV) {
-		throw new Error('No population in the file');
-	}
-	return createWaveSchedule(waveScheduleKV);
+	return population;
 }
 
 function createWaveSchedule(waveScheduleKV) {

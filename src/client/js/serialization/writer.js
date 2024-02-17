@@ -6,6 +6,7 @@ import { DEFAULT_VALUE_FOR_TYPE } from '../population/constants.js';
 import botAttributes from '../../json/attributes/bot.json';
 import missionAttributes from '../../json/attributes/mission.json';
 import outputAttributes from '../../json/attributes/output.json';
+import populationAttributes from '../../json/attributes/population.json';
 import squadAttributes from '../../json/attributes/squad.json';
 import tankAttributes from '../../json/attributes/tank.json';
 import waveAttributes from '../../json/attributes/wave.json';
@@ -13,27 +14,18 @@ import waveSpawnAttributes from '../../json/attributes/wavespawn.json';
 import waveScheduleAttributes from '../../json/attributes/waveschedule.json';
 import sentryGunAttributes from '../../json/attributes/sentrygun.json';
 
-export function writePopFile(waveSchedule) {
-	if (!waveSchedule.isWaveSchedule) {
-		console.error('Not a WaveSchedule:', waveSchedule);
+export function writePopFile(population) {
+	if (!population.isPopulation) {
+		console.error('Not a population:', population);
 	}
 
-	const population = exportPopulation(waveSchedule);
+	const populationStr = exportEntity(population);
 
-	const result = INSERT_BEFORE + stringify(population) + INSERT_AFTER;
+	const result = INSERT_BEFORE + stringify(populationStr) + INSERT_AFTER;
 
 	if (result) {
 		SaveFile(new File([result], 'mvm_popfile.pop'));
 	}
-}
-
-
-function exportPopulation(waveSchedule) {
-	const populationKV = new KeyValue('root', []);
-
-	//TODO: add base
-	populationKV.value.push(exportEntity(waveSchedule));
-	return populationKV;
 }
 
 function exportEntity(entity) {
@@ -41,6 +33,8 @@ function exportEntity(entity) {
 		return;
 	}
 	switch (true) {
+		case entity.isPopulation:
+			return exportPopulation(entity);
 		case entity.isWaveSchedule:
 			return exportWaveSchedule(entity);
 		case entity.isWave:
@@ -82,6 +76,15 @@ function exportChilds(kv, childs) {
 			kv.value.push(childKV);
 		}
 	}
+}
+
+function exportPopulation(population) {
+	const populationKV = new KeyValue('root', []);
+
+	populationKV.value.push(...exportAttributes(populationAttributes, population));
+	exportChilds(populationKV, population.getChilds());
+
+	return populationKV;
 }
 
 function exportWaveSchedule(waveSchedule) {

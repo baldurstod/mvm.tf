@@ -1,0 +1,11 @@
+{
+	"name": "population",
+	"attributes" :[
+		{
+			"name": "#base",
+			"i18n": "#base",
+			"type": "string",
+			"multiple": true
+		}
+	]
+}
