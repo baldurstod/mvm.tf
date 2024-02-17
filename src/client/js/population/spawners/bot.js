@@ -22,8 +22,8 @@ export class BotSpawner extends Spawner {
 	constructor() {
 		super();
 		this.setAttributes(botAttributes);
-		super.setAttribute('Class', 'Scout');
-		super.setAttribute('ClassIcon', 'scout');
+		//super.setAttribute('Class', 'Scout');
+		//super.setAttribute('ClassIcon', 'scout');
 		this.isBotSpawner = true;
 	}
 
@@ -68,7 +68,6 @@ export class BotSpawner extends Spawner {
 			const root = this.getRoot();
 			if (root.isPopulation) {
 				const template = root.getTemplate(this.#templateName);
-				console.info(template);
 				if (template) {
 					// Template value are always sets
 					let value = template.getAttributeValue(name);

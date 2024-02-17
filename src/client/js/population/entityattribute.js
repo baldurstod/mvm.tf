@@ -93,7 +93,7 @@ export class EntityAttribute {
 		if (this.#multiple) {
 			return this.#value.size == 0;
 		} else {
-			return this.#value != this.#default;
+			return this.#value == this.#default;
 		}
 	}
 }
