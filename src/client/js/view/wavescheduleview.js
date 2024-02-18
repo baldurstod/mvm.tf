@@ -18,6 +18,7 @@ export * from './spawners/spawners.js';
 
 export class WaveScheduleView extends EntityView {
 	#htmlTabs = new Map();
+	#htmlWavesViews = new Map();
 	#htmlWaves;
 	#selectedWave;
 	constructor(entity) {
@@ -44,6 +45,7 @@ export class WaveScheduleView extends EntityView {
 		}
 		this.#htmlWaves.clear();
 		this.#htmlTabs.clear();
+		this.#htmlWavesViews.clear();
 		let wave = 0;
 		let firstTab;
 		for(const child of entity.getChilds()) {
@@ -70,6 +72,7 @@ export class WaveScheduleView extends EntityView {
 			}
 
 			this.#htmlTabs.set(child, htmlTab);
+			this.#htmlWavesViews.set(child, waveView);
 		}
 
 		const activeTab = this.#htmlTabs.get(this.#selectedWave);
@@ -96,6 +99,7 @@ export class WaveScheduleView extends EntityView {
 			for (const [child, htmlTab] of this.#htmlTabs) {
 				if (child.isDescendant(entity)) {
 					htmlTab.activate();
+					this.#htmlWavesViews.get(child)?.focusChildEntity(entity);
 					return;
 				}
 			}

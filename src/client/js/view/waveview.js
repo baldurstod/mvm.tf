@@ -12,6 +12,8 @@ import wave from '../../json/attributes/wave.json';
 
 export class WaveView extends EntityView {
 	#htmlWaveSpawns;
+	#htmlTabs = new Map();
+	#htmlWaveSpawnsViews = new Map();
 	constructor(entity) {
 		super(wave, entity);
 	}
@@ -38,18 +40,22 @@ export class WaveView extends EntityView {
 		}
 
 		this.#htmlWaveSpawns.clear();
+		this.#htmlWaveSpawnsViews.clear();
 		let waveSpawn = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWaveSpawn) {
 				continue;
 			}
-			const waveView = new WaveSpawnView(child);
+			const waveSpawnView = new WaveSpawnView(child);
 
-			createElement('harmony-tab', {
+			const htmlTab = createElement('harmony-tab', {
 				'data-text': ++waveSpawn,
 				parent: this.#htmlWaveSpawns,
-				child: waveView.htmlElement,
+				child: waveSpawnView.htmlElement,
 			});
+
+			this.#htmlTabs.set(child, htmlTab);
+			this.#htmlWaveSpawnsViews.set(child, waveSpawnView);
 		}
 
 		createElement('harmony-tab', {
@@ -62,5 +68,17 @@ export class WaveView extends EntityView {
 				},
 			}
 		});
+	}
+
+	focusChildEntity(entity) {
+		if (this.getEntity().isDescendant(entity)) {
+			for (const [child, htmlTab] of this.#htmlTabs) {
+				if (child.isDescendant(entity)) {
+					htmlTab.activate();
+					this.#htmlWaveSpawnsViews.get(child)?.focusChildEntity(entity);
+					return;
+				}
+			}
+		}
 	}
 }
