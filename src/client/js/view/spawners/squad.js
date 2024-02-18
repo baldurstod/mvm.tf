@@ -75,10 +75,6 @@ export class SquadView extends SpawnerView {
 	static getSpawnerName() {
 		return 'Squad';
 	}
-
-	isSingleSpawner() {
-		return false;
-	}
 }
 
 SpawnerView.registerSpawner(SquadView);

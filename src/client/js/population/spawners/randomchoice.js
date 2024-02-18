@@ -25,6 +25,19 @@ export class RandomChoiceSpawner extends Spawner {
 	static getSpawnerName() {
 		return 'RandomChoice';
 	}
+
+	isSingleSpawner() {
+		return false;
+	}
+
+	needWhereAttribute() {
+		for (const child of this.getChilds()) {
+			if (child.needWhereAttribute()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 Spawner.registerSpawner(RandomChoiceSpawner)

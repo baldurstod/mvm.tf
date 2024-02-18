@@ -28,6 +28,19 @@ export class SquadSpawner extends Spawner {
 	static getSpawnerName() {
 		return 'Squad';
 	}
+
+	isSingleSpawner() {
+		return false;
+	}
+
+	needWhereAttribute() {
+		for (const child of this.getChilds()) {
+			if (child.needWhereAttribute()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
 
 Spawner.registerSpawner(SquadSpawner)

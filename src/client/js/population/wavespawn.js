@@ -44,9 +44,12 @@ export class WaveSpawn extends Entity {
 	}
 
 	check(errors) {
-		const where = this.getAttribute('where');
-		if (where.getValue().size == 0) {
-			errors.add(new ValidityError(this, 'Missing where attribute', 'where'));
+		const needWhere = this.#spawner.needWhereAttribute();
+		if (needWhere) {
+			const where = this.getAttribute('where');
+			if (where.getValue().size == 0) {
+				errors.add(new ValidityError(this, 'Missing where attribute', 'where'));
+			}
 		}
 	}
 }

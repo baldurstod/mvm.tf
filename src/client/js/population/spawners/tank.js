@@ -25,6 +25,10 @@ export class TankSpawner extends Spawner {
 	static getSpawnerName() {
 		return 'Tank';
 	}
+
+	needWhereAttribute() {
+		return false;
+	}
 }
 
 Spawner.registerSpawner(TankSpawner)

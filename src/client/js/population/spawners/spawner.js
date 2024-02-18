@@ -26,4 +26,12 @@ export class Spawner extends Entity {
 	getSpawnerName() {
 		return this.constructor.getSpawnerName();
 	}
+
+	isSingleSpawner() {
+		return true;
+	}
+
+	needWhereAttribute() {
+		return true;
+	}
 }
