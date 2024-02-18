@@ -1,5 +1,7 @@
 import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
+import { Controller } from '../../controller.js';
+import { EVENT_FOCUS_ENTITY } from '../../controllerevents.js';
 
 export class RandomChoiceSpawner extends Spawner {
 	constructor() {
@@ -9,19 +11,18 @@ export class RandomChoiceSpawner extends Spawner {
 
 	getIcons() {
 		const htmlChilds = [];
-		const childs = this.getChilds()
-		for (const child of childs) {
+		for (const child of this.getChilds()) {
 			htmlChilds.push(child.getIcons());
 			htmlChilds.push(createElement('span', { i18n: '#or' }));
 		}
 		htmlChilds.pop();
-		if (childs.size > 1) {
-			htmlChilds.unshift(createElement('span', { innerText: '(' }));
-			htmlChilds.push(createElement('span', { innerText: ')' }));
-		}
 
 		return createElement('div', {
+			class: 'random-choice',
 			childs: htmlChilds,
+			events: {
+				click: () => Controller.dispatchEvent(new CustomEvent(EVENT_FOCUS_ENTITY, { detail: this })),
+			}
 		});
 	}
 

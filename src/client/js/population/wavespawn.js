@@ -33,7 +33,7 @@ export class WaveSpawn extends Entity {
 			text += `${totalCount} * `;
 		}
 
-		return createElement('div', {
+		return createElement('wave-spawn', {
 			childs: [
 				createElement('div', {
 					innerText: text,

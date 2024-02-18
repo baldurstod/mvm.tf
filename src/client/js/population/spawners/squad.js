@@ -1,7 +1,9 @@
+import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
+import { Controller } from '../../controller.js';
+import { EVENT_FOCUS_ENTITY } from '../../controllerevents.js';
 
 import squadAttributes from '../../../json/attributes/squad.json';
-import { createElement } from 'harmony-ui';
 
 export class SquadSpawner extends Spawner {
 	constructor() {
@@ -12,18 +14,16 @@ export class SquadSpawner extends Spawner {
 
 	getIcons() {
 		const htmlChilds = [];
-		const childs = this.getChilds()
-
-		for (const child of childs) {
+		for (const child of this.getChilds()) {
 			htmlChilds.push(child.getIcons());
-		}
-		if (childs.size > 1) {
-			htmlChilds.unshift(createElement('span', { innerText: '(' }));
-			htmlChilds.push(createElement('span', { innerText: ')' }));
 		}
 
 		return createElement('div', {
+			class: 'squad',
 			childs: htmlChilds,
+			events: {
+				click: () => Controller.dispatchEvent(new CustomEvent(EVENT_FOCUS_ENTITY, { detail: this })),
+			}
 		});
 	}
 
