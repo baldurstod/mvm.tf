@@ -87,7 +87,7 @@ class Application {
 		Controller.addEventListener(EVENT_REMOVE_ENTITY, event => this.#removeEntity(event.detail));
 
 		Controller.addEventListener(EVENT_FILE_LOADED, event => this.#setPopulation(readPopFile(event.detail)));
-		Controller.addEventListener(EVENT_EXPORT_POPULATION, event => writePopFile(this.#population));
+		Controller.addEventListener(EVENT_EXPORT_POPULATION, () => this.#exportPopulation());
 	}
 
 	#initHTML() {
@@ -114,6 +114,16 @@ class Application {
 
 	#beforeUnload() {
 		//TODO
+	}
+
+	#exportPopulation() {
+		const errors = new Set();
+		this.#population.isValid(errors);
+		if (errors.size == 0) {
+			writePopFile(this.#population);
+		} else {
+			console.error(errors);
+		}
 	}
 /*
 	#setupAnalytics() {

@@ -3,6 +3,7 @@ import { BotSpawner } from './spawners/bot.js';
 
 import wavespawn from '../../json/attributes/wavespawn.json';
 import { createElement } from 'harmony-ui';
+import { ValidityError } from './validityerror.js';
 
 export class WaveSpawn extends Entity {
 	#spawner;
@@ -40,5 +41,12 @@ export class WaveSpawn extends Entity {
 				this.#spawner?.getIcons(),
 			],
 		});
+	}
+
+	check(errors) {
+		const where = this.getAttribute('where');
+		if (where.getValue().size == 0) {
+			errors.add(new ValidityError(this, 'Missing where attribute', 'where'));
+		}
 	}
 }

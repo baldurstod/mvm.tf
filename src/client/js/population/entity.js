@@ -149,14 +149,15 @@ export class Entity {
 		return this.#attributes.get(name.toLowerCase())?.getValue();
 	}
 
-	validate() {
-		this.check();
+	isValid(errors = new set()) {
+		this.check(errors);
 		for (let child of this.#childs) {
-			child.validate();
+			child.isValid(errors);
 		}
+		return errors;
 	}
 
-	check() {
+	check(errors) {
 	}
 
 	write() {
@@ -171,4 +172,6 @@ export class Entity {
 			}
 		}
 	}
+
+
 }
