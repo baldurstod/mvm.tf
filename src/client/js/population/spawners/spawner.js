@@ -34,4 +34,8 @@ export class Spawner extends Entity {
 	needWhereAttribute() {
 		return true;
 	}
+
+	setDefaultAttributes() {
+
+	}
 }

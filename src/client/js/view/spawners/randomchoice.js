@@ -67,6 +67,7 @@ export class RandomChoiceView extends SpawnerView {
 	#createSpawner(name) {
 		const spawner = Spawner.getSpawner(name);
 		if (spawner) {
+			spawner.setDefaultAttributes();
 			this.getEntity()?.addChild(spawner);
 		}
 	}

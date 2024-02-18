@@ -98,6 +98,10 @@ export class BotSpawner extends Spawner {
 	static getSpawnerName() {
 		return 'Bot';
 	}
+
+	setDefaultAttributes() {
+		this.setAttribute('class', 'scout');
+	}
 }
 
 Spawner.registerSpawner(BotSpawner)
