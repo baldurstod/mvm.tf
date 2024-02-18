@@ -11,17 +11,19 @@ export class SquadSpawner extends Spawner {
 	}
 
 	getIcons() {
-		const childs = [];
+		const htmlChilds = [];
+		const childs = this.getChilds()
 
-		childs.push(createElement('span', { innerText: '(' }));
-		for (const child of this.getChilds()) {
-			childs.push(child.getIcons());
+		for (const child of childs) {
+			htmlChilds.push(child.getIcons());
 		}
-		childs.push(createElement('span', { innerText: ')' }));
-
+		if (childs.size > 1) {
+			htmlChilds.unshift(createElement('span', { innerText: '(' }));
+			htmlChilds.push(createElement('span', { innerText: ')' }));
+		}
 
 		return createElement('div', {
-			childs: childs,
+			childs: htmlChilds,
 		});
 	}
 

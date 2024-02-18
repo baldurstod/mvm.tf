@@ -1,6 +1,6 @@
 .mvm-timeline{
 	background-color: rgb(102, 146, 57);
-	overflow: hidden;
+	overflow: auto;
 	min-width: 10rem;
 	max-width: 20rem;
 }
@@ -9,7 +9,7 @@
 	display: none;
 }
 
-.mvm-timeline div{
+.mvm-timeline .wavespawn div{
 	display: flex;
 	flex-wrap: wrap;
 }

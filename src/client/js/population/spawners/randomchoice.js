@@ -8,17 +8,20 @@ export class RandomChoiceSpawner extends Spawner {
 	}
 
 	getIcons() {
-		const childs = [];
-		for (const child of this.getChilds()) {
-			childs.push(child.getIcons());
-			childs.push(createElement('span', { i18n: '#or' }));
+		const htmlChilds = [];
+		const childs = this.getChilds()
+		for (const child of childs) {
+			htmlChilds.push(child.getIcons());
+			htmlChilds.push(createElement('span', { i18n: '#or' }));
 		}
-		childs.pop();
-		childs.unshift(createElement('span', { innerText: '(' }));
-		childs.push(createElement('span', { innerText: ')' }));
+		htmlChilds.pop();
+		if (childs.size > 1) {
+			htmlChilds.unshift(createElement('span', { innerText: '(' }));
+			htmlChilds.push(createElement('span', { innerText: ')' }));
+		}
 
 		return createElement('div', {
-			childs: childs,
+			childs: htmlChilds,
 		});
 	}
 
