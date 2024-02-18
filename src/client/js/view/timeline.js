@@ -1,4 +1,4 @@
-import { createElement } from 'harmony-ui';
+import { createElement, createElementNS } from 'harmony-ui';
 import 'harmony-ui/dist/define/harmony-accordion.js';
 
 import { Controller } from '../controller.js';
@@ -52,33 +52,31 @@ export class TimelineView {
 			if (!child.isWave) {
 				continue;
 			}
-			this.#createWaveContent(child);
+			this.#createWaveContent(child, ++wave);
 		}
 	}
 
-	#createWaveContent(wave) {
+	#createWaveContent(wave, waveID) {
 		const htmlContent = createElement('div', {
 			class: 'wave',
 			parent: this.#htmlElement,
+			childs: [
+				createElement('div', {
+					class: 'wave-id',
+					'i18n-json': {
+						innerHTML: '#wave_id_currency',
+					},
+					'i18n-values': {
+						id: waveID,
+						currency: `$${wave.getTotalCurrency()}`,
+					},
+				}),
+			]
 		});
 
 		for (const waveSpawn of wave.getWaveSpawns()) {
-			htmlContent.append(this.#createWaveSpawnContent(waveSpawn));
+			htmlContent.append(waveSpawn.getIcons());
 		}
-
-		return htmlContent;
-	}
-
-	#createWaveSpawnContent(waveSpawn) {
-		const htmlContent = createElement('div', {
-			class: 'wavespawn',
-			child: waveSpawn.getIcons(),
-			//parent: this.#htmlElement,
-		});
-
-		/*for (const waveSpawn of wave.getWaveSpawns()) {
-			console.log(waveSpawn);
-		}*/
 
 		return htmlContent;
 	}
@@ -88,8 +86,6 @@ export class TimelineView {
 	}
 
 	#entityUpdated(entity) {
-		//if (entity == this.#entity) {
-			this.#updateHTML();
-		//}
+		this.#updateHTML();
 	}
 }

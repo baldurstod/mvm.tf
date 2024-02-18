@@ -61,5 +61,6 @@
 		,"#sentry_gun": "Sentry gun"
 		,"#wave_number": "Wave ${id}"
 		,"#or": "or"
+		,"#wave_id_currency": "Wave ${id} ${currency}"
 	}
 }

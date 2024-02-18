@@ -33,9 +33,11 @@ export class WaveSpawn extends Entity {
 			text += `${totalCount} * `;
 		}
 
-		return createElement('wave-spawn', {
+		return createElement('div', {
+			class: 'wave-spawn',
 			childs: [
-				createElement('div', {
+				createElement('span', {
+					class: 'count',
 					innerText: text,
 				}),
 				this.#spawner?.getIcons(),
@@ -51,5 +53,9 @@ export class WaveSpawn extends Entity {
 				errors.add(new ValidityError(this, 'Missing where attribute', 'where'));
 			}
 		}
+	}
+
+	getCurrency() {
+		return Number(this.getAttributeValue('TotalCurrency'));
 	}
 }

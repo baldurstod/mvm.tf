@@ -25,4 +25,14 @@ export class Wave extends Entity {
 
 		return result;
 	}
+
+	getTotalCurrency() {
+		let totalCurrency = 0;
+		for (const child of this.getChilds()) {
+			if (child.isWaveSpawn) {
+				totalCurrency += child.getCurrency();
+			}
+		}
+		return totalCurrency;
+	}
 }
