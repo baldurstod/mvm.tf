@@ -65,7 +65,9 @@ class Application {
 
 	#setPopulation(population) {
 		this.#population = population;
-		this.#waveScheduleView.setEntity(population.getWaveSchedule());
+		const waveSchedule = population.getWaveSchedule();
+		this.#waveScheduleView.setEntity(waveSchedule);
+		this.#timelineView.setEntity(waveSchedule);
 
 		this.#initTemplates(population);
 	}

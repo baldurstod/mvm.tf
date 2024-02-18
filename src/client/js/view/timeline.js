@@ -12,7 +12,7 @@ export class TimelineView {
 	#entity;
 	constructor() {
 		Controller.addEventListener(EVENT_ENTITY_UPDATED, event => this.#entityUpdated(event.detail));
-		Controller.addEventListener(EVENT_WAVE_ACTIVATED, event => this.setEntity(event.detail));
+		//Controller.addEventListener(EVENT_WAVE_ACTIVATED, event => this.setEntity(event.detail));
 	}
 
 	setEntity(entity) {
@@ -49,16 +49,17 @@ export class TimelineView {
 		this.#htmlWaves.clear();
 		let wave = 0;
 		for(const child of entity.getChilds()) {
-			if (!child.isWaveSpawn) {
+			if (!child.isWave) {
 				continue;
 			}
-			this.#createWaveSpawnContent(child);
+			this.#createWaveContent(child);
 		}
 	}
 
 	#createWaveContent(wave) {
 		const htmlContent = createElement('div', {
 			class: 'wave',
+			parent: this.#htmlElement,
 		});
 
 		for (const waveSpawn of wave.getWaveSpawns()) {
@@ -72,7 +73,7 @@ export class TimelineView {
 		const htmlContent = createElement('div', {
 			class: 'wavespawn',
 			child: waveSpawn.getIcons(),
-			parent: this.#htmlElement,
+			//parent: this.#htmlElement,
 		});
 
 		/*for (const waveSpawn of wave.getWaveSpawns()) {
