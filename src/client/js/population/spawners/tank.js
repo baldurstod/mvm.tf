@@ -1,5 +1,7 @@
 import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
+import { Controller } from '../../controller.js';
+import { EVENT_FOCUS_ENTITY } from '../../controllerevents.js';
 import { getClassIcon } from '../../view/elements/classicon.js';
 
 import tank from '../../../json/attributes/tank.json';
@@ -14,6 +16,9 @@ export class TankSpawner extends Spawner {
 	getIcons() {
 		return createElement('img', {
 			src: getClassIcon('tank'),
+			events: {
+				click: () => Controller.dispatchEvent(new CustomEvent(EVENT_FOCUS_ENTITY, { detail: this })),
+			}
 		});
 	}
 

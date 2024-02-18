@@ -45,6 +45,18 @@ export class Entity {
 		return this.#parent;
 	}
 
+	isDescendant(entity) {
+		let current = entity;
+		while(current) {
+			if (current == this) {
+				return true;
+			}
+			current = current.getParent();
+		}
+		return false;
+	}
+
+
 	getRoot() {
 		if (this.#parent) {
 			return this.#parent.getRoot();

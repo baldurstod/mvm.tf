@@ -4,7 +4,7 @@ import { I18n } from 'harmony-browser-utils/src/i18n.js';
 
 import { PRODUCTION } from './bundleoptions.js';
 import { Controller } from './controller.js';
-import { EVENT_ENTITY_UPDATED, EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_REMOVE_ENTITY } from './controllerevents.js';
+import { EVENT_ENTITY_UPDATED, EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_FOCUS_ENTITY, EVENT_REMOVE_ENTITY } from './controllerevents.js';
 import { initPopulation } from './datas/officialpopulation.js';
 import { writePopFile } from './serialization/writer.js';
 import { readPopFile } from './serialization/reader.js';
@@ -90,6 +90,7 @@ class Application {
 
 		Controller.addEventListener(EVENT_FILE_LOADED, event => this.#setPopulation(readPopFile(event.detail)));
 		Controller.addEventListener(EVENT_EXPORT_POPULATION, () => this.#exportPopulation());
+		Controller.addEventListener(EVENT_FOCUS_ENTITY, () => this.#waveScheduleView.focusChildEntity(event.detail));
 	}
 
 	#initHTML() {

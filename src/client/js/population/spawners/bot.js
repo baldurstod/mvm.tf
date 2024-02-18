@@ -1,5 +1,7 @@
 import { createElement } from 'harmony-ui';
 import { Spawner } from './spawner.js';
+import { Controller } from '../../controller.js';
+import { EVENT_FOCUS_ENTITY } from '../../controllerevents.js';
 import { getClassIcon } from '../../view/elements/classicon.js';
 
 import botAttributes from '../../../json/attributes/bot.json';
@@ -56,6 +58,9 @@ export class BotSpawner extends Spawner {
 	getIcons() {
 		return createElement('img', {
 			src: getClassIcon(this.getIcon()),
+			events: {
+				click: () => Controller.dispatchEvent(new CustomEvent(EVENT_FOCUS_ENTITY, { detail: this })),
+			}
 		});
 	}
 

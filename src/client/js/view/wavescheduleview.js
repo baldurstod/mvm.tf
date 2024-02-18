@@ -90,4 +90,15 @@ export class WaveScheduleView extends EntityView {
 			}
 		});
 	}
+
+	focusChildEntity(entity) {
+		if (this.getEntity().isDescendant(entity)) {
+			for (const [child, htmlTab] of this.#htmlTabs) {
+				if (child.isDescendant(entity)) {
+					htmlTab.activate();
+					return;
+				}
+			}
+		}
+	}
 }

@@ -313,6 +313,9 @@ export class EntityView {
 		}
 	}
 
+	focusChildEntity(entity) {
+	}
+
 	static #setMap(mapName) {
 		const map = getMap(mapName);
 		if (!map) {
