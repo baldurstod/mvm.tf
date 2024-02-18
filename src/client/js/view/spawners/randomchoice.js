@@ -74,6 +74,10 @@ export class RandomChoiceView extends SpawnerView {
 	static getSpawnerName() {
 		return 'RandomChoice';
 	}
+
+	isSingleSpawner() {
+		return false;
+	}
 }
 
 SpawnerView.registerSpawner(RandomChoiceView);

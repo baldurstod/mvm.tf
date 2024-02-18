@@ -59,4 +59,8 @@ export class SpawnerView extends EntityView {
 	getSpawnerName() {
 		return this.constructor.getSpawnerName();
 	}
+
+	isSingleSpawner() {
+		return true;
+	}
 }
