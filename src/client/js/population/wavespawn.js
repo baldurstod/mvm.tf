@@ -26,12 +26,16 @@ export class WaveSpawn extends Entity {
 
 	getIcons() {
 		const totalCount = Number(this.getAttributeValue('TotalCount'));
-		const spawnCount = Number(this.getAttributeValue('SpawnCount'));
+
+		let text = '';
+		if (totalCount != 1) {
+			text += `${totalCount} * `;
+		}
 
 		return createElement('div', {
 			childs: [
 				createElement('div', {
-					innerText: `${totalCount} * ${spawnCount} * `,
+					innerText: text,
 				}),
 				this.#spawner?.getIcons(),
 			],
