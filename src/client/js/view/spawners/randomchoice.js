@@ -28,18 +28,6 @@ export class RandomChoiceView extends SpawnerView {
 						click: () => this.#createSpawner('Tank'),
 					}
 				}),
-				createElement('div', {
-					innerText: 'create squad',
-					events: {
-						click: () => this.#createSpawner('Squad'),
-					}
-				}),
-				createElement('div', {
-					innerText: 'create random choice',
-					events: {
-						click: () => this.#createSpawner('RandomChoice'),
-					}
-				}),
 				/*createElement('div', {
 					innerText: 'create sentry gun',
 					events: {
