@@ -1,6 +1,7 @@
 import {Entity} from './entity.js';
 import { Wave } from './wave.js';
 import { WaveSpawn } from './wavespawn.js';
+import { BotSpawner } from './spawners/bot.js';
 
 import waveschedule from '../../json/attributes/waveschedule.json';
 
@@ -27,6 +28,10 @@ export class WaveSchedule extends Entity {
 		const waveSpawn = new WaveSpawn();
 		wave.addChild(waveSpawn);
 		this.addChild(wave);
+
+		const bot = new BotSpawner();
+		bot.setAttribute('class', 'scout');
+		waveSpawn.setSpawner(bot);
 	}
 
 	addBase(base) {

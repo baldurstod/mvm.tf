@@ -1,7 +1,8 @@
 import { Entity } from './entity.js';
+import { WaveSpawn } from './wavespawn.js';
+import { BotSpawner } from './spawners/bot.js';
 
 import wave from '../../json/attributes/wave.json';
-import { WaveSpawn } from './wavespawn.js';
 
 export class Wave extends Entity {
 	constructor() {
@@ -11,7 +12,12 @@ export class Wave extends Entity {
 	}
 
 	addNewWaveSpawn() {
-		this.addChild(new WaveSpawn());
+		const waveSpawn = new WaveSpawn();
+		this.addChild(waveSpawn);
+
+		const bot = new BotSpawner();
+		bot.setAttribute('class', 'scout');
+		waveSpawn.setSpawner(bot);
 	}
 
 	getWaveSpawns() {
