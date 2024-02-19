@@ -1,5 +1,4 @@
 import { createElement, createElementNS } from 'harmony-ui';
-import 'harmony-ui/dist/define/harmony-accordion.js';
 
 import { Controller } from '../controller.js';
 import { EVENT_ENTITY_UPDATED, EVENT_WAVE_ACTIVATED } from '../controllerevents.js';
@@ -30,9 +29,6 @@ export class TimelineView {
 		}
 		this.#htmlElement = createElement('div', {
 			class: 'mvm-timeline',
-			childs: [
-				this.#htmlWaves = createElement('harmony-accordion'),
-			]
 		});
 
 		this.#updateHTML();
@@ -46,7 +42,6 @@ export class TimelineView {
 		}
 
 		this.#htmlElement.innerHTML = '';
-		this.#htmlWaves.clear();
 		let wave = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWave) {
