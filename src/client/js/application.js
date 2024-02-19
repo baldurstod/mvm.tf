@@ -5,14 +5,10 @@ import { I18n } from 'harmony-browser-utils/src/i18n.js';
 import { PRODUCTION } from './bundleoptions.js';
 import { Controller } from './controller.js';
 import { EVENT_ENTITY_UPDATED, EVENT_EXPORT_POPULATION, EVENT_FILE_LOADED, EVENT_FOCUS_ENTITY, EVENT_REMOVE_ENTITY } from './controllerevents.js';
+import { createBasicPopulation } from './createpopulation.js';
 import { initPopulation } from './datas/officialpopulation.js';
 import { writePopFile } from './serialization/writer.js';
 import { readPopFile } from './serialization/reader.js';
-import { Population } from './population/population.js';
-import { Wave } from './population/wave.js';
-import { WaveSpawn } from './population/wavespawn.js';
-import { WaveSchedule } from './population/waveschedule.js';
-import { BotSpawner } from './population/spawners/bot.js';
 import { Toolbar } from './view/toolbar.js';
 import { TimelineView } from './view/timeline.js';
 import { WaveScheduleView } from './view/wavescheduleview.js';
@@ -48,19 +44,7 @@ class Application {
 	}
 
 	#createNewPopulation() {
-		const population = new Population();
-		const waveSchedule = new WaveSchedule();
-		const wave = new Wave();
-		const waveSpawn = new WaveSpawn();
-		wave.addChild(waveSpawn);
-		waveSchedule.addChild(wave);
-		population.addChild(waveSchedule);
-
-		const bot = new BotSpawner();
-		bot.setAttribute('class', 'scout');
-		waveSpawn.setSpawner(bot);
-
-		this.#setPopulation(population);
+		this.#setPopulation(createBasicPopulation());
 	}
 
 	#setPopulation(population) {
