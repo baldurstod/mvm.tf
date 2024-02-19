@@ -4,6 +4,7 @@
 		{
 			"name": "StartingCurrency",
 			"i18n": "#starting_currency",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 0
@@ -11,6 +12,7 @@
 		{
 			"name": "RespawnWaveTime",
 			"i18n": "#respawn_wave_time",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 10

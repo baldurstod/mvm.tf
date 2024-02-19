@@ -1,5 +1,5 @@
 import { closeSVG } from 'harmony-svg';
-import { createElement } from 'harmony-ui';
+import { createElement, toggle } from 'harmony-ui';
 import { Controller } from '../controller.js';
 import { EVENT_ENTITY_UPDATED, EVENT_MAP_CHANGED, EVENT_REMOVE_ENTITY } from '../controllerevents.js';
 import { getMap } from '../population/maps.js';
@@ -15,7 +15,9 @@ export class EntityView {
 	#htmlInitialized = false;
 	#htmlElement;
 	#htmlTitle;
+	#htmlEssentialAttributes;
 	#htmlAttributes;
+	#htmlMoreAttributes;
 	#htmlAttributesInputs = new Map();
 	#htmlChilds;
 	#entity;
@@ -81,7 +83,18 @@ export class EntityView {
 					},
 				}),
 				this.#htmlTitle = createElement('div', { class: 'mvm-entity-title' }),
-				this.#htmlAttributes = createElement('div', { class: 'mvm-entity-attributes' }),
+				this.#htmlEssentialAttributes = createElement('div', {
+					class: 'mvm-entity-attributes essential',
+					childs: [
+						this.#htmlMoreAttributes = createElement('div', {
+							i18n: '#more_attributes',
+							events: {
+								click: () => toggle(this.#htmlAttributes),
+							},
+						}),
+					],
+				}),
+				this.#htmlAttributes = createElement('div', { class: 'mvm-entity-attributes', hidden: true }),
 				this.#htmlChilds = createElement('div', { class: 'mvm-entity-childs' }),
 			]
 		});
@@ -231,7 +244,7 @@ export class EntityView {
 		this.#htmlAttributesInputs.set(attributeTemplate.name, htmlAttributeInput);
 
 		createElement('div', {
-			parent: this.#htmlAttributes,
+			parent: attributeTemplate.essential ? this.#htmlEssentialAttributes :  this.#htmlAttributes,
 			childs: [
 				createElement('label', {
 					childs: [

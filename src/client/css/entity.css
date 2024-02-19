@@ -9,6 +9,11 @@
 	background-color: blue;
 }
 
+.mvm-entity-attributes.essential{
+	background-color: rgb(12, 83, 145);
+	min-height: 2rem;
+}
+
 .mvm-entity-childs{
 	background-color: orange;
 	display: flex;

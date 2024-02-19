@@ -4,16 +4,19 @@
 		{
 			"name": "Name",
 			"i18n": "#name",
+			"essential": true,
 			"type": "string"
 		},
 		{
 			"name": "ClassIcon",
 			"i18n": "#class_icon",
+			"essential": true,
 			"type": "classicon"
 		},
 		{
 			"name": "Template",
 			"i18n": "#template",
+			"essential": true,
 			"type": "template"
 		},
 		{
@@ -32,6 +35,7 @@
 		{
 			"name": "Class",
 			"i18n": "#class",
+			"essential": true,
 			"type": "list",
 			"datalist": [
 				"Scout",
@@ -48,6 +52,7 @@
 		{
 			"name": "Health",
 			"i18n": "#health",
+			"essential": true,
 			"type": "integer"
 		},
 		{
@@ -73,6 +78,7 @@
 		{
 			"name": "Skill",
 			"i18n": "#skill",
+			"essential": true,
 			"type": "list",
 			"default": "",
 			"datalist": [
@@ -109,6 +115,7 @@
 		{
 			"name": "Attributes",
 			"i18n": "#attributes",
+			"essential": true,
 			"type": "list",
 			"multiple": true,
 			"datalist": [

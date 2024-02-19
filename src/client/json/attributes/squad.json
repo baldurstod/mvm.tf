@@ -4,7 +4,8 @@
 		{
 			"name": "FormationSize",
 			"i18n": "#formation_size",
-			"type": "float"
+			"type": "float",
+			"default": -1
 		},
 		{
 			"name": "ShouldPreserveSquad",

@@ -4,16 +4,19 @@
 		{
 			"name": "Name",
 			"i18n": "#name",
+			"essential": true,
 			"type": "string"
 		},
 		{
 			"name": "Template",
 			"i18n": "#template",
+			"essential": true,
 			"type": "template"
 		},
 		{
 			"name": "Where",
 			"i18n": "#where",
+			"essential": true,
 			"type": "dynamiclist",
 			"list_name": "where",
 			"multiple": true
@@ -21,11 +24,13 @@
 		{
 			"name": "WaitForAllSpawned",
 			"i18n": "#wait_for_all_spawned",
+			"essential": true,
 			"type": "string"
 		},
 		{
 			"name": "WaitForAllDead",
 			"i18n": "#wait_for_all_dead",
+			"essential": true,
 			"type": "string"
 		},
 		{
@@ -48,6 +53,7 @@
 		{
 			"name": "TotalCurrency",
 			"i18n": "#total_currency",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 0
@@ -55,6 +61,7 @@
 		{
 			"name": "TotalCount",
 			"i18n": "#total_count",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 0
@@ -62,6 +69,7 @@
 		{
 			"name": "MaxActive",
 			"i18n": "#max_active",
+			"essential": true,
 			"type": "integer",
 			"min": 1,
 			"default": 999
@@ -69,6 +77,7 @@
 		{
 			"name": "SpawnCount",
 			"i18n": "#spawn_count",
+			"essential": true,
 			"type": "integer",
 			"min": 1,
 			"default": 1
@@ -76,6 +85,7 @@
 		{
 			"name": "WaitBeforeStarting",
 			"i18n": "#wait_before_starting",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 0
@@ -83,6 +93,7 @@
 		{
 			"name": "WaitBetweenSpawns",
 			"i18n": "#wait_between_spawns",
+			"essential": true,
 			"type": "integer",
 			"min": 0,
 			"default": 0
