@@ -40,7 +40,8 @@ body{
 		--theme-text-bg-color: #EEEEEE;
 
 		--theme-text-color-warning:#ff6a00;
-		--theme-filter-invert-light:invert(100%);
+
+		--theme-squad-bg-color: #c0b9ce;
 	}
 }
 @media (prefers-color-scheme: dark){
@@ -70,6 +71,7 @@ body{
 		--theme-text-bg-color: #111111;
 
 		--theme-text-color-warning:orange;
-		--theme-filter-invert-dark:invert(100%);
+
+		--theme-squad-bg-color: #43277b;
 	}
 }

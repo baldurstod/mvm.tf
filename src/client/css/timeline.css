@@ -1,5 +1,5 @@
 .mvm-timeline{
-	background-color: rgb(102, 146, 57);
+	background-color: var(--background-secondary);
 	overflow: auto;
 	min-width: 10rem;
 	max-width: 20rem;
@@ -9,16 +9,16 @@
 	display: none;
 }
 
-.mvm-timeline .wave .wave-id{
+.mvm-timeline .wave .title{
 	font-size: 1.5rem;
 	text-align: center;
+	background-color: var(--background-tertiary);
 }
 
 .mvm-timeline .wave-spawn{
 	display: flex;
 	flex-wrap: nowrap;
 	padding: 0.2rem;
-	background-color:rgb(35, 35, 102);
 	cursor: pointer;
 }
 
@@ -31,8 +31,9 @@
 	display: flex;
 	flex-wrap: nowrap;
 	padding: 0.3rem;
-	background-color: brown;
+	background-color: var(--theme-squad-bg-color);
 	cursor: pointer;
+	border-radius: 0.3rem;
 }
 
 .mvm-timeline .random-choice{

@@ -7,11 +7,11 @@ import '../../css/timeline.css';
 
 export class TimelineView {
 	#htmlElement;
-	#htmlWaves;
+	#htmlWaves = new Map();
 	#entity;
 	constructor() {
 		Controller.addEventListener(EVENT_ENTITY_UPDATED, event => this.#entityUpdated(event.detail));
-		//Controller.addEventListener(EVENT_WAVE_ACTIVATED, event => this.setEntity(event.detail));
+		Controller.addEventListener(EVENT_WAVE_ACTIVATED, event => this.#selectWave(event.detail));
 	}
 
 	setEntity(entity) {
@@ -42,6 +42,7 @@ export class TimelineView {
 		}
 
 		this.#htmlElement.innerHTML = '';
+		this.#htmlWaves.clear();
 		let wave = 0;
 		for(const child of entity.getChilds()) {
 			if (!child.isWave) {
@@ -57,7 +58,7 @@ export class TimelineView {
 			parent: this.#htmlElement,
 			childs: [
 				createElement('div', {
-					class: 'wave-id',
+					class: 'title',
 					'i18n-json': {
 						innerHTML: '#wave_id_currency',
 					},
@@ -73,6 +74,8 @@ export class TimelineView {
 			htmlContent.append(waveSpawn.getIcons());
 		}
 
+		this.#htmlWaves.set(wave, htmlContent);
+
 		return htmlContent;
 	}
 
@@ -82,5 +85,16 @@ export class TimelineView {
 
 	#entityUpdated(entity) {
 		this.#updateHTML();
+	}
+
+	#selectWave(selected) {
+		for (const [wave, html] of this.#htmlWaves) {
+			if (selected == wave) {
+				html.classList.add('selected');
+				html.scrollIntoView({ behavior: 'smooth' });
+			} else {
+				html.classList.remove('selected');
+			}
+		}
 	}
 }
