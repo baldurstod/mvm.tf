@@ -27,8 +27,3 @@ mvm-item-selector-item .icon{
 	width: 100%;
 	height: 100%;
 }
-
-mvm-item-selector-slot{
-	flex: 1;
-	overflow: auto;
-}

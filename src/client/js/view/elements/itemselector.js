@@ -3,7 +3,7 @@ import { createElement, hide, toggle, show } from 'harmony-ui';
 import { ItemManager } from '../../loadout/itemmanager.js';
 import { ItemTemplates } from '../../loadout/itemtemplates.js';
 
-export * from './itemselectorslot.js';
+//export * from './itemselectorslot.js';
 export * from './itemselectoritem.js';
 
 import '../../../css/itemselector.css';
@@ -27,7 +27,6 @@ export class HTMLItemSelector extends HTMLElement {
 	#filter = {class: '', slot: ''};
 	static #htmlSelector;
 	static #current;
-	static #htmlSlots = new Map();
 	static #htmlItems = new Map();
 	static #initialized = false;
 
@@ -38,32 +37,6 @@ export class HTMLItemSelector extends HTMLElement {
 			hidden: true,
 			//popover: 'auto',
 		});
-
-		for (const slot of SLOTS) {
-			/*if (slot == 'primary' && className.toLowerCase() == 'spy') {
-				continue;
-			}*/
-
-			this.#htmlSlots.set(slot,
-				createElement('mvm-item-selector-slot', {
-				class: 'slots',
-				parent: this.#htmlSelector,
-				//innerText: slot,
-				'data-slot': slot,
-			}));
-		}
-
-		/*
-		for (const classIcon of classIcons) {
-			createElement('img', {
-				parent: HTMLItemSelector.#htmlSelector,
-				src: getClassIcon(classIcon),
-				events: {
-					click: () => HTMLItemSelector.#current.#selectItem(classIcon),
-				},
-			});
-		}
-		*/
 	}
 
 	constructor() {
@@ -136,11 +109,6 @@ export class HTMLItemSelector extends HTMLElement {
 	}
 
 	static #fillSlot(slot) {
-		/*if (slot == 'primary' && className.toLowerCase() == 'spy') {
-			hide(this.#htmlSlots.get(slot));
-		} else {
-			show(this.#htmlSlots.get(slot));
-		}*/
 
 templatesLoop:
 		for (const [_, template] of ItemTemplates.getTemplates()) {
@@ -150,17 +118,12 @@ templatesLoop:
 				}
 			}
 
-			//console.error(template.name);
-			const slot = template.getItemSlot();
-			const html = this.#htmlSlots.get(slot);
-			if (html) {
-				const htmlItem = createElement('mvm-item-selector-item', {
-					//parent: HTMLItemSelector.#htmlSelector,
-					template: template
-				});
+			const htmlItem = createElement('mvm-item-selector-item', {
+				//parent: HTMLItemSelector.#htmlSelector,
+				template: template
+			});
 
-				this.#htmlItems.set(template, htmlItem);
-			}
+			this.#htmlItems.set(template, htmlItem);
 		}
 	}
 
