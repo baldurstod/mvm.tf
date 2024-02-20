@@ -8,7 +8,8 @@
 			"default": "",
 			"datalist": [
 				"",
-				"Announcer.IncomingMob"
+				"Announcer.IncomingMob",
+				"Player.YouAreIt"
 			]
 		},
 		{
