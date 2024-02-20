@@ -72,9 +72,8 @@ export class HTMLItemSelector extends HTMLElement {
 		if (!HTMLItemSelector.#initialized) {
 			await ItemManager.getItems();
 
-			for (const slot of SLOTS) {
-				HTMLItemSelector.#fillSlot(slot);
-			}
+			HTMLItemSelector.#initItems();
+
 			HTMLItemSelector.#initialized = true;
 		}
 
@@ -99,7 +98,7 @@ export class HTMLItemSelector extends HTMLElement {
 
 	}
 
-	static #fillSlot(slot) {
+	static #initItems() {
 
 templatesLoop:
 		for (const [_, template] of ItemTemplates.getTemplates()) {
@@ -109,9 +108,19 @@ templatesLoop:
 				}
 			}
 
-			const htmlItem = createElement('mvm-item-selector-item', { template: template });
+			let slotOk = false;
+			const itemSlot = template.getItemSlot();
+			for (const slot of SLOTS) {
+				if (slot == itemSlot) {
+					slotOk = true;
+					break;
+				}
+			}
 
-			this.#htmlItems.set(template, htmlItem);
+			if (slotOk) {
+				const htmlItem = createElement('mvm-item-selector-item', { template: template });
+				this.#htmlItems.set(template, htmlItem);
+			}
 		}
 	}
 

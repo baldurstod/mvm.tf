@@ -77,6 +77,10 @@ export class ItemTemplate {
 		return this.#definition?.item_class;
 	}
 
+	getItemSlot() {
+		return this.#definition?.item_slot;
+	}
+
 	get imageInventory() {
 		return this.#definition.image_inventory;
 	}
