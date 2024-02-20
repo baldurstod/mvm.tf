@@ -64,5 +64,7 @@
 		,"#wave_id_currency": "Wave ${id} ${currency}"
 		,"#more_attributes": "More attributes"
 		,"#less_attributes": "Less attributes"
+		,"#add_item": "Add items"
+		,"#items": "Items"
 	}
 }

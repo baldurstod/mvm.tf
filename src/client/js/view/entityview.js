@@ -6,6 +6,7 @@ import { getMap } from '../population/maps.js';
 
 export { HTMLClassIcon } from './elements/classiconselector.js';
 export { HTMLTagSelector } from './elements/tagselector.js';
+export { HTMLItemSelector } from './elements/itemselector.js';
 
 import '../../css/entity.css';
 
@@ -163,6 +164,7 @@ export class EntityView {
 				});
 				break;
 			case 'list':
+			case 'class':
 				const listID = `entity-attribute-list-${++EntityView.#dataListID}`;
 				htmlAttributeInput = createElement('select', {
 					list: listID,
@@ -236,6 +238,23 @@ export class EntityView {
 						break;
 				}*/
 				break;
+			case 'item':
+				htmlAttributeInput = createElement('mvm-item-selector', {
+					//list: `entity-attribute-template-list-${listName}`,
+					//class: `entity-dynamic-list-${listName}`,
+					...(attributeTemplate.multiple) && { multiple: 1 },
+					events: {
+						change: event => {
+							//TODO: check validity
+							if (attributeTemplate.multiple) {
+								this.#entity.setAttribute(attributeTemplate.name, event.detail);
+							} else {
+								this.#entity.setAttribute(attributeTemplate.name, event.detail[0]);
+							}
+						}
+					},
+				});
+				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;
 				break;
@@ -287,6 +306,12 @@ export class EntityView {
 			case 'list':
 				htmlAttributeInput.value = attributeValue;
 				break;
+			case 'class':
+				htmlAttributeInput.value = attributeValue;
+				for (const [_, htmlAttributesInput] of this.#htmlAttributesInputs) {
+					htmlAttributesInput.setAttribute('data-class', attributeValue);
+				}
+				break;
 			case 'trueifpresent':
 			case 'boolean':
 				htmlAttributeInput.checked = attributeValue;
@@ -298,21 +323,10 @@ export class EntityView {
 				// TODO
 				break;
 			case 'dynamiclist':
-				//console.info(htmlAttributeInput, attributeValue);
-				//htmlAttributeInput.value = attributeValue;
-
 				htmlAttributeInput.value = attributeValue;
-/*
-				if (attributeTemplate.multiple) {
-					for (const value of attributeValue) {
-						for (const option of htmlAttributeInput.options) {
-							if (option.value == value) {
-								option.selected = true;
-							}
-						}
-					}
-				}
-				*/
+				break;
+			case 'item':
+				htmlAttributeInput.value = attributeValue;
 				break;
 			default:
 				throw `FIXME: unknow type ${attributeTemplate.type}`;

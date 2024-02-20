@@ -28,15 +28,16 @@
 		},
 		{
 			"name": "Item",
-			"i18n": "#item",
-			"type": "string",
+			"i18n": "#items",
+			"type": "item",
+			"essential": true,
 			"multiple": true
 		},
 		{
 			"name": "Class",
 			"i18n": "#class",
 			"essential": true,
-			"type": "list",
+			"type": "class",
 			"datalist": [
 				"Scout",
 				"Sniper",

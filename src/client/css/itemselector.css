@@ -1,0 +1,34 @@
+mvm-item-selector{
+	border: 0;
+}
+
+mvm-item-selector .add{
+	cursor: pointer;
+}
+
+.mvm-item-selector{
+	border: 0;
+	width: 80%;
+	height: 80%;
+	display: flex;
+	/*flex-direction: column;*/
+	flex-wrap: wrap;
+	background-color: rgb(118, 118, 163);
+}
+
+mvm-item-selector-item{
+	width: 6rem;
+	height: 6rem;
+	cursor: pointer;
+	display: inline-block;
+}
+
+mvm-item-selector-item .icon{
+	width: 100%;
+	height: 100%;
+}
+
+mvm-item-selector-slot{
+	flex: 1;
+	overflow: auto;
+}
