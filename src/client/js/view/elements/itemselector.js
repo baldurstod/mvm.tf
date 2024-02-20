@@ -50,11 +50,6 @@ export class HTMLItemSelector extends HTMLElement {
 			i18n: '#add_item',
 			events: {
 				click: () => this.#openItemSelector(),
-				/*change: event => {
-					this.#addItem(event.target.value);
-					this.dispatchEvent(new CustomEvent('change', { detail: this.#tags }));
-					event.stopPropagation();
-				},*/
 			},
 		});
 	}
@@ -67,7 +62,6 @@ export class HTMLItemSelector extends HTMLElement {
 	}
 
 	#selectItem(classIcon) {
-		//this.#htmlSelected.src = getClassIcon(classIcon);
 		this.dispatchEvent(new CustomEvent('change', { detail: classIcon }));
 		hide(HTMLItemSelector.#htmlSelector);
 	}
@@ -96,10 +90,7 @@ export class HTMLItemSelector extends HTMLElement {
 				HTMLItemSelector.#htmlSelector.append(html);
 			} else {
 				hide(html);
-				//html.remove();
 			}
-			//hide(html);
-			//html.visible = false;
 		}
 	}
 
@@ -118,10 +109,7 @@ templatesLoop:
 				}
 			}
 
-			const htmlItem = createElement('mvm-item-selector-item', {
-				//parent: HTMLItemSelector.#htmlSelector,
-				template: template
-			});
+			const htmlItem = createElement('mvm-item-selector-item', { template: template });
 
 			this.#htmlItems.set(template, htmlItem);
 		}
@@ -187,7 +175,6 @@ templatesLoop:
 				break;
 			case 'data-class':
 				if (newValue != oldValue) {
-					//this.#filter.class = CLASS_TO_ICON[newValue.toLowerCase()];
 					let valueLower = newValue.toLowerCase();
 
 					if (valueLower == 'heavyweapons') {

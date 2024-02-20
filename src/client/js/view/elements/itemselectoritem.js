@@ -67,70 +67,7 @@ export class HTMLItemSelectorItem extends HTMLElement {
 		this.append(this.#itemIconDiv, this.#itemNameDiv);
 
 		let item = this.#template;
-		if (item.paintable == '1') {
-			let div2 = createElement('div', {class:'item-manager-item-icon-paint'});
-			this.append(div2);
-			div2.itemName = item;
-			div2.addEventListener('click', event => {
-				ItemManagerItemEventTarget.dispatchEvent(new CustomEvent('paintclick', {detail: event.target.itemName}));
-				event.stopPropagation();
-			});
-		}
 
-		if (item.attached_models_festive) {
-			let divFestive = createElement('div', {class:'item-manager-item-icon-festivizer', 'i18n-title':'#festivizer'});
-			this.append(divFestive);
-			divFestive.itemName = item;
-			divFestive.addEventListener('click', event => {
-				let i = CharacterManager.getCurrentCharacter().getItemById(item.id);
-				if (i) {
-					i.toggleFestivizer();
-				}
-				event.stopPropagation();
-			});
-		}
-
-
-		if (
-				(item.item_slot == 'melee')
-			|| (item.item_slot == 'primary')
-			|| (item.item_slot == 'secondary')
-			) {
-			let div2 = createElement('div', {class:'item-manager-item-icon-crit'});
-			this.append(div2);
-			div2.itemName = item;
-			div2.addEventListener('click', event => {
-				let i = CharacterManager.getCurrentCharacter().getItemById(item.id);
-				if (i) {
-					i.critBoost();
-				}
-				i = CharacterManager.getCurrentCharacter().getItem(item.name + 'extra');
-				if (i) {
-					i.critBoost();
-				}
-				i = CharacterManager.getCurrentCharacter().getItem(item.name + 'atta2');
-				if (i) {
-					i.critBoost();
-				}
-				event.stopPropagation();
-			});
-		}
-
-		let itemSlot = item.item_slot;
-		if (itemSlot&&(itemSlot.indexOf('melee')!=-1||itemSlot.indexOf('pda')!=-1||itemSlot.indexOf('pda2')!=-1||itemSlot.indexOf('primary')!=-1||itemSlot.indexOf('secondary')!=-1)) {
-			let div2 = createElement('div', {class:'item-manager-item-icon-sheen'});
-			this.append(div2);
-			div2.itemName = item;
-			div2.addEventListener('click', event => {
-				ItemManagerItemEventTarget.dispatchEvent(new CustomEvent('sheenclick', {detail: event.target.itemName}));
-				event.stopPropagation();
-			});
-		}
-
-		if (item.holiday_restriction == 'halloween_or_fullmoon') {
-			let div2 = createElement('div', {class:'item-manager-item-icon-spooky'});
-			this.append(div2);
-		}
 	}
 
 	set selected(selected) {
