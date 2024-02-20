@@ -7,6 +7,7 @@ export * from './itemselectorslot.js';
 export * from './itemselectoritem.js';
 
 import '../../../css/itemselector.css';
+import { ITEM_CLASS_BLACKLIST } from '../../constants.js';
 
 const SLOTS = [
 	'primary',
@@ -141,7 +142,14 @@ export class HTMLItemSelector extends HTMLElement {
 			show(this.#htmlSlots.get(slot));
 		}*/
 
+templatesLoop:
 		for (const [_, template] of ItemTemplates.getTemplates()) {
+			for (const blacklist of ITEM_CLASS_BLACKLIST) {
+				if (template.getItemClass() == blacklist) {
+					continue templatesLoop;
+				}
+			}
+
 			//console.error(template.name);
 			const slot = template.getItemSlot();
 			const html = this.#htmlSlots.get(slot);

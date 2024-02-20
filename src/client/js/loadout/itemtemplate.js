@@ -73,6 +73,10 @@ export class ItemTemplate {
 		return this.#definition?.used_by_classes?.[className] == 1;
 	}
 
+	getItemClass() {
+		return this.#definition?.item_class;
+	}
+
 	get imageInventory() {
 		return this.#definition.image_inventory;
 	}
