@@ -10,9 +10,9 @@ mvm-item-selector .add{
 	border: 0;
 	width: 80%;
 	height: 80%;
-	display: flex;
+	/*display: flex;*/
 	/*flex-direction: column;*/
-	flex-wrap: wrap;
+	/*flex-wrap: wrap;*/
 	background-color: rgb(118, 118, 163);
 }
 

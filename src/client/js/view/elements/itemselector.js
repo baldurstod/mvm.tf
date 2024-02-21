@@ -29,12 +29,13 @@ export class HTMLItemSelector extends HTMLElement {
 	static #current;
 	static #htmlItems = new Map();
 	static #initialized = false;
+	static #initiator;
 
 	static {
 		this.#htmlSelector = createElement('dialog', {
 			class: 'mvm-item-selector',
 			parent: document.body,
-			hidden: true,
+			//hidden: true,
 			//popover: 'auto',
 		});
 	}
@@ -66,18 +67,16 @@ export class HTMLItemSelector extends HTMLElement {
 		hide(HTMLItemSelector.#htmlSelector);
 	}
 
-	async #openItemSelector(className = '') {
-		show(HTMLItemSelector.#htmlSelector);
+	async #openItemSelector() {
+		HTMLItemSelector.#initiator = this;
+		//show(HTMLItemSelector.#htmlSelector);
 		HTMLItemSelector.#htmlSelector.showModal();
+
 		if (!HTMLItemSelector.#initialized) {
 			await ItemManager.getItems();
-
 			HTMLItemSelector.#initItems();
-
 			HTMLItemSelector.#initialized = true;
 		}
-
-
 		this.#applyFilter();
 	}
 
@@ -118,11 +117,30 @@ templatesLoop:
 			}
 
 			if (slotOk) {
-				const htmlItem = createElement('mvm-item-selector-item', { template: template });
+				const htmlItem = createElement('mvm-item-selector-item', {
+					template: template ,
+					events: {
+						click: () => {
+							if (this.#initiator) {
+								this.#initiator.#onItemClick(template);
+							}
+							this.#htmlSelector.close();
+						},
+					}
+				});
 				this.#htmlItems.set(template, htmlItem);
 			}
 		}
 	}
+
+	#onItemClick(template) {
+		this.#addItem(template?.getGameName());
+
+		this.dispatchEvent(new CustomEvent('change',{
+			detail: this.#tags
+		}));
+	}
+
 
 	#addItem(tag) {
 		this.#tags.add(tag);

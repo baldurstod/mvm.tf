@@ -81,6 +81,10 @@ export class ItemTemplate {
 		return this.#definition?.item_slot;
 	}
 
+	getGameName() {
+		return this.#definition?.game_name;
+	}
+
 	get imageInventory() {
 		return this.#definition.image_inventory;
 	}
