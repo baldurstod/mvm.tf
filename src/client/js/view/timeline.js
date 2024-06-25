@@ -1,4 +1,4 @@
-import { createElement, createElementNS } from 'harmony-ui';
+import { createElement } from 'harmony-ui';
 
 import { Controller } from '../controller.js';
 import { EVENT_ENTITY_UPDATED, EVENT_WAVE_ACTIVATED } from '../controllerevents.js';
